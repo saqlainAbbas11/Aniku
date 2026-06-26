@@ -21,7 +21,7 @@
       --p: #8b6bff;
       --p2: #b19eff;
       --pink: #ff5e7a;
-      --mint: #4dd9b3;
+      --mint: #4d6bd9;
       --sky: #6bb6ff;
       --peach: #ff9f6b;
       --lemon: #f5d000;
@@ -73,249 +73,20 @@
       transform: scale(0.98);
     }
     .topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 14px;
-  gap: 8px;
-  flex-wrap: nowrap;
-}
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      gap: 8px;
+      flex-wrap: nowrap;
+    }
     .wordmark {
-  font-size: 24px;
-  font-weight: 900;
-  letter-spacing: -1.5px;
-  color: var(--ink);
-  flex-shrink: 0;
-}
-    .sam {
-  font-style: normal;
-  background: linear-gradient(145deg, #df314e, #8f7900, #4dd9b3, #2064a8, #8b6bff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: 800;
-  background-size: 300% 300%;
-  animation: shimmer 3s ease infinite;
-}
-
-@keyframes shimmer {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Underline animation on hover */
-.sam::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(145deg, #8b6bff, #b19eff);
-  transition: width 0.3s ease;
-  border-radius: 2px;
-}
-
-.sam:hover::after {
-  width: 100%;
-}
-
-.sam:hover {
-  transform: scale(1.02);
-  filter: brightness(1.1);
-}
-
-.creator-wrap {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 12px 4px 8px;
-  background: var(--card-bg);
-  border-radius: 40px;
-  box-shadow: var(--shadow-soft);
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ink2);
-  transition: 0.2s;
-  position: relative;
-  cursor: default;
-}
-
-
-
-.creator-wrap:hover {
-  box-shadow: var(--shadow-inset);
-}
-
-.creator-wrap i {
-  font-size: 12px;
-  color: var(--mint);
-  opacity: 0.8;
-}
-
-/* Optional: Add a subtle neumorphic pill around the creator name */
-.topbar .creator-wrap {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 12px 4px 8px;
-  background: var(--card-bg);
-  border-radius: 40px;
-  box-shadow: var(--shadow-soft);
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ink2);
-  transition: 0.2s;
-}
-
-@media (max-width: 480px) {
-  .wordmark {
-    font-size: 20px;
-  }
-}
-
-.creator-wrap {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px 10px 4px 8px;
-  background: var(--card-bg);
-  border-radius: 40px;
-  box-shadow: var(--shadow-soft);
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--ink2);
-  transition: 0.2s;
-  position: relative;
-  cursor: default;
-  flex-shrink: 1;
-  min-width: 0;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-@media (max-width: 480px) {
-  .creator-wrap {
-    padding: 3px 8px 3px 6px;
-    font-size: 10px;
-    gap: 3px;
-  }
-  
-  .creator-wrap i {
-    font-size: 10px;
-  }
-  
-  .creator-wrap span {
-    font-size: 10px;
-  }
-}
-
-@media (max-width: 380px) {
-  .creator-wrap {
-    padding: 2px 6px 2px 4px;
-    font-size: 9px;
-  }
-  
-  .creator-wrap i {
-    display: none;
-  }
-}
-
-.creator-wrap:hover {
-  box-shadow: var(--shadow-inset);
-}
-
-.creator-wrap i {
-  font-size: 11px;
-  color: var(--mint);
-  opacity: 0.8;
-  flex-shrink: 0;
-}
-
-.topbar-icons {
-  display: flex;
-  gap: 8px;
-  flex-shrink: 0;
-}
-
-@media (max-width: 480px) {
-  .topbar-icons {
-    gap: 6px;
-  }
-  
-  .icon-btn {
-    width: 36px;
-    height: 36px;
-    font-size: 15px;
-  }
-}
-
-.icon-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--card-bg);
-  box-shadow: var(--shadow-soft);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 17px;
-  color: var(--ink2);
-  transition: 0.15s;
-  position: relative;
-  border: none;
-  flex-shrink: 0;
-}
-
-@media (max-width: 380px) {
-  .icon-btn {
-    width: 32px;
-    height: 32px;
-    font-size: 13px;
-  }
-}
-
-/* Update .sam styles */
-.sam {
-  font-style: normal;
-  background: linear-gradient(145deg, #df314e, #8f7900, #4dd9b3, #2064a8, #8b6bff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: 800;
-  background-size: 300% 300%;
-  animation: shimmer 3s ease infinite;
-  text-decoration: none;
-  cursor: pointer;
-  position: relative;
-  transition: all 0.3s ease;
-  display: inline-block;
-}
-
-@media (max-width: 480px) {
-  .sam {
-    font-size: 11px;
-  }
-}
-
-@media (max-width: 380px) {
-  .sam {
-    font-size: 10px;
-  }
-}
-
-.topbar .creator-wrap:hover {
-  box-shadow: var(--shadow-inset);
-  transform: scale(0.97);
-}
-
-.topbar .creator-wrap i {
-  font-size: 12px;
-  color: var(--mint);
-  opacity: 0.8;
-}
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      color: var(--ink);
+      flex-shrink: 0;
+    }
     .wordmark em {
       font-style: normal;
       background: linear-gradient(145deg, #8b6bff, #b19eff);
@@ -323,13 +94,76 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+    .sam {
+      font-style: normal;
+      background: linear-gradient(145deg, #df314e, #8f7900, #4dd9b3, #2064a8, #8b6bff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 800;
+      background-size: 300% 300%;
+      animation: shimmer 3s ease infinite;
+      text-decoration: none;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .sam::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(145deg, #8b6bff, #b19eff);
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+    .sam:hover::after {
+      width: 100%;
+    }
+    .creator-wrap {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px 4px 8px;
+      background: var(--card-bg);
+      border-radius: 40px;
+      box-shadow: var(--shadow-soft);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--ink2);
+      transition: 0.2s;
+      position: relative;
+      cursor: default;
+      flex-shrink: 1;
+      min-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .creator-wrap:hover {
+      box-shadow: var(--shadow-inset);
+    }
+    .creator-wrap i {
+      font-size: 11px;
+      color: var(--mint);
+      opacity: 0.8;
+      flex-shrink: 0;
+    }
     .topbar-icons {
       display: flex;
-      gap: 10px;
+      gap: 8px;
+      flex-shrink: 0;
     }
     .icon-btn {
-      width: 44px;
-      height: 44px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       background: var(--card-bg);
       box-shadow: var(--shadow-soft);
@@ -337,11 +171,12 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 18px;
+      font-size: 17px;
       color: var(--ink2);
       transition: 0.15s;
       position: relative;
       border: none;
+      flex-shrink: 0;
     }
     .icon-btn:active {
       box-shadow: var(--shadow-inset);
@@ -424,7 +259,6 @@
       cursor: pointer;
       white-space: nowrap;
       background: var(--card-bg);
-      
       transition: all 0.15s;
       flex-shrink: 0;
       color: var(--ink2);
@@ -455,7 +289,6 @@
       cursor: pointer;
       white-space: nowrap;
       background: var(--card-bg);
-      
       transition: 0.15s;
       flex-shrink: 0;
       color: var(--ink2);
@@ -468,6 +301,146 @@
     .cat-chip:active {
       transform: scale(0.94);
     }
+    
+    /* Filter Button & Panel */
+    .filter-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 40px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      background: var(--card-bg);
+      box-shadow: var(--shadow-soft);
+      color: var(--ink2);
+      border: none;
+      transition: 0.2s;
+      width: fit-content;
+    }
+    .filter-toggle:hover {
+      box-shadow: var(--shadow-inset);
+    }
+    .filter-toggle.active {
+      box-shadow: var(--shadow-inset);
+      color: var(--p);
+    }
+    .filter-toggle i {
+      font-size: 14px;
+    }
+    
+    .filter-panel {
+      background: var(--card-bg);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+      animation: slideDown 0.3s ease;
+    }
+    .filter-panel.open {
+      display: flex;
+    }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .filter-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      min-width: 60px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .filter-select, .filter-input {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 40px;
+      background: var(--card-bg);
+      box-shadow: var(--shadow-inset);
+      font-size: 13px;
+      font-weight: 600;
+      font-family: inherit;
+      color: var(--ink);
+      outline: none;
+      min-width: 100px;
+      transition: 0.2s;
+    }
+    .filter-select:focus, .filter-input:focus {
+      box-shadow: var(--shadow);
+    }
+    .filter-select option {
+      background: var(--card-bg);
+      color: var(--ink);
+    }
+    .filter-apply {
+      padding: 8px 24px;
+      border: none;
+      border-radius: 40px;
+      background: var(--p);
+      color: white;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      box-shadow: var(--shadow-soft);
+      transition: 0.15s;
+      font-family: inherit;
+    }
+    .filter-apply:active {
+      transform: scale(0.96);
+      box-shadow: var(--shadow-inset);
+    }
+    .filter-reset {
+      padding: 8px 18px;
+      border: none;
+      border-radius: 40px;
+      background: var(--card-bg);
+      box-shadow: var(--shadow-soft);
+      color: var(--ink2);
+      font-weight: 700;
+      font-size: 12px;
+      cursor: pointer;
+      transition: 0.15s;
+      font-family: inherit;
+    }
+    .filter-reset:active {
+      transform: scale(0.96);
+      box-shadow: var(--shadow-inset);
+    }
+    .filter-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .filter-tag {
+      padding: 4px 12px;
+      border-radius: 40px;
+      font-size: 10px;
+      font-weight: 700;
+      background: rgba(139, 107, 255, 0.15);
+      color: var(--p);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .filter-tag .remove {
+      cursor: pointer;
+      font-size: 12px;
+      opacity: 0.6;
+    }
+    .filter-tag .remove:hover {
+      opacity: 1;
+    }
+
     .sec-hdr {
       display: flex;
       align-items: baseline;
@@ -497,9 +470,6 @@
       grid-template-columns: 1fr 1fr;
       gap: 12px;
       margin-bottom: 4px;
-    }
-    .bento-wide {
-      grid-column: 1 / -1;
     }
     .feat-card {
       border-radius: var(--r);
@@ -759,6 +729,43 @@
       height: 210px;
       object-fit: cover;
       background: #d9d3e8;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    .det-cover:hover {
+      opacity: 0.92;
+      transform: scale(1.01);
+    }
+    .det-cover-wrapper {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--r) var(--r) 0 0;
+    }
+    .det-cover-wrapper .enlarge-badge {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      color: white;
+      padding: 8px 14px;
+      border-radius: 40px;
+      font-size: 11px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+      z-index: 5;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      pointer-events: none;
+      letter-spacing: 0.5px;
+    }
+    .det-cover-wrapper:hover .enlarge-badge {
+      opacity: 1;
+      transform: translateY(0);
     }
     .det-body {
       padding: 18px 18px 20px;
@@ -839,9 +846,7 @@
       border-top-color: var(--p);
     }
     @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
+      to { transform: rotate(360deg); }
     }
     .ld-txt {
       font-weight: 700;
@@ -965,14 +970,8 @@
       animation: floatUp 0.4s cubic-bezier(0.2, 0.9, 0.3, 1) both;
     }
     @keyframes floatUp {
-      0% {
-        opacity: 0;
-        transform: translateY(20px) scale(0.96);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+      0% { opacity: 0; transform: translateY(20px) scale(0.96); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
     }
     .infinite-trigger {
       height: 20px;
@@ -989,193 +988,93 @@
       background: var(--p2);
       border-radius: 3px;
     }
+    .poster-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(12px);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      animation: fadeIn 0.3s ease;
+    }
+    .poster-modal.open {
+      display: flex;
+    }
+    .poster-modal img {
+      max-width: 92%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 16px;
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+      animation: zoomIn 0.35s cubic-bezier(0.2, 0.9, 0.3, 1);
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .poster-modal .close-modal {
+      position: fixed;
+      top: 24px;
+      right: 32px;
+      font-size: 38px;
+      color: white;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s ease;
+      z-index: 10000;
+      backdrop-filter: blur(8px);
+    }
+    .poster-modal .close-modal:hover {
+      transform: rotate(90deg) scale(1.1);
+      background: rgba(255, 94, 122, 0.3);
+      border-color: #ff5e7a;
+      color: #ff5e7a;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes zoomIn {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
     @media (min-width: 720px) {
-      :root {
-        --max-w: 1300px;
-      }
-      .bento {
-        grid-template-columns: 1fr 1fr 1fr;
-      }
-      .feat-img {
-        height: 260px;
-      }
+      :root { --max-w: 1300px; }
+      .bento { grid-template-columns: 1fr 1fr 1fr; }
+      .feat-img { height: 260px; }
     }
     @media (max-width: 480px) {
-      .app {
-        padding: 0 4px;
-      }
-      .feat-img {
-        height: 160px;
-      }
+      .app { padding: 0 4px; }
+      .feat-img { height: 160px; }
+      .topbar-icons .icon-btn { width: 36px; height: 36px; font-size: 15px; }
+      .creator-wrap { padding: 3px 8px 3px 6px; font-size: 10px; }
+      .filter-row { flex-direction: column; align-items: stretch; }
+      .filter-label { min-width: auto; }
+      .filter-select, .filter-input { min-width: auto; }
     }
-   /* Make cover image clickable with better visual feedback */
-.det-cover {
-  cursor: pointer;
-  transition: 0.3s ease;
-  position: relative;
-}
-
-.det-cover:hover {
-  opacity: 0.92;
-  filter: brightness(0.98);
-  transform: scale(1.01);
-}
-
-/* Enlarge badge on the image */
-.det-cover-wrapper {
-  position: relative;
-  overflow: hidden;
-  border-radius: var(--r) var(--r) 0 0;
-}
-
-.det-cover-wrapper .enlarge-badge {
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(8px);
-  color: white;
-  padding: 8px 14px;
-  border-radius: 40px;
-  font-size: 11px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.3s ease;
-  z-index: 5;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  pointer-events: none;
-  letter-spacing: 0.5px;
-}
-
-.det-cover-wrapper:hover .enlarge-badge {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.det-cover-wrapper .enlarge-badge i {
-  font-size: 14px;
-}
-
-/* Zoom icon on hover overlay */
-.det-cover-wrapper::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at center, rgba(139, 107, 255, 0.15), transparent 70%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.det-cover-wrapper:hover::after {
-  opacity: 1;
-}
-
-/* Poster Modal enhancements */
-.poster-modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.88);
-  backdrop-filter: blur(12px);
-  z-index: 9999;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  animation: fadeIn 0.3s ease;
-}
-
-.poster-modal.open {
-  display: flex;
-}
-
-.poster-modal img {
-  max-width: 92%;
-  max-height: 90%;
-  object-fit: contain;
-  border-radius: 16px;
-  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
-  animation: zoomIn 0.35s cubic-bezier(0.2, 0.9, 0.3, 1);
-  user-select: none;
-  -webkit-user-drag: none;
-}
-
-.poster-modal .close-modal {
-  position: fixed;
-  top: 24px;
-  right: 32px;
-  font-size: 38px;
-  color: white;
-  cursor: pointer;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 50%;
-  width: 56px;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.3s ease;
-  z-index: 10000;
-  backdrop-filter: blur(8px);
-}
-
-.poster-modal .close-modal:hover {
-  transform: rotate(90deg) scale(1.1);
-  background: rgba(255, 94, 122, 0.3);
-  border-color: #ff5e7a;
-  color: #ff5e7a;
-}
-
-.poster-modal .modal-hint {
-  position: fixed;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: rgba(255, 255, 255, 0.4);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 1px;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 8px 20px;
-  border-radius: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(4px);
-  animation: pulseHint 2s ease-in-out infinite;
-  z-index: 10000;
-}
-
-@keyframes pulseHint {
-  0%, 100% { opacity: 0.4; transform: translateX(-50%) scale(1); }
-  50% { opacity: 0.8; transform: translateX(-50%) scale(1.02); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes zoomIn {
-  from { transform: scale(0.85); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
+    @media (max-width: 380px) {
+      .creator-wrap { padding: 2px 6px 2px 4px; font-size: 9px; }
+      .creator-wrap i { display: none; }
+      .icon-btn { width: 32px; height: 32px; font-size: 13px; }
+      .wordmark { font-size: 20px; }
+    }
   </style>
 </head>
 <body>
   <div class="app" id="app">
 
-   <div class="topbar">
+    <div class="topbar">
   <div class="wordmark">ani<em>ku</em></div>
   <div class="creator-wrap">
   <i class="fas fa-pen-fancy"></i>
@@ -1194,6 +1093,7 @@
     </button>
   </div>
 </div>
+
     <div class="search-box">
       <i class="fas fa-search"></i>
       <input id="q" type="text" placeholder="Search anime, manga…" autocomplete="off" />
@@ -1206,16 +1106,88 @@
       <button class="stab" data-src="jikan">MAL</button>
       <button class="stab" data-src="anilist">AniList</button>
       <button class="stab" data-src="kitsu">Kitsu</button>
-      <!-- <button class="stab" data-src="mangadex">MangaDex</button> -->
     </div>
 
-    <div class="cat-row" id="catRow">
-      <button class="cat-chip sel" data-cat="trending">✨ Trending</button>
-      <button class="cat-chip" data-cat="airing">📺 Airing</button>
-      <button class="cat-chip" data-cat="top">🏆 Top</button>
-      <button class="cat-chip" data-cat="popular">🔥 Popular</button>
-      <button class="cat-chip" data-cat="manga">📖 Manga</button>
-      <button class="cat-chip" data-cat="upcoming">⏳ Upcoming</button>
+    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+      <div class="cat-row" id="catRow">
+        <button class="cat-chip sel" data-cat="trending">✨ Trending</button>
+        <button class="cat-chip" data-cat="airing">📺 Airing</button>
+        <button class="cat-chip" data-cat="top">🏆 Top</button>
+        <button class="cat-chip" data-cat="popular">🔥 Popular</button>
+        <button class="cat-chip" data-cat="manga">📖 Manga</button>
+        <button class="cat-chip" data-cat="upcoming">⏳ Upcoming</button>
+      </div>
+      <button class="filter-toggle" id="filterToggle">
+        <i class="fas fa-sliders-h"></i> Filters
+      </button>
+    </div>
+
+    <!-- Filter Panel -->
+    <div class="filter-panel" id="filterPanel">
+      <div class="filter-row">
+        <span class="filter-label">Year</span>
+        <select class="filter-select" id="filterYear">
+          <option value="">Any</option>
+          <option value="2026">2026</option>
+          <option value="2025">2025</option>
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+          <option value="2022">2022</option>
+          <option value="2021">2021</option>
+          <option value="2020">2020</option>
+          <option value="2019">2019</option>
+          <option value="2018">2018</option>
+          <option value="2017">2017</option>
+          <option value="2016">2016</option>
+          <option value="2015">2015</option>
+          <option value="2010">2010-2014</option>
+          <option value="2000">2000-2009</option>
+          <option value="1990">1990-1999</option>
+          <option value="1980">1980-1989</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Genre</span>
+        <select class="filter-select" id="filterGenre">
+          <option value="">All Genres</option>
+          <option value="action">Action</option>
+          <option value="adventure">Adventure</option>
+          <option value="comedy">Comedy</option>
+          <option value="drama">Drama</option>
+          <option value="fantasy">Fantasy</option>
+          <option value="horror">Horror</option>
+          <option value="mystery">Mystery</option>
+          <option value="romance">Romance</option>
+          <option value="sci-fi">Sci-Fi</option>
+          <option value="slice of life">Slice of Life</option>
+          <option value="sports">Sports</option>
+          <option value="thriller">Thriller</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Status</span>
+        <select class="filter-select" id="filterStatus">
+          <option value="">Any</option>
+          <option value="airing">Airing</option>
+          <option value="finished">Finished</option>
+          <option value="upcoming">Upcoming</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Rating</span>
+        <select class="filter-select" id="filterRating">
+          <option value="">Any</option>
+          <option value="8">8+</option>
+          <option value="7">7+</option>
+          <option value="6">6+</option>
+          <option value="5">5+</option>
+        </select>
+      </div>
+      <div class="filter-row" style="justify-content:flex-end; gap:10px;">
+        <button class="filter-reset" id="filterReset">Reset</button>
+        <button class="filter-apply" id="filterApply">Apply Filters</button>
+      </div>
+      <div id="filterTags" class="filter-tags"></div>
     </div>
 
     <div class="favs-panel" id="favsPanel">
@@ -1239,510 +1211,74 @@
       <button class="back-btn" id="backBtn"><i class="fas fa-arrow-left"></i> Back</button>
       <div id="detContent"></div>
     </div>
-    <!-- Poster Modal -->
-<div class="poster-modal" id="posterModal">
-  <button class="close-modal" id="closePosterModal">&times;</button>
-  <img id="posterImage" src="" alt="Poster" />
-</div>
+
+    <div class="poster-modal" id="posterModal">
+      <button class="close-modal" id="closePosterModal">&times;</button>
+      <img id="posterImage" src="" alt="Poster" />
+    </div>
   </div>
 
   <script>
-    // Toggle social popup on click
-const creatorLink = document.getElementById('creatorLink');
-const socialPopup = document.getElementById('socialPopup');
-
-creatorLink.addEventListener('click', (e) => {
-  e.preventDefault();
-  e.stopPropagation();
-  socialPopup.classList.toggle('show');
-});
-
-// Close popup when clicking outside
-document.addEventListener('click', (e) => {
-  if (!e.target.closest('.creator-wrap')) {
-    socialPopup.classList.remove('show');
-  }
-});
-  </script>
-  <script>
     // Poster Modal functionality
-const posterModal = document.getElementById('posterModal');
-const posterImage = document.getElementById('posterImage');
-const closePosterModal = document.getElementById('closePosterModal');
+    const posterModal = document.getElementById('posterModal');
+    const posterImage = document.getElementById('posterImage');
+    const closePosterModal = document.getElementById('closePosterModal');
 
-// Function to open poster modal
-function openPosterModal(imgSrc) {
-  if (!imgSrc) return;
-  posterImage.src = imgSrc;
-  posterModal.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
+    function openPosterModal(imgSrc) {
+      if (!imgSrc) return;
+      posterImage.src = imgSrc;
+      posterModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
 
-// Function to close poster modal
-function closePosterModalFn() {
-  posterModal.classList.remove('open');
-  document.body.style.overflow = '';
-  posterImage.src = '';
-}
+    function closePosterModalFn() {
+      posterModal.classList.remove('open');
+      document.body.style.overflow = '';
+      posterImage.src = '';
+    }
 
-// Close on button click
-closePosterModal.addEventListener('click', closePosterModalFn);
-
-// Close on backdrop click
-posterModal.addEventListener('click', (e) => {
-  if (e.target === posterModal) {
-    closePosterModalFn();
-  }
-});
-
-// Close on ESC key
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    closePosterModalFn();
-  }
-});
+    closePosterModal.addEventListener('click', closePosterModalFn);
+    posterModal.addEventListener('click', (e) => {
+      if (e.target === posterModal) closePosterModalFn();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closePosterModalFn();
+    });
 
     (function() {
       'use strict';
 
-      const QUIZ_DATA = [{
-          "question": "Which genre is aimed at girls between 10-18?",
-          "answers": ["shoujo"]
-        },
+      const QUIZ_DATA = [
+        { "question": "Which genre is aimed at girls between 10-18?", "answers": ["shoujo"] },
         { "question": "When was the first known Japanese animation produced?", "answers": ["1917"] },
         { "question": "The practice of dressing up like anime characters in Japan is called?", "answers": ["cosplay"] },
-        { "question": "In yaoi pairing, what is the \"receiving\", \"bottom\", or passive partner known as?",
-          "answers": ["uke"] },
-        { "question": "In yaoi pairing, what is the \"top\" or dominant partner known as?", "answers": ["seme"] },
-        { "question": "What is a popular anime/manga character archetype that derives from the Japanese pronunciation of the English word 'cool'?",
-          "answers": ["kuudere", "coodere"] },
-        { "question": "What is a Japanese term for a character development process that describes a person who is initially cold and even hostile towards another person before gradually showing their warm side over time?",
-          "answers": ["tsundere"] },
         { "question": "Type of anime aimed at young boys under the age of fifteen?", "answers": ["shonen"] },
         { "question": "Type of anime aimed at young men between the ages of 15-24?", "answers": ["seinen"] },
         { "question": "Type of anime aimed at adult women?", "answers": ["josei"] },
-        { "question": "Type of anime largely focused on one distinct aspect: pilotable robots?", "answers": ["mecha",
-            "robot"
-          ] },
-        { "question": "Type of anime about innocent young girls using a magical object to transform into a superhero version of themselves?",
-          "answers": ["magical girl", "mahou shoujo", "majokko"] },
-        { "question": "Type of anime which do not show sexual intercourse or genitalia, but sexual themes are referenced?",
-          "answers": ["ecchi"] },
-        { "question": "Type of anime where one male character, the protagonist, at the center of a group of female characters who are all vying for his romantic affections?",
-          "answers": ["harem"] },
-        { "question": "What character type is a heroine that started as a villain trying to kill the protagonist but then switched to his side after falling in love with him?",
-          "answers": ["mayadere"] },
-        { "question": "It's common in anime for a character to pull their lower eyelid down to taunt someone. What is this called?",
-          "answers": ["akanabe"] },
-        { "question": "What anime character type is known as a quiet and often antisocial character?", "answers": [
-            "dandere"
-          ] },
-        { "question": "What character type is very loving and gentle to someone before their devotion becomes destructive in nature, often through violence and/or brutality?",
-          "answers": ["yandere"] },
-        { "question": "Which Hayao Miyazaki movie was based off of a book by a British author named Dianna Wynne Jones?",
-          "answers": ["Castle in the sky"] },
-        { "question": "As of 2015, among all the 17 long anime movies Hayao Miyazaki participated in, how many did he direct?",
-          "answers": ["11", "eleven"] },
+        { "question": "Type of anime largely focused on pilotable robots?", "answers": ["mecha"] },
+        { "question": "Type of anime about innocent young girls transforming into superheroes?", "answers": ["magical girl", "mahou shoujo"] },
+        { "question": "Type of anime where one male character is surrounded by female characters?", "answers": ["harem"] },
+        { "question": "What anime character type is known as a quiet and often antisocial character?", "answers": ["dandere"] },
+        { "question": "What character type is very loving before becoming destructive?", "answers": ["yandere"] },
+        { "question": "Which Hayao Miyazaki movie was based on a book by Dianna Wynne Jones?", "answers": ["Castle in the sky"] },
         { "question": "(Attack on Titan) Who is the main character?", "answers": ["Eren Yeager", "Eren"] },
         { "question": "(Attack on Titan) Which character loves to eat?", "answers": ["Sasha Blouse", "Sasha"] },
-        { "question": "(Attack on Titan) What is the outer wall named (The one taken by the titans)?", "answers": [
-            "Wall Maria", "Maria"
-          ] },
-        { "question": "(Attack on Titan) How many men did Eren kill during the scene in which he rescued the kidnapped Misaka when they were children (Shingeki no Kyojin)?",
-          "answers": ["2", "two"] },
-        { "question": "(Attack on Titan) What color flare is used when the mission is over whether or nor it was a success?",
-          "answers": ["Yellow"] },
-        { "question": "(Attack on Titan) Who killed Rod Reiss?", "answers": ["Historia"] },
-        { "question": "(Attack on Titan) What was the name of Levi's mother?", "answers": ["Kuchel"] },
-        { "question": "(Attack on Titan) Who taught Annie how to fight?", "answers": ["Her father", "Father"] },
-        { "question": "(Attack on Titan) What was the name of Historia's mother?", "answers": ["Alma"] },
-        { "question": "(Attack on Titan) What protects the Colossal titan?", "answers": ["Steam"] },
-        { "question": "(Attack on Titan) What is the name of the wall in Wall Sina's northern district?", "answers": [
-            "Orvud"
-          ] },
-        { "question": "(Attack on Titan) What is the name of the newspaper in the Stohess district?", "answers": [
-            "Berg Newspaper", "Berg"
-          ] },
-        { "question": "(Attack on Titan) Who did Grisha eat in order to steal the Coordinate?", "answers": [
-            "Frieda Reiss", "Frieda"
-          ] },
-        { "question": "(Attack on Titan) Who ruined Eren's equipment when they were trainees?", "answers": [
-            "Keith Shadis", "Keith", "Shadis"
-          ] },
-        { "question": "(Attack on Titan) \"Only the victors are allowed to live. This world is merciless like that.\" Who said this?",
-          "answers": ["Mikasa"] },
-        { "question": "(Attack on Titan) What did Carla do for a living before she met Grisha?", "answers": [
-            "waitress"
-          ] },
-        { "question": "(Attack on Titan) \"I just don't want those charred bones I saw to be disappointed in me. I... I know what I have to do now.\" Who said this?",
-          "answers": ["Jean"] },
-        { "question": "(Attack on Titan) Who would become the commander of the Scouting Legion if something were to happen to Erwin?",
-          "answers": ["Hange"] },
-        { "question": "(Beyblade) What is the name of Emily's bitbeast?", "answers": ["Trygator"] },
-        { "question": "English name of Kuroshitsuji?", "answers": ["Black Butler"] },
-        { "question": "(Black Butler) Who is the British monarch in Black Butler's time period?", "answers": [
-            "Victoria I", "Queen Victoria I"
-          ] },
-        { "question": "(Black Cat) How many members of Chronos were there originally?", "answers": ["13", "thirteen"] },
-        { "question": "(Black Cat) Out of which material are Train Heartnet's gun and bullets mainly made of?",
-          "answers": ["orichalcum"] },
-        { "question": "(Black Cat) Who is the main character?", "answers": ["Train Heartnet"] },
-        { "question": "Which series features a location called the Soul Society?", "answers": ["Bleach"] },
-        { "question": "(Bleach) How many times have Ichigo and Renji battled?", "answers": ["2", "two"] },
-        { "question": "(Bleach) What squad is Toushiro Hitsugaya the captain of?", "answers": ["10", "10th", "tenth",
-            "ten"
-          ] },
-        { "question": "(Bleach) Human mediums, having the ability to detect the existence of Hollows?", "answers": [
-            "Quincy"
-          ] },
-        { "question": "(Bleach) What is a Hollow that has removed its mask and has gained Shinigami-like powers?",
-          "answers": ["Arrancar"] },
-        { "question": "(Bleach) What is the name of Hitsugaya Toshirou's Zanpakutou?", "answers": ["Hyourinmaru"] },
-        { "question": "(Bleach) Who does Orikasa Fumiko voice?", "answers": ["Rukia"] },
-        { "question": "In what CLAMP Animé is there a little Persocon named Chii?", "answers": ["Chobits"] },
-        { "question": "(Chobits) What is the first thing that came on the screen in episode 1?", "answers": ["cow"] },
-        { "question": "(Code Geass) The character Li Xingke is a member of which group?", "answers": [
-            "the chinese federation", "chinese federation"
-          ] },
-        { "question": "(Code Geass) The leader of the Four Holy Swords is named...?", "answers": [
-            "General Kyoshiro Tohdoh", "general tohdoh", "kyoshiro tohdoh", "tohdoh"
-          ] },
-        { "question": "(Code Geass) What was the white Knightmare Frame piloted by Suzaku called?", "answers": [
-            "Lancelot"
-          ] },
-        { "question": "(Code Geass) What game does Lelouch skip school to play?", "answers": ["chess"] },
-        { "question": "(Code Geass) Wat was the name of the academy Lelouch went to?", "answers": [
-            "Ashford Academy", "Ashford"
-          ] },
-        { "question": "(Code Geass) At the very end, how many characters were aware of Lelouch's true intentions?",
-          "answers": ["4", "four"] },
-        { "question": "(Cowboy Bebop) What is the villan Vicious's weapon of choice?", "answers": ["katana"] },
-        { "question": "(Cowboy Bebop) Who dies?", "answers": ["Spike"] },
-        { "question": "Which anime involves a Corgi hound named Ein as one of the characters?", "answers": [
-            "cowboy bebop"
-          ] },
-        { "question": "(Death Note) Who is the second Kira?", "answers": ["Misa Amane", "misa"] },
+        { "question": "(Attack on Titan) What is the outer wall named?", "answers": ["Wall Maria", "Maria"] },
         { "question": "(Death Note) Who is the first Kira?", "answers": ["Light Yagami", "Light"] },
-        { "question": "(Death Note) Who is the third Kira?", "answers": ["Kyosuke Higuchi", "Kyosuke"] },
-        { "question": "(Death Note) What is the default way the Death Note kills?", "answers": [
-            "cardiac paralysis"
-          ] },
-        { "question": "(Death Note) What is the name of the Shinigami that owns the Death Note Light Yagami uses?",
-          "answers": ["Ryuk"] },
+        { "question": "(Death Note) What is the name of the Shinigami that owns the Death Note?", "answers": ["Ryuk"] },
         { "question": "(Death Note) What is L's real name?", "answers": ["L Lawliets"] },
-        { "question": "(Death Note) Who did the first Death Note to be picked up belong to?", "answers": ["Sidoh"] },
-        { "question": "(Death Note) When Misa meets Light, what is her occupation?", "answers": ["Model"] },
-        { "question": "(Death Note) What nickname is given to Raito (Light) after he finds the Death Note?",
-          "answers": ["Kira"] },
-        { "question": "(Death Note) What is Ryuuku's favorite food?", "answers": ["Apple"] },
-        { "question": "(Death Note) What did L tell the Japanese Task Force to call him?", "answers": ["Ryuzaki"] },
-        { "question": "(Death Note) Who was L's butler/caregiver/handler?", "answers": ["Watari"] },
-        { "question": "(Death Note) Who did L always call an idiot?", "answers": ["Matsuda"] },
-        { "question": "(Death Note) What is Light's last name?", "answers": ["Yagami"] },
-        { "question": "(Death Note) What was the name of the inside man in the Yotsuba group?", "answers": [
-            "Renji Namikawa"
-          ] },
-        { "question": "(Detective Conan) What is Shinichi Kudo's best sport?", "answers": ["soccer", "football"] },
-        { "question": "(Digimon) Which year was the American adaptation of Digimon: The Movie released?",
-          "answers": ["2000"] },
-        { "question": "(Digimon) What was Taichi Kamiya's first Digimon?", "answers": ["Botamon"] },
-        { "question": "(Dragon Ball Z) How many dragon balls are there?", "answers": ["7", "seven"] },
-        { "question": "(Dragon Ball Z) Who does a complete set of dragon balls summon?", "answers": ["Shenron"] },
-        { "question": "(Dragon Ball Z) What race is Piccolo?", "answers": ["Namekian", "Nameks"] },
-        { "question": "(Dragon Ball Z) Who kills Frieza?", "answers": ["Future Trunks", "Trunks"] },
-        { "question": "(Dragon Ball Z) Who sacrifices his life for Gohan from an incoming blast from Nappa in the Saiyan Saga?",
-          "answers": ["Piccolo"] },
-        { "question": "(Dragon Ball Z) Which android is the only one who marries?", "answers": ["18"] },
-        { "question": "For which anime were these songs written: \"Cha La Head Cha La\" and \"Boku-tachi wa Tenshi Datta\"?",
-          "answers": ["Dragon Ball Z"] },
-        { "question": "(Durarara) What is the name of the hot tempered bar tender with super human strength?",
-          "answers": ["Shizuo"] },
-        { "question": "(Fairy Tail) Where did Lucy get her guild mark?", "answers": ["Right hand", "back of right hand",
-            "hand"
-          ] },
-        { "question": "(Fairy Tail) Who was the first guild master of Fairy Tail?", "answers": ["Mavis"] },
-        { "question": "(Fairy Tail) Where is the location of the Fairy Tail guildhouse?", "answers": ["Magnolia"] },
-        { "question": "(Fairy Tail) What is the name of the dragon that raised Natsu in Fairy Tail?", "answers": [
-            "Igneel"
-          ] },
-        { "question": "(Fooly Cooly) How many manga-like (comic-like) scenes are there in total?", "answers": ["2",
-            "two"
-          ] },
-        { "question": "(Fooly Cooly) There are a couple of scenes where you see the commander getting a haircut. What popular show's animation resembles the special animation in this scene?",
-          "answers": ["South Park"] },
-        { "question": "(Fruits Basket) What is the last name of the cursed family Tohru stays with?", "answers": [
-            "Sohma"
-          ] },
-        { "question": "(Fruits Basket) What is the kind of animal does Momiji turn into?", "answers": ["rabbit",
-            "bunny"
-          ] },
-        { "question": "(Fruits Basket) What spirit is Akito possessed by?", "answers": ["God"] },
-        { "question": "(Fruits Basket) What Zodiac animal is Kyo Sohma?", "answers": ["cat"] },
-        { "question": "(Fullmetal Alchemist) What is Edward's and Alphonse's last name?", "answers": ["Elric"] },
+        { "question": "(Fullmetal Alchemist) What is Edward's last name?", "answers": ["Elric"] },
         { "question": "(Fullmetal Alchemist) Who kills Hughes?", "answers": ["Envy"] },
-        { "question": "(Fullmetal Alchemist) What is the automotive armored prostheses?", "answers": ["automail"] },
-        { "question": "(Fullmetal Alchemist) What did Ed sacrifice in order to seal his brother's soul into a suit of armour?",
-          "answers": ["right arm", "arm"] },
-        { "question": "(Fullmetal Alchemist) Colonel Roy Mustang is also known as the Alchemist of__?",
-          "answers": ["Flame"] },
-        { "question": "(Fullmetal Alchemist) What is King Bradley aka Pride's son called?", "answers": ["Selim"] },
-        { "question": "(Fullmetal Alchemist) Who taught the Elric brothers alchemy?", "answers": ["Izumi Curtis",
-            "Izumi"
-          ] },
-        { "question": "(Fullmetal Alchemist) Which Homunculus uses carbon as their power?", "answers": ["Greed"] },
-        { "question": "(Fullmetal Alchemist) Solf J. Kimblee is known as the ___ Alchemist?", "answers": ["Crimson"] },
-        { "question": "(Fullmetal Alchemist) What Language is Riza's Tattoo Writen In?", "answers": ["Latin"] },
-        { "question": "(Fullmetal Alchemist) The Father of the Homunculi can stop which style of alchemy?",
-          "answers": ["Western Armestris"] },
-        { "question": "(Fullmetal Alchemist) In the manga what is the date in Ed's pocket watch?", "answers": [
-            "3.Oct.10"
-          ] },
-        { "question": "(Fullmetal Alchemist) What does Edward hate to drink?", "answers": ["milk"] },
-        { "question": "(Fullmetal Alchemist) Basque Grand is known as the __ Alchemist?", "answers": ["Iron Blood"] },
-        { "question": "(Fullmetal Alchemist) what is the first law of alchemy?", "answers": ["equivalent exchange"] },
-        { "question": "(Fullmetal Alchemist) Who Says This “I have no desire to live a carefree, happy life alone...\"?",
-          "answers": ["Riza"] },
-        { "question": "(Fullmetal Alchemist) What room number is the Fuhrer's?", "answers": ["103"] },
-        { "question": "(Fullmetal Alchemist) What is Envy's nickname for Edward?", "answers": ["Fullmetal pipsqueak"] },
-        { "question": "(Fullmetal Alchemist) What is the symbol on the back of Edward's red coat called?",
-          "answers": ["flammel"] },
-        { "question": "(Fullmetal Alchemist) According To Fuhrer Bradley What Is Roy's Weakness?", "answers": [
-            "Riza", "Riza Hawkeye"
-          ] },
-        { "question": "(Fullmetal Alchemist) When Mustang was forced to do human transmutation in fma: brotherhood what did he loose?",
-          "answers": ["eyesight", "vision"] },
-        { "question": "(Fullmetal Alchemist) How is Envy related to Ed and Al?", "answers": ["brother", "brothers"] },
-        { "question": "(Fullmetal Alchemist) How tall is Edward?", "answers": ["4'6\"", "four and a half feet",
-            "four foot six inches", "four foot 6"
-          ] },
-        { "question": "(Fullmetal Alchemist) What does Winry do for a living?", "answers": ["mechanic"] },
-        { "question": "(Fullmetal Alchemist) What's Hughes's daughter's name?", "answers": ["elicia"] },
-        { "question": "(Fullmetal Alchemist) What is the name of Ed and Al's mother?", "answers": ["Trisha"] },
-        { "question": "(Fullmetal Alchemist) What did Ed give up to revive his mother?", "answers": ["left leg"] },
-        { "question": "(Fullmetal Alchemist) Who is Ed's father?", "answers": ["Hohenheim"] },
-        { "question": "(Fullmetal Alchemist) How old was Edward when he became a state alchemist?", "answers": ["12",
-            "twelve"
-          ] },
-        { "question": "(Fullmetal Alchemist) What is the name of the Ishbalan people's god?", "answers": ["Ishbala"] },
-        { "question": "(Fullmetal Alchemist) What is Winry's last name?", "answers": ["Rockbell"] },
-        { "question": "(Fullmetal Alchemist) What is the name of transmutation circle used to make the Philosopher Stone?",
-          "answers": ["Grand Arcanum"] },
-        { "question": "(Fullmetal Alchemist) Shou Tucker was known as the __ Alchemist?", "answers": ["Sewing Life"] },
-        { "question": "(Fullmetal Alchemist) Who kills Lust?", "answers": ["Colonel Mustang", "Mustang",
-            "Roy mustang"
-          ] },
-        { "question": "(Fullmetal Alchemist) Whose nickname is the \"Ultimate Spear\"?", "answers": ["Lust"] },
-        { "question": "(Fullmetal Alchemist) Who sparked the Ishval Civil War?", "answers": ["Envy"] },
-        { "question": "(Fullmetal Alchemist) Who was the second Homunculus created by Father?", "answers": ["Lust"] },
-        { "question": "(Fullmetal Alchemist) Who is the only female Homunculus?", "answers": ["Lust"] },
-        { "question": "(Fullmetal Alchemist) Alex Louis Armstrong is also known as the __ Alchemist?", "answers": [
-            "Strong Arm", "strongarm"
-          ] },
-        { "question": "(Fullmetal Alchemist) Who is known as the Northern Wall of Briggs?", "answers": [
-            "Olivier Mira Armstrong", "Olivier Armstrong"
-          ] },
-        { "question": "(Fullmetal Alchemist) Who is a pseudo Gate of Truth?", "answers": ["Gluttony"] },
-        { "question": "After Watase Yuu's creation of \"Fushigi Yuugi\", which famous shoujo anime did she make?",
-          "answers": ["Ayashi no Ceres"] },
-        { "question": "(Fushigi Yuugi) Miaka is the priestess of what?", "answers": ["Suzaku"] },
-        { "question": "(Fushigi Yuugi) The world of Fushigi Yuugi is based on the ancient form of what country?",
-          "answers": ["China"] },
-        { "question": "(Gundam) How many rounds of ammunition does Gundam Wing Zero Custom's Buster Rifle have?",
-          "answers": ["3", "three"] },
-        { "question": "(Gundam) What is the original Gundam?", "answers": ["RX-78"] },
-        { "question": "(Gundam) What is the name of the final Gundam used by Shiro in 08th MS Team?", "answers": [
-            "Ez-8"
-          ] },
-        { "question": "(Hellsing) What country does it take place in?", "answers": ["England"] },
-        { "question": "(Hetalia) Who did America grow up with?", "answers": ["England"] },
-        { "question": "(Hetalia) Who does Holy Rome have a crush on?", "answers": ["Italy"] },
-        { "question": "(Highschool Of The Dead) What are zombie's sensitive to?", "answers": ["sound"] },
-        { "question": "(InuYasha) Who was the demon of hair?", "answers": ["Yura"] },
-        { "question": "(InuYasha) Who is the leader of the wolf demons?", "answers": ["Koga", "kouga"] },
-        { "question": "(InuYasha) InuYasha is half __ demon?", "answers": ["dog"] },
-        { "question": "(Inuyasha) What is the name of Sango's demon cat?", "answers": ["kirara"] },
-        { "question": "(InuYasha) Inuyasha's sword is called what?", "answers": ["Tessaiga", "Tetsusaiga"] },
-        { "question": "(InuYasha) What is the name of the baby that Naraku holds his human heart in?", "answers": [
-            "Hakudoshi"
-          ] },
-        { "question": "(InuYasha) Who does Inuyasha mistake Kagome for?", "answers": ["Kikyo"] },
-        { "question": "Basketball Anime that came out in 2012?", "answers": ["Kuroko No Basket"] },
-        { "question": "(Love Hina) What was the samurai girl's name?", "answers": ["Aoyama ", "Aoyama Motoko"] },
-        { "question": "(Love Hina) In the Christmas special, what did Keitarou buy Naru?", "answers": ["Coat",
-            "jacket"
-          ] },
-        { "question": "(Magic Knight Rayearth) Thee three heroines, Hikaru, Umi and Fuu, have powers associated with different elements. What kind of elemental spells does Umi use?",
-          "answers": ["water"] },
-        { "question": "(Mew Mew Power) What type of animal power does Kiki have?", "answers": ["monkey"] },
-        { "question": "Which 2011 magical girl anime features Grief Seeds, witches, a mysterious white creature called Kyubey, and the characters Homura, Sayaka and Mami?",
-          "answers": ["Puella Magi Madoka Magica"] },
-        { "question": "(Naruto) What is the relationship between Hinata and Hanabi Hyuga?", "answers": ["sisters",
-            "sister"
-          ] },
-        { "question": "(Naruto) Who is Negi's cousin?", "answers": ["Hinata Hyuga", "Hinata"] },
-        { "question": "Sakura, Sasuke, Rock Lee, and Kakashi are all characters from which anime?", "answers": [
-            "Naruto"
-          ] },
+        { "question": "(Fullmetal Alchemist) What did Ed sacrifice to seal his brother's soul?", "answers": ["right arm", "arm"] },
         { "question": "(Naruto) What is the name of Naruto's son?", "answers": ["Boruto Uzumaki", "Boruto"] },
-        { "question": "(Naruto) What is the special Kekkei Genkai/Bloodline Limit of the Hyuga clan?", "answers": [
-            "Byakugan"
-          ] },
-        { "question": "(Naruto) Which jutsu does Rock Lee use?", "answers": ["taijutsu"] },
-        { "question": "(Naruto) Who tricked Naruto into stealing a sacred scroll?", "answers": ["Mizuki"] },
-        { "question": "(Naruto) Naruto first shows his nine-tails chakra when he fights who?", "answers": ["Haku"] },
-        { "question": "(Naruto) What animal does the one-tailed beast resemble?", "answers": ["Tanuki",
-            "Japanese Raccoon Dog", "Raccoon"
-          ] },
-        { "question": "(Naruto) What is the name of the nine-tailed beast?", "answers": ["Kurama"] },
-        { "question": "(Naruto) Who gave Kakashi his Sharingan eye?", "answers": ["Obito Uchiha", "Obito"] },
-        { "question": "(Naruto) Who cut Sakura's hair off?", "answers": ["Sakura"] },
-        { "question": "(Naruto) Name one of Sarutobi's disciples?", "answers": ["Orochimaru", "Jiraiya", "Tsunade"] },
-        { "question": "(Naruto) What is the forbidden technique used by Rock Lee that he used on Dosu and Gaara?",
-          "answers": ["Primary Lotus"] },
-        { "question": "(Naruto) D-rank missions are usually given to what level of shinobi?", "answers": ["Genin"] },
-        { "question": "(Naruto) All members of what group are S-rank criminals?", "answers": ["Akatsuki"] },
-        { "question": "(Naruto) What is the word for a female ninja?", "answers": ["Kunoichi"] },
-        { "question": "(Naruto) The Sharingan is what type of jutsu?", "answers": ["Doujutsu"] },
-        { "question": "(Naruto) What is Naruto's favorite food?", "answers": ["Ramen"] },
-        { "question": "(Naruto) When in The Forest Of Death, Orochimaru disguises himself as a ninja from what village?",
-          "answers": ["Grass"] },
-        { "question": "(Naruto) What is involved to use most summoning techniques?", "answers": ["blood"] },
-        { "question": "(Naruto) Who is the proctor for the second stage of the Chunin Exams?", "answers": [
-            "Anko Mitarashi"
-          ] },
-        { "question": "(Neon Genesis Evangelion)Who is the pilot of Unit-02?", "answers": ["asuka langley-soryu",
-            "asuka langley soryu"
-          ] },
-        { "question": "(Neon Genesis Evangelion) In what year did the show start airing?", "answers": ["1995"] },
-        { "question": "(No Game No Life) How many races exist in Disboard?", "answers": ["16", "sixteen"] },
-        { "question": "(One Piece) What's the bounty on Roronoa Zoro's head?", "answers": ["120,000,000",
-            "120000000"
-          ] },
+        { "question": "(Naruto) What is the special Kekkei Genkai of the Hyuga clan?", "answers": ["Byakugan"] },
         { "question": "(One Piece) Luffy ate what Devil Fruit?", "answers": ["Gomu Gomu", "gum gum"] },
-        { "question": "(One Piece) What year was the manga created?", "answers": ["1997"] },
-        { "question": "(One Piece) Who is the Pirate King?", "answers": ["Gol D. Roger", "Gol D Roger"] },
-        { "question": "(One Piece) What did Sanji think Croccus was at the first time he saw him?", "answers": [
-            "Flower"
-          ] },
-        { "question": "(One Piece) What is Croccus' zodiac sign?", "answers": ["Gemini"] },
-        { "question": "(One Piece) Which Baroque Works frontier agent was defeated first?", "answers": ["Miss Monday"] },
-        { "question": "(One Piece) Who in the fleet was the first to faint after meeting Dorry and Brogy?",
-          "answers": ["Karoo"] },
-        { "question": "(One Piece) What is Igaram's wife's name?", "answers": ["Teracotta"] },
-        { "question": "(One Piece) Which Baroque Works officer agent has no special power from a devil fruit?",
-          "answers": ["Miss Goldenweek"] },
-        { "question": "(One Piece) Who is \"the child of demons\"?", "answers": ["Robin"] },
-        { "question": "(One Piece) Who has a goal of mapping the world?", "answers": ["Nami"] },
-        { "question": "(One Piece) Who has a goal of wanting to discover the true history of the world?",
-          "answers": ["Robin"] },
-        { "question": "(One Piece) Which character has a bounty under a pseudonym?", "answers": ["Usopp"] },
-        { "question": "(One Piece) Who is the navigator of the Straw Hat Pirates?", "answers": ["Nami"] },
-        { "question": "(One Piece) Whose crew did Nami work for before joining Luffy's crew?", "answers": ["Arlong",
-            "Arlong's"
-          ] },
-        { "question": "(One Piece) What fruit did Bartholomew Kuma eat?", "answers": ["Pawpaw fruit", "Pawpaw",
-            "paw paw"
-          ] },
-        { "question": "(One Punch Man) Who is the main protagonist?", "answers": ["Saitama"] },
-        { "question": "(One Punch Man) What city does Saitama live in?", "answers": ["Z-city", "z city", "z"] },
-        { "question": "(One Punch Man) What city is the headquarters of the Hero Association in?", "answers": [
-            "A-city", "A city", "A"
-          ] },
-        { "question": "(One Punch Man) Who is the Rank 1 Class S Hero?", "answers": ["Blast"] },
-        { "question": "(Ouran High School Host Club) Who is mistaken for a boy in the anime?", "answers": ["Haruhi"] },
-        { "question": "(Pokemon) In the original Japanese version, what is Ash Ketchum's name?", "answers": ["Satoshi"] },
-        { "question": "(Pokemon) Pokemon was created by Stoshi Tajiri in which year?", "answers": ["1996"] },
-        { "question": "(Pokemon) What starter pokemon did Ash Ketchum originally intend to choose?", "answers": [
-            "Squirtle"
-          ] },
-        { "question": "(Ranma 1/2) What does Ryouga turn into when he gets doused with cold water?", "answers": [
-            "pig", "a pig"
-          ] },
-        { "question": "(Ranma 1/2) What is Ranma most afraid of?", "answers": ["cats", "cat"] },
-        { "question": "(Rave Master) What's 3713 real name?", "answers": ["Elie"] },
-        { "question": "Usagi Tsukino is better known as...?", "answers": ["Sailor Moon"] },
-        { "question": "(Sailor Moon) Who was Minako's crime-fighting alter ego before she became Sailor Venus?",
-          "answers": ["sailor v"] },
-        { "question": "(Sailor Moon) What are the Sailor Senshi named after?", "answers": ["Planets"] },
-        { "question": "(Sailor Moon) Who is the love interest of Sailor Moon?", "answers": ["Tuxedo Mask",
-            "Mamoru Chiba", "Mamoru", "Endymion"
-          ] },
-        { "question": "(Shokugeki no Soma) Who is the 7th seat on the Elite Ten Council?", "answers": [
-            "Satoshi Isshiki", "Isshiki"
-          ] },
-        { "question": "(Shokugeki no Soma) Who is the 10th seat on the Elite Ten Council?", "answers": [
-            "Erina Nakiri", "Erina"
-          ] },
-        { "question": "(Shokugeki no Soma) What was Joichiro Yukihira's original name?", "answers": [
-            "Joichiro Saiba", "Saiba Joichiro", "Saiba"
-          ] },
-        { "question": "(Shokugeki No Soma) What is the graduation rate at Totsuki Culinary Academy?", "answers": [
-            "1%", "1", "One"
-          ] },
-        { "question": "(Shokugeki No Soma) What is the name of the Culinary Academy?", "answers": [
-            "Totsuki Culinary Academy", "Totsuki"
-          ] },
-        { "question": "(Shokugeki No Soma) What is the term referring to a cooking duel allows students to settle debates and arguments?",
-          "answers": ["shokugeki"] },
-        { "question": "(Slam Dunk) Sakuragi Hanamichi plays what position for Shohoku?", "answers": ["Power Forward"] },
-        { "question": "(Steins;Gate) What anime does Kurisu's online name reference?", "answers": ["Dragon Ball Z",
-            "DBZ"
-          ] },
-        { "question": "(Steins;Gate) What is written on the Lab Members badge?", "answers": ["OSHMKUFA 2010"] },
-        { "question": "(Steins;Gate) Who does Mayuri work for?", "answers": ["Faris"] },
-        { "question": "(Steins;Gate) What is Mayuri's favorite hobby?", "answers": ["Cosplay"] },
-        { "question": "(Steins;Gate) How old is Mayuri Shiina?", "answers": ["16"] },
-        { "question": "(Steins;Gate) Who ate Kurisu's pudding?", "answers": ["Rintaro Okabe", "Rintaro", "Okabe"] },
-        { "question": "(Steins;Gate) How old is Rintaro Okabe?", "answers": ["18"] },
-        { "question": "(Steins;Gate) What will happen to Mayuri when Mayuri's pocket watch stops working?",
-          "answers": ["Death", "Dies", "die", "She dies"] },
-        { "question": "(Steins;Gate) Who is the sixth person that is shown in the opening?", "answers": [
-            "Rintaro Okabe", "Rintaro", "Okabe"
-          ] },
-        { "question": "(Steins;Gate) What is the name of Okabe's Laboratory?", "answers": [
-            "Future Gadget Laboratory"
-          ] },
-        { "question": "(Steins;Gate) What name does Okabe call Kurisu?", "answers": ["Christina"] },
-        { "question": "(Steins;Gate) In what area of Tokyo does Steins;Gate take place?", "answers": ["Akihabara"] },
-        { "question": "(Steins;Gate) Why does Mayuri stay with Okabe?", "answers": ["She's his hostage", "Hostage"] },
-        { "question": "(Steins;Gate) What is Rintaro's landlord's name?", "answers": ["Yugo", "Mr Braun"] },
-        { "question": "(Steins;Gate) What is Okabe's favorite drink?", "answers": ["Dk Pepper"] },
-        { "question": "(Steins;Gate) Steins;Gate is a collaboration work between 5pb. and who?", "answers": ["Nitro+"] },
-        { "question": "(Steins;Gate) What does the team call the text messages sent to the past?", "answers": [
-            "Dmail", "d-mail"
-          ] },
-        { "question": "(Steins;Gate) What nickname does Rintaro give to Moeka?", "answers": ["Shining Finger"] },
-        { "question": "(Steins;Gate) What is the name of the ability to retain memories across world lines?",
-          "answers": ["Reading Steiner"] },
-        { "question": "Maka Albarn is from what anime?", "answers": ["soul eater"] },
-        { "question": "(Sword Art Online) What is the second game Kirito goes into?", "answers": ["Alfheim Online",
-            "Alfheim"
-          ] },
-        { "question": "(The Last Airbender) What is the name of Aang's flying bison?", "answers": ["Appa"] },
-        { "question": "(The Last Airbender) What is the name of the evil prince that tries to capture Aang?",
-          "answers": ["prince zuko", "zuko"] },
-        { "question": "(Trigun) What was Vash's brother called?", "answers": ["Knife"] },
-        { "question": "Sakura Kinamoto is the heroine of 'Cardcaptor Sakura'. In which CLAMP manga/anime does she also appear?",
-          "answers": ["Tsubasa: Reservoir Chronicle", "Tsubasa", "Tsubasa Reservoir Chronicle",
-            "Tsubasa - Reservoir Chronicle"
-          ] },
-        { "question": "(Tsubasa Chronicle) What does the gang needed to collect?", "answers": [
-            "Princess Sakura's feathers", "feathers"
-          ] },
-        { "question": "Which manga made by CLAMP was named after a plant?", "answers": ["clover"] },
-        { "question": "What is name for the rabbit-like creatures from Clamp?", "answers": ["mokona"] },
-        { "question": "What is Kazuki Takahashi best known as the creator of?", "answers": ["yu-gi-oh",
-            "yu-gi-oh!"
-          ] },
-        { "question": "(Yu Yu Hakusho) What level computer does Mitari have to fight in Game Master's territory?",
-          "answers": ["7", "seven"] },
-        { "question": "(Yu Yu Hakasho) What is Yuskey's close advisor and ghost friend?", "answers": ["Botan"] },
-        { "question": "(Zatch Bell) What color is Kyo's spell book?", "answers": ["red"] }
+        { "question": "(One Piece) Who is the Pirate King?", "answers": ["Gol D. Roger", "Gol D Roger"] }
       ];
 
       let favs = new Set();
-      let currentSrc = 'all',
-        currentCat = 'trending';
+      let currentSrc = 'all';
+      let currentCat = 'trending';
       let searchDebounce;
       let allData = { jikan: [], anilist: [], kitsu: [], mangadex: [] };
       let page = 1;
@@ -1750,6 +1286,14 @@ document.addEventListener('keydown', (e) => {
       let hasMore = true;
       let currentQuery = '';
       let quizIndex = 0;
+      
+      // Filter state
+      let filters = {
+        year: '',
+        genre: '',
+        status: '',
+        rating: ''
+      };
 
       const KITSU_H = { 'Accept': 'application/vnd.api+json', 'Content-Type': 'application/vnd.api+json' };
       const SRC_COLORS = {
@@ -1768,9 +1312,7 @@ document.addEventListener('keydown', (e) => {
       ];
 
       function pal(i) { return PALETTES[i % PALETTES.length]; }
-
-      function scoreStr(v) { return v ? parseFloat(v).toFixed(1) : '—'; }
-
+      function scoreStr(v) { return v != null ? parseFloat(v).toFixed(1) : '—'; }
       function truncate(s, n = 140) { return s && s.length > n ? s.slice(0, n) + '…' : s || 'No synopsis.'; }
 
       function updateFavBadge() {
@@ -1781,25 +1323,145 @@ document.addEventListener('keydown', (e) => {
         renderFavsPanel();
       }
 
-      
+      // Filter functions
+      function getFilteredItems(items) {
+        let filtered = [...items];
+        
+        if (filters.year) {
+          const yearFilter = filters.year;
+          if (yearFilter.includes('-')) {
+            // Range filter
+            const [start, end] = yearFilter.split('-').map(Number);
+            filtered = filtered.filter(item => {
+              const year = item.year;
+              return year && year >= start && year <= end;
+            });
+          } else {
+            filtered = filtered.filter(item => item.year === parseInt(yearFilter));
+          }
+        }
+        
+        if (filters.genre) {
+          filtered = filtered.filter(item => {
+            const genres = item.genres || [];
+            return genres.some(g => g.toLowerCase().includes(filters.genre.toLowerCase()));
+          });
+        }
+        
+        if (filters.status) {
+          const statusMap = {
+            'airing': ['airing', 'current', 'Airing'],
+            'finished': ['finished', 'Finished', 'complete'],
+            'upcoming': ['upcoming', 'not_yet_released', 'Upcoming']
+          };
+          const validStatuses = statusMap[filters.status] || [];
+          filtered = filtered.filter(item => {
+            const status = (item.status || '').toLowerCase();
+            return validStatuses.some(s => status === s.toLowerCase());
+          });
+        }
+        
+        if (filters.rating) {
+          const minRating = parseInt(filters.rating);
+          filtered = filtered.filter(item => {
+            const score = item.score;
+            return score != null && score >= minRating;
+          });
+        }
+        
+        return filtered;
+      }
 
+      function getFilterParams() {
+        const params = {};
+        if (filters.year) {
+          if (filters.year.includes('-')) {
+            const [start, end] = filters.year.split('-').map(Number);
+            params.yearStart = start;
+            params.yearEnd = end;
+          } else {
+            params.year = parseInt(filters.year);
+          }
+        }
+        if (filters.genre) params.genre = filters.genre;
+        if (filters.status) params.status = filters.status;
+        if (filters.rating) params.minScore = parseInt(filters.rating);
+        return params;
+      }
+
+      function updateFilterTags() {
+        const container = document.getElementById('filterTags');
+        const tags = [];
+        
+        if (filters.year) tags.push({ key: 'year', label: `Year: ${filters.year}` });
+        if (filters.genre) tags.push({ key: 'genre', label: `Genre: ${filters.genre}` });
+        if (filters.status) tags.push({ key: 'status', label: `Status: ${filters.status}` });
+        if (filters.rating) tags.push({ key: 'rating', label: `Rating: ${filters.rating}+` });
+        
+        if (tags.length === 0) {
+          container.innerHTML = '';
+          return;
+        }
+        
+        container.innerHTML = tags.map(tag => `
+          <span class="filter-tag">
+            ${tag.label}
+            <span class="remove" data-key="${tag.key}">&times;</span>
+          </span>
+        `).join('');
+        
+        container.querySelectorAll('.remove').forEach(el => {
+          el.addEventListener('click', () => {
+            const key = el.dataset.key;
+            filters[key] = '';
+            document.getElementById(`filter${key.charAt(0).toUpperCase() + key.slice(1)}`).value = '';
+            updateFilterTags();
+            applyFiltersAndReload();
+          });
+        });
+      }
+
+      function applyFiltersAndReload() {
+        page = 1;
+        hasMore = true;
+        loadMore(currentSrc, currentCat, currentQuery, page, false);
+      }
+
+      // API fetch functions
       async function fetchJikan(mode, q, page) {
         try {
+          const filterParams = getFilterParams();
           let url;
-          if (q) url =
-            `https://api.jikan.moe/v4/anime?q=${encodeURIComponent(q)}&limit=12&page=${page}`;
-          else if (mode === 'airing') url =
-            `https://api.jikan.moe/v4/top/anime?filter=airing&limit=12&page=${page}`;
-          else if (mode === 'top') url =
-            `https://api.jikan.moe/v4/top/anime?limit=12&page=${page}`;
-          else if (mode === 'upcoming') url =
-            `https://api.jikan.moe/v4/top/anime?filter=upcoming&limit=12&page=${page}`;
-          else if (mode === 'manga') url =
-            `https://api.jikan.moe/v4/top/manga?limit=12&page=${page}`;
-          else url = `https://api.jikan.moe/v4/top/anime?limit=12&page=${page}`;
+          if (q) {
+            url = `https://api.jikan.moe/v4/anime?q=${encodeURIComponent(q)}&limit=12&page=${page}`;
+          } else if (mode === 'airing') {
+            url = `https://api.jikan.moe/v4/top/anime?filter=airing&limit=12&page=${page}`;
+          } else if (mode === 'top') {
+            url = `https://api.jikan.moe/v4/top/anime?limit=12&page=${page}`;
+          } else if (mode === 'upcoming') {
+            url = `https://api.jikan.moe/v4/top/anime?filter=upcoming&limit=12&page=${page}`;
+          } else if (mode === 'manga') {
+            url = `https://api.jikan.moe/v4/top/manga?limit=12&page=${page}`;
+          } else {
+            url = `https://api.jikan.moe/v4/top/anime?limit=12&page=${page}`;
+          }
+          
+          // Add genre filter if specified
+          if (filters.genre && !q) {
+            const genreMap = {
+              'action': 1, 'adventure': 2, 'comedy': 4, 'drama': 8, 'fantasy': 10,
+              'horror': 14, 'mystery': 7, 'romance': 22, 'sci-fi': 24,
+              'slice of life': 36, 'sports': 30, 'thriller': 41
+            };
+            const genreId = genreMap[filters.genre.toLowerCase()];
+            if (genreId) {
+              url += `&genres=${genreId}`;
+            }
+          }
+          
           const res = await fetch(url);
           const j = await res.json();
-          return (j.data || []).map(a => ({
+          let items = (j.data || []).map(a => ({
             id: 'jikan_' + a.mal_id,
             src: 'jikan',
             rawId: a.mal_id,
@@ -1812,28 +1474,86 @@ document.addEventListener('keydown', (e) => {
             status: a.status,
             type: a.type,
             year: a.year || a.aired?.prop?.from?.year,
-            genres: (a.genres || []).map(g => g.name).slice(0, 3),
+            genres: (a.genres || []).map(g => g.name).slice(0, 5),
             synopsis: a.synopsis,
             rank: a.rank,
             members: a.members,
             isManga: mode === 'manga' || a.type === 'Manga'
           }));
+          
+          // Client-side filtering for year range that Jikan doesn't support directly
+          if (filterParams.yearStart && filterParams.yearEnd) {
+            items = items.filter(item => {
+              const year = item.year;
+              return year && year >= filterParams.yearStart && year <= filterParams.yearEnd;
+            });
+          }
+          
+          if (filterParams.year && !filterParams.yearStart) {
+            items = items.filter(item => item.year === filterParams.year);
+          }
+          
+          if (filterParams.minScore) {
+            items = items.filter(item => item.score != null && item.score >= filterParams.minScore);
+          }
+          
+          if (filterParams.status) {
+            const statusMap = {
+              'airing': ['airing', 'currently airing'],
+              'finished': ['finished', 'complete'],
+              'upcoming': ['upcoming', 'not yet aired']
+            };
+            const validStatuses = statusMap[filterParams.status] || [];
+            items = items.filter(item => {
+              const status = (item.status || '').toLowerCase();
+              return validStatuses.some(s => status.includes(s));
+            });
+          }
+          
+          return items;
         } catch { return []; }
       }
 
       async function fetchAniList(mode, q, page) {
-        const isSearch = !!q;
-        const perPage = 12;
-        const gql = isSearch ?
-          `query($s:String,$page:Int){Page(page:$page,perPage:${perPage}){media(search:$s,type:ANIME,sort:POPULARITY_DESC){id title{romaji english}coverImage{large}averageScore episodes status startDate{year}genres description}}}` :
-          mode === 'manga' ?
-          `query($page:Int){Page(page:$page,perPage:${perPage}){media(type:MANGA,sort:POPULARITY_DESC){id title{romaji english}coverImage{large}averageScore chapters status startDate{year}genres description}}}` :
-          mode === 'top' ?
-          `query($page:Int){Page(page:$page,perPage:${perPage}){media(type:ANIME,sort:SCORE_DESC){id title{romaji english}coverImage{large}averageScore episodes status startDate{year}genres description}}}` :
-          mode === 'upcoming' ?
-          `query($page:Int){Page(page:$page,perPage:${perPage}){media(type:ANIME,sort:START_DATE_DESC,status:NOT_YET_RELEASED){id title{romaji english}coverImage{large}averageScore episodes status startDate{year}genres description}}}` :
-          `query($page:Int){Page(page:$page,perPage:${perPage}){media(type:ANIME,sort:TRENDING_DESC){id title{romaji english}coverImage{large}averageScore episodes status startDate{year}genres description}}}`;
         try {
+          const isSearch = !!q;
+          const perPage = 12;
+          const filterParams = getFilterParams();
+          
+          let sort = 'TRENDING_DESC';
+          let type = 'ANIME';
+          let statusFilter = '';
+          
+          if (mode === 'manga') {
+            type = 'MANGA';
+            sort = 'POPULARITY_DESC';
+          } else if (mode === 'top') {
+            sort = 'SCORE_DESC';
+          } else if (mode === 'upcoming') {
+            statusFilter = 'status: NOT_YET_RELEASED,';
+          } else if (mode === 'airing') {
+            statusFilter = 'status: RELEASING,';
+          }
+          
+          let genreFilter = '';
+          if (filters.genre) {
+            genreFilter = `genre: "${filters.genre}",`;
+          }
+          
+          let yearFilter = '';
+          if (filters.year) {
+            if (filters.year.includes('-')) {
+              const [start, end] = filters.year.split('-').map(Number);
+              yearFilter = `startDate_greater: ${start}, startDate_lesser: ${end},`;
+            } else {
+              yearFilter = `startDate: ${filters.year},`;
+            }
+          }
+          
+          const gql = isSearch ?
+            `query($s:String,$page:Int){Page(page:$page,perPage:${perPage}){media(search:$s,type:${type},sort:POPULARITY_DESC){id title{romaji english}coverImage{large}averageScore episodes status startDate{year}genres description}}}` :
+            `query($page:Int){Page(page:$page,perPage:${perPage}){media(type:${type},sort:${sort},${genreFilter}${yearFilter}${statusFilter}){id title{romaji english}coverImage{large}averageScore episodes status startDate{year}genres description}}}`;
+          
           const res = await fetch('https://graphql.anilist.co', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -1841,7 +1561,8 @@ document.addEventListener('keydown', (e) => {
           });
           const j = await res.json();
           const items = j.data?.Page?.media || [];
-          return items.map(a => ({
+          
+          let results = items.map(a => ({
             id: 'anilist_' + a.id,
             src: 'anilist',
             rawId: a.id,
@@ -1853,44 +1574,124 @@ document.addEventListener('keydown', (e) => {
             eps: a.episodes || a.chapters,
             status: a.status,
             year: a.startDate?.year,
-            genres: (a.genres || []).slice(0, 3),
+            genres: (a.genres || []).slice(0, 5),
             synopsis: a.description?.replace(/<[^>]+>/g, ''),
             isManga: mode === 'manga'
           }));
+          
+          // Client-side rating filter
+          if (filterParams.minScore) {
+            results = results.filter(item => item.score != null && item.score >= filterParams.minScore);
+          }
+          
+          if (filterParams.status && !isSearch) {
+            const statusMap = {
+              'airing': ['RELEASING'],
+              'finished': ['FINISHED'],
+              'upcoming': ['NOT_YET_RELEASED']
+            };
+            const validStatuses = statusMap[filterParams.status] || [];
+            results = results.filter(item => {
+              const status = (item.status || '').toUpperCase();
+              return validStatuses.includes(status);
+            });
+          }
+          
+          return results;
         } catch { return []; }
       }
 
       async function fetchKitsu(mode, q, page) {
         try {
           const limit = 12;
+          const offset = (page - 1) * limit;
+          const filterParams = getFilterParams();
+          
           let url;
-          if (q) url =
-            `https://kitsu.io/api/edge/anime?filter[text]=${encodeURIComponent(q)}&page[limit]=${limit}&page[offset]=${(page-1)*limit}&fields[anime]=canonicalTitle,posterImage,averageRating,showType,episodeCount,status,startDate,synopsis`;
-          else if (mode === 'manga') url =
-            `https://kitsu.io/api/edge/manga?sort=-userCount&page[limit]=${limit}&page[offset]=${(page-1)*limit}&fields[manga]=canonicalTitle,posterImage,averageRating,chapterCount,status,startDate,synopsis`;
-          else if (mode === 'top') url =
-            `https://kitsu.io/api/edge/anime?sort=-averageRating&page[limit]=${limit}&page[offset]=${(page-1)*limit}&fields[anime]=canonicalTitle,posterImage,averageRating,showType,episodeCount,status,startDate,synopsis`;
-          else url =
-            `https://kitsu.io/api/edge/anime?sort=-userCount&page[limit]=${limit}&page[offset]=${(page-1)*limit}&fields[anime]=canonicalTitle,posterImage,averageRating,showType,episodeCount,status,startDate,synopsis`;
+          let statusFilter = '';
+          let sort = '-userCount';
+          
+          if (filters.status) {
+            const statusMap = {
+              'airing': 'current',
+              'finished': 'finished',
+              'upcoming': 'upcoming'
+            };
+            const kitsuStatus = statusMap[filters.status];
+            if (kitsuStatus) statusFilter = `filter[status]=${kitsuStatus}&`;
+          }
+          
+          if (filters.year) {
+            if (filters.year.includes('-')) {
+              const [start, end] = filters.year.split('-').map(Number);
+              // Kitsu doesn't support year range filtering directly
+            } else {
+              // Kitsu doesn't support year filtering directly
+            }
+          }
+          
+          if (q) {
+            url = `https://kitsu.io/api/edge/anime?filter[text]=${encodeURIComponent(q)}&page[limit]=${limit}&page[offset]=${offset}&fields[anime]=canonicalTitle,titles,posterImage,averageRating,showType,episodeCount,status,startDate,synopsis,userCount,favoritesCount`;
+          } else if (mode === 'manga') {
+            url = `https://kitsu.io/api/edge/manga?sort=-userCount&page[limit]=${limit}&page[offset]=${offset}&fields[manga]=canonicalTitle,titles,posterImage,averageRating,chapterCount,status,startDate,synopsis,userCount,favoritesCount`;
+          } else if (mode === 'top') {
+            url = `https://kitsu.io/api/edge/anime?sort=-averageRating&page[limit]=${limit}&page[offset]=${offset}&${statusFilter}fields[anime]=canonicalTitle,titles,posterImage,averageRating,showType,episodeCount,status,startDate,synopsis,userCount,favoritesCount`;
+          } else {
+            url = `https://kitsu.io/api/edge/anime?sort=-userCount&page[limit]=${limit}&page[offset]=${offset}&${statusFilter}fields[anime]=canonicalTitle,titles,posterImage,averageRating,showType,episodeCount,status,startDate,synopsis,userCount,favoritesCount`;
+          }
+
           const res = await fetch(url, { headers: KITSU_H });
           const j = await res.json();
-          return (j.data || []).map(a => ({
-            id: 'kitsu_' + a.id,
-            src: 'kitsu',
-            rawId: a.id,
-            title: a.attributes.canonicalTitle,
-            titleEn: '',
-            img: a.attributes.posterImage?.small || '',
-            imgLg: a.attributes.posterImage?.large || '',
-            score: a.attributes.averageRating,
-            eps: a.attributes.episodeCount || a.attributes.chapterCount,
-            status: a.attributes.status,
-            year: a.attributes.startDate?.slice(0, 4),
-            genres: [],
-            synopsis: a.attributes.synopsis,
-            isManga: mode === 'manga'
-          }));
-        } catch { return []; }
+
+          if (!j.data || !j.data.length) return [];
+
+          let results = j.data.map(a => {
+            const attr = a.attributes || {};
+            let statusDisplay = attr.status || 'unknown';
+            if (statusDisplay === 'current') statusDisplay = 'Airing';
+            else if (statusDisplay === 'finished') statusDisplay = 'Finished';
+            else if (statusDisplay === 'upcoming') statusDisplay = 'Upcoming';
+
+            return {
+              id: `kitsu_${a.id}`,
+              src: 'kitsu',
+              rawId: a.id,
+              title: attr.canonicalTitle || attr.titles?.en || attr.titles?.en_jp || 'Unknown Title',
+              titleEn: attr.titles?.en || attr.titles?.en_us || '',
+              img: attr.posterImage?.small || attr.posterImage?.medium || attr.posterImage?.tiny || '',
+              imgLg: attr.posterImage?.large || attr.posterImage?.original || attr.posterImage?.medium || '',
+              score: attr.averageRating ? parseFloat(attr.averageRating) : null,
+              eps: attr.episodeCount || attr.chapterCount || null,
+              status: statusDisplay,
+              type: attr.showType || 'TV',
+              year: attr.startDate ? new Date(attr.startDate).getFullYear() : null,
+              genres: [],
+              synopsis: attr.synopsis || 'No synopsis available.',
+              isManga: mode === 'manga',
+              members: attr.userCount || null,
+              popularity: attr.favoritesCount || null
+            };
+          });
+          
+          // Client-side filtering for Kitsu
+          if (filterParams.year && !filterParams.yearStart) {
+            results = results.filter(item => item.year === filterParams.year);
+          }
+          if (filterParams.yearStart && filterParams.yearEnd) {
+            results = results.filter(item => {
+              const year = item.year;
+              return year && year >= filterParams.yearStart && year <= filterParams.yearEnd;
+            });
+          }
+          if (filterParams.minScore) {
+            results = results.filter(item => item.score != null && item.score >= filterParams.minScore);
+          }
+          
+          return results;
+        } catch (error) {
+          console.error('Kitsu fetch error:', error);
+          return [];
+        }
       }
 
       async function fetchMangaDex(q, page) {
@@ -1906,8 +1707,7 @@ document.addEventListener('keydown', (e) => {
             const cover = m.relationships?.find(r => r.type === 'cover_art');
             const fn = cover?.attributes?.fileName;
             const img = fn ? `https://uploads.mangadex.org/covers/${m.id}/${fn}.256.jpg` : '';
-            const title = m.attributes.title?.en || m.attributes.title?.ja || Object.values(m.attributes.title || {})[
-              0] || '';
+            const title = m.attributes.title?.en || m.attributes.title?.ja || Object.values(m.attributes.title || {})[0] || '';
             return {
               id: 'mdex_' + m.id,
               src: 'mangadex',
@@ -1920,8 +1720,7 @@ document.addEventListener('keydown', (e) => {
               eps: m.attributes.lastChapter,
               status: m.attributes.status,
               year: m.attributes.year,
-              genres: (m.attributes.tags || []).filter(t => t.attributes.group === 'genre').map(t => t.attributes.name
-                .en).slice(0, 3),
+              genres: (m.attributes.tags || []).filter(t => t.attributes.group === 'genre').map(t => t.attributes.name.en).slice(0, 5),
               synopsis: m.attributes.description?.en || '',
               isManga: true
             };
@@ -1946,6 +1745,7 @@ document.addEventListener('keydown', (e) => {
 
         const isManga = cat === 'manga';
         let items = [];
+        
         if (src === 'all' || src === 'jikan') {
           const d = await fetchJikan(cat, q, pageNum);
           items = items.concat(d);
@@ -1963,6 +1763,11 @@ document.addEventListener('keydown', (e) => {
           items = items.concat(d);
         }
 
+        // Apply client-side filtering
+        if (items.length > 0) {
+          items = getFilteredItems(items);
+        }
+
         const l = document.getElementById('infiniteLoader');
         if (l) l.remove();
 
@@ -1970,7 +1775,7 @@ document.addEventListener('keydown', (e) => {
           hasMore = false;
           const endMsg = document.createElement('div');
           endMsg.className = 'infinite-trigger';
-          endMsg.textContent = '✨ That\'s all for now';
+          endMsg.textContent = '✨ No results found with current filters';
           main.appendChild(endMsg);
           isLoading = false;
           return;
@@ -1983,12 +1788,9 @@ document.addEventListener('keydown', (e) => {
           return true;
         });
 
-        if (!append) {
-          main.innerHTML = '';
-        }
+        if (!append) main.innerHTML = '';
 
         renderItems(unique, main, append);
-        // store for favs
         unique.forEach(a => { allData[a.src] = allData[a.src] || [];
           allData[a.src].push(a); });
 
@@ -2016,8 +1818,7 @@ document.addEventListener('keydown', (e) => {
 
           const hdr = document.createElement('div');
           hdr.className = 'sec-hdr';
-          hdr.innerHTML =
-            `<span class="sec-label"><span class="dot" style="background:${sc.dot};"></span>${src.toUpperCase()}</span>`;
+          hdr.innerHTML = `<span class="sec-label"><span class="dot" style="background:${sc.dot};"></span>${src.toUpperCase()}</span>`;
           secEl.appendChild(hdr);
 
           if (arr[0]) {
@@ -2048,8 +1849,7 @@ document.addEventListener('keydown', (e) => {
             gridItems.forEach((a, i) => {
               const p = pal(i);
               const isFav = favs.has(a.id);
-              const statusTxt = a.status ? (a.status.charAt(0).toUpperCase() + a.status.slice(1).toLowerCase())
-                .replace(/_/g, ' ') : '—';
+              const statusTxt = a.status ? (a.status.charAt(0).toUpperCase() + a.status.slice(1).toLowerCase()).replace(/_/g, ' ') : '—';
               const card = document.createElement('div');
               card.className = 'a-card anim';
               card.style.animationDelay = (i * 0.04) + 's';
@@ -2068,11 +1868,8 @@ document.addEventListener('keydown', (e) => {
               favBtn.addEventListener('click', e => {
                 e.stopPropagation();
                 const el = e.currentTarget;
-                if (favs.has(a.id)) { favs.delete(a.id);
-                  el.classList.remove('active');
-                  el.textContent = '♡'; } else { favs.add(a.id);
-                  el.classList.add('active');
-                  el.textContent = '♥'; }
+                if (favs.has(a.id)) { favs.delete(a.id); el.classList.remove('active'); el.textContent = '♡'; } 
+                else { favs.add(a.id); el.classList.add('active'); el.textContent = '♥'; }
                 updateFavBadge();
               });
               card.addEventListener('click', () => openDetail(a));
@@ -2107,7 +1904,6 @@ document.addEventListener('keydown', (e) => {
           const trigger = document.createElement('div');
           trigger.className = 'infinite-trigger';
           trigger.id = 'infiniteTrigger';
-          
           container.appendChild(trigger);
         }
       }
@@ -2142,8 +1938,7 @@ document.addEventListener('keydown', (e) => {
             extra = { score: j.data?.score ? j.data.score * 10 : a.score, synopsis: j.data?.synopsis || a.synopsis,
               members: j.data?.members, rank: j.data?.rank, genres: (j.data?.genres || []).map(g => g.name) };
           } else if (a.src === 'anilist') {
-            const gql =
-              `query($id:Int){Media(id:$id){coverImage{extraLarge}genres averageScore popularity description episodes chapters}}`;
+            const gql = `query($id:Int){Media(id:$id){coverImage{extraLarge}genres averageScore popularity description episodes chapters}}`;
             const r = await fetch('https://graphql.anilist.co', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -2161,9 +1956,13 @@ document.addEventListener('keydown', (e) => {
             const j = await r.json();
             const attr = j.data?.attributes;
             const cats = (j.included || []).filter(x => x.type === 'categories').map(x => x.attributes.name);
-            if (attr) extra = { imgLg: attr.coverImage?.original || attr.posterImage?.large || a.imgLg,
-              score: attr.averageRating || a.score, synopsis: attr.synopsis || a.synopsis, genres: cats,
-              userCount: attr.userCount };
+            if (attr) extra = {
+              imgLg: attr.coverImage?.original || attr.posterImage?.large || a.imgLg,
+              score: attr.averageRating ? parseFloat(attr.averageRating) : a.score,
+              synopsis: attr.synopsis || a.synopsis,
+              genres: cats.length ? cats : [],
+              userCount: attr.userCount != null ? attr.userCount : undefined
+            };
           }
         } catch {}
 
@@ -2174,12 +1973,10 @@ document.addEventListener('keydown', (e) => {
 
         dc.innerHTML = `
           <div class="det-hero anim">
-  <div class="det-cover-wrapper">
-    <img class="det-cover" src="${merged.imgLg||merged.img}" alt="${merged.title}" onclick="openPosterModal('${merged.imgLg||merged.img}')" onerror="this.style.background='#d9d3e8';this.removeAttribute('src')"/>
-    <div class="enlarge-badge">
-      <i class="fas fa-expand"></i> Click to enlarge
-    </div>
-  </div>
+            <div class="det-cover-wrapper">
+              <img class="det-cover" src="${merged.imgLg||merged.img}" alt="${merged.title}" onclick="openPosterModal('${merged.imgLg||merged.img}')" onerror="this.style.background='#d9d3e8';this.removeAttribute('src')"/>
+              <div class="enlarge-badge"><i class="fas fa-expand"></i> Click to enlarge</div>
+            </div>
             <div class="det-body">
               <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
                 <div class="det-title">${merged.title}</div>
@@ -2199,10 +1996,10 @@ document.addEventListener('keydown', (e) => {
           <div class="det-stats anim anim-d1">
             <div class="ds" style="background:#ede5ff;"><div class="ds-v" style="color:#4a1d96;">${scoreStr(merged.score)}</div><div class="ds-l">Score</div></div>
             <div class="ds" style="background:#c8f7ec;"><div class="ds-v" style="color:#065f46;">${merged.eps||'—'}</div><div class="ds-l">${merged.isManga?'Chapters':'Episodes'}</div></div>
-            ${merged.members?`<div class="ds" style="background:#d6eeff;"><div class="ds-v" style="color:#1a4a6b;font-size:16px;">${parseInt(merged.members).toLocaleString()}</div><div class="ds-l">MAL members</div></div>`:''}
-            ${merged.popularity?`<div class="ds" style="background:#ffd6e8;"><div class="ds-v" style="color:#7c2d46;font-size:16px;">${parseInt(merged.popularity).toLocaleString()}</div><div class="ds-l">AniList fans</div></div>`:''}
-            ${merged.userCount?`<div class="ds" style="background:#ffe8d6;"><div class="ds-v" style="color:#7c2d12;font-size:16px;">${parseInt(merged.userCount).toLocaleString()}</div><div class="ds-l">Kitsu users</div></div>`:''}
-            ${merged.rank?`<div class="ds" style="background:#fffbd6;"><div class="ds-v" style="color:#78350f;">#${merged.rank}</div><div class="ds-l">Rank</div></div>`:''}
+            ${merged.members != null ? `<div class="ds" style="background:#d6eeff;"><div class="ds-v" style="color:#1a4a6b;font-size:16px;">${parseInt(merged.members).toLocaleString()}</div><div class="ds-l">MAL members</div></div>` : ''}
+            ${merged.popularity != null ? `<div class="ds" style="background:#ffd6e8;"><div class="ds-v" style="color:#7c2d46;font-size:16px;">${parseInt(merged.popularity).toLocaleString()}</div><div class="ds-l">AniList fans</div></div>` : ''}
+            ${merged.userCount != null ? `<div class="ds" style="background:#ffe8d6;"><div class="ds-v" style="color:#7c2d12;font-size:16px;">${parseInt(merged.userCount).toLocaleString()}</div><div class="ds-l">Kitsu users</div></div>` : ''}
+            ${merged.rank != null ? `<div class="ds" style="background:#fffbd6;"><div class="ds-v" style="color:#78350f;">#${merged.rank}</div><div class="ds-l">Rank</div></div>` : ''}
           </div>
         `;
       }
@@ -2258,6 +2055,39 @@ document.addEventListener('keydown', (e) => {
         document.getElementById('favsPanel').classList.remove('open');
       });
 
+      // Filter Panel
+      const filterToggle = document.getElementById('filterToggle');
+      const filterPanel = document.getElementById('filterPanel');
+      
+      filterToggle.addEventListener('click', () => {
+        filterPanel.classList.toggle('open');
+        filterToggle.classList.toggle('active');
+      });
+
+      document.getElementById('filterApply').addEventListener('click', () => {
+        filters.year = document.getElementById('filterYear').value;
+        filters.genre = document.getElementById('filterGenre').value;
+        filters.status = document.getElementById('filterStatus').value;
+        filters.rating = document.getElementById('filterRating').value;
+        updateFilterTags();
+        applyFiltersAndReload();
+        // Close panel on mobile
+        if (window.innerWidth < 720) {
+          filterPanel.classList.remove('open');
+          filterToggle.classList.remove('active');
+        }
+      });
+
+      document.getElementById('filterReset').addEventListener('click', () => {
+        document.getElementById('filterYear').value = '';
+        document.getElementById('filterGenre').value = '';
+        document.getElementById('filterStatus').value = '';
+        document.getElementById('filterRating').value = '';
+        filters = { year: '', genre: '', status: '', rating: '' };
+        updateFilterTags();
+        applyFiltersAndReload();
+      });
+
       function loadQuiz() {
         const q = QUIZ_DATA[quizIndex % QUIZ_DATA.length];
         document.getElementById('quizQ').textContent = q.question;
@@ -2287,6 +2117,7 @@ document.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') document.getElementById('quizBtn').click();
       });
 
+      // Source tabs
       document.querySelectorAll('.stab').forEach(t => {
         t.addEventListener('click', () => {
           document.querySelectorAll('.stab').forEach(x => x.classList.remove('sel'));
@@ -2299,6 +2130,7 @@ document.addEventListener('keydown', (e) => {
         });
       });
 
+      // Category chips
       document.querySelectorAll('.cat-chip').forEach(c => {
         c.addEventListener('click', () => {
           document.querySelectorAll('.cat-chip').forEach(x => x.classList.remove('sel'));
@@ -2373,18 +2205,10 @@ document.addEventListener('keydown', (e) => {
       });
       observerInit.observe(document.getElementById('main'), { childList: true, subtree: true });
 
-      // Handle creator link click - replace with your desired action
-document.getElementById('creatorLink').addEventListener('click', (e) => {
-  e.preventDefault();
-  // Option 1: Open your social profile page
-  window.open('https://github.com/saqlainabbas11', '_blank');
-  
-  // Option 2: Or show a simple alert
-  // alert('Connect with Saqlain Abbas!');
-  
-  // Option 3: Or scroll to a footer section
-  // document.getElementById('footer').scrollIntoView({ behavior: 'smooth' });
-});
+      document.getElementById('creatorLink').addEventListener('click', (e) => {
+        e.preventDefault();
+        window.open('https://github.com/saqlainabbas11', '_blank');
+      });
 
     })();
   </script>
