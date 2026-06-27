@@ -3,2214 +3,1588 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0" />
-  <title>Aniku · Creator Saqlain Abbas</title>
+  <title>Aniku · by Saqlain Abbas</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet" />
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
       --bg: #eae8f0;
-      --card-bg: #f0eef7;
-      --shadow: 12px 12px 24px #b8b4c4, -12px -12px 24px #ffffff;
-      --shadow-inset: inset 4px 4px 10px #b8b4c4, inset -4px -4px 10px #ffffff;
-      --shadow-soft: 6px 6px 14px #b8b4c4, -6px -6px 14px #ffffff;
+      --card: #f0eef7;
+      --sh: 12px 12px 24px #b8b4c4, -12px -12px 24px #ffffff;
+      --shi: inset 4px 4px 10px #b8b4c4, inset -4px -4px 10px #ffffff;
+      --shs: 6px 6px 14px #b8b4c4, -6px -6px 14px #ffffff;
       --p: #8b6bff;
       --p2: #b19eff;
       --pink: #ff5e7a;
       --mint: #4d6bd9;
-      --sky: #6bb6ff;
-      --peach: #ff9f6b;
-      --lemon: #f5d000;
+      --gold: #f59e0b;
       --ink: #201e3a;
       --ink2: #49446b;
       --muted: #7a7799;
-      --white: #f6f4fe;
       --r: 24px;
       --r2: 16px;
       --rs: 12px;
-      --max-w: 600px;
+      --max-w: 640px;
+      --trans: all 0.2s ease;
     }
+
+    .dark {
+      --bg: #13111f;
+      --card: #1d1a2e;
+      --sh: 12px 12px 28px #0a0914, -12px -12px 28px #2f2a46;
+      --shi: inset 4px 4px 12px #0a0914, inset -4px -4px 12px #2f2a46;
+      --shs: 6px 6px 16px #0a0914, -6px -6px 16px #2f2a46;
+      --p: #a78bff;
+      --p2: #c9b8ff;
+      --pink: #ff6b8a;
+      --mint: #6b8ff5;
+      --gold: #fbbf24;
+      --ink: #f0eeff;
+      --ink2: #c4bce0;
+      --muted: #9b95bb;
+    }
+
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       background: var(--bg);
       color: var(--ink);
-      padding: 14px;
       min-height: 100vh;
+      padding: 14px;
       display: flex;
       justify-content: center;
-      transition: background 0.2s, color 0.2s;
+      transition: background 0.3s, color 0.3s;
+      overflow-x: hidden;
     }
+
+    #sakura-canvas {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+      opacity: 1;
+    }
+    .dark #sakura-canvas { opacity: 0.2; }
+
     .app {
       max-width: var(--max-w);
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      padding-bottom: 30px;
+      gap: 14px;
+      padding-bottom: 40px;
+      position: relative;
+      z-index: 1;
     }
-    .neu {
-      background: var(--card-bg);
-      border-radius: var(--r);
-      box-shadow: var(--shadow);
-      transition: box-shadow 0.2s, transform 0.15s;
-    }
-    .neu-inset {
-      background: var(--card-bg);
-      border-radius: var(--r2);
-      box-shadow: var(--shadow-inset);
-    }
-    .neu-soft {
-      background: var(--card-bg);
-      border-radius: var(--r2);
-      box-shadow: var(--shadow-soft);
-    }
-    .neu-pressed {
-      box-shadow: var(--shadow-inset);
-      transform: scale(0.98);
-    }
+
+    .neu   { background: var(--card); border-radius: var(--r);  box-shadow: var(--sh);  transition: var(--trans); }
+    .neu-s { background: var(--card); border-radius: var(--r2); box-shadow: var(--shs); transition: var(--trans); }
+    .neu-i { background: var(--card); border-radius: var(--r2); box-shadow: var(--shi); }
+
     .topbar {
-      display: flex;
-      align-items: center;
+      display: flex; align-items: center;
       justify-content: space-between;
-      padding: 10px 14px;
-      gap: 8px;
-      flex-wrap: nowrap;
+      padding: 10px 14px; gap: 8px;
     }
+
     .wordmark {
-      font-size: 24px;
-      font-weight: 900;
-      letter-spacing: -1.5px;
-      color: var(--ink);
+      font-size: 26px; font-weight: 900;
+      letter-spacing: -1.5px; color: var(--ink);
       flex-shrink: 0;
+      display: flex; align-items: center; gap: 4px;
     }
     .wordmark em {
       font-style: normal;
-      background: linear-gradient(145deg, #8b6bff, #b19eff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      background: linear-gradient(135deg, #8b6bff, #ff5e7a);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    .sam {
-      font-style: normal;
-      background: linear-gradient(145deg, #df314e, #8f7900, #4dd9b3, #2064a8, #8b6bff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-weight: 800;
-      background-size: 300% 300%;
-      animation: shimmer 3s ease infinite;
-      text-decoration: none;
-      cursor: pointer;
-      position: relative;
-      transition: all 0.3s ease;
+    .wm-icon {
+      font-size: 22px;
+      animation: spinSlow 8s linear infinite;
       display: inline-block;
     }
-    @keyframes shimmer {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    @keyframes spinSlow { to { transform: rotate(360deg); } }
+
+    .creator-chip {
+      display: flex; align-items: center; gap: 5px;
+      padding: 5px 12px 5px 10px;
+      background: var(--card); border-radius: 40px;
+      box-shadow: var(--shs);
+      font-size: 11px; font-weight: 600; color: var(--ink2);
+      cursor: pointer; transition: var(--trans); flex-shrink: 1;
+      text-decoration: none;
     }
-    .sam::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(145deg, #8b6bff, #b19eff);
-      transition: width 0.3s ease;
-      border-radius: 2px;
+    .creator-chip:hover { box-shadow: var(--shi); }
+    .creator-chip .shimmer-name {
+      background: linear-gradient(90deg, #8b6bff, #ff5e7a, #f59e0b, #8b6bff);
+      background-size: 300%;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 800;
+      animation: shimmer 4s ease infinite;
     }
-    .sam:hover::after {
-      width: 100%;
-    }
-    .creator-wrap {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding: 4px 10px 4px 8px;
-      background: var(--card-bg);
-      border-radius: 40px;
-      box-shadow: var(--shadow-soft);
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--ink2);
-      transition: 0.2s;
-      position: relative;
-      cursor: default;
-      flex-shrink: 1;
-      min-width: 0;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-    .creator-wrap:hover {
-      box-shadow: var(--shadow-inset);
-    }
-    .creator-wrap i {
-      font-size: 11px;
-      color: var(--mint);
-      opacity: 0.8;
-      flex-shrink: 0;
-    }
-    .topbar-icons {
-      display: flex;
-      gap: 8px;
-      flex-shrink: 0;
-    }
+    @keyframes shimmer { 0%,100%{background-position:0%} 50%{background-position:100%} }
+
+    .topbar-icons { display: flex; gap: 8px; flex-shrink: 0; }
     .icon-btn {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--card-bg);
-      box-shadow: var(--shadow-soft);
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--card); box-shadow: var(--shs);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 17px; color: var(--ink2);
+      transition: var(--trans); border: none; position: relative;
+    }
+    .icon-btn:hover { box-shadow: var(--shi); }
+    .icon-btn:active { box-shadow: var(--shi); transform: scale(0.93); }
+    .badge {
+      position: absolute; top: -3px; right: -3px;
+      background: var(--pink); color: #fff;
+      font-size: 9px; font-weight: 800;
+      padding: 1px 5px; border-radius: 99px; display: none;
+    }
+    .badge.show { display: block; }
+
+    .hero-video {
+      position: relative;
+      border-radius: var(--r);
+      overflow: hidden;
+      box-shadow: var(--sh);
+      background: var(--card);
+      aspect-ratio: 16 / 9;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 17px;
-      color: var(--ink2);
-      transition: 0.15s;
-      position: relative;
-      border: none;
-      flex-shrink: 0;
     }
-    .icon-btn:active {
-      box-shadow: var(--shadow-inset);
-      transform: scale(0.94);
-    }
-    .badge {
-      position: absolute;
-      top: -2px;
-      right: -2px;
-      background: var(--pink);
-      color: white;
-      font-size: 9px;
-      font-weight: 800;
-      padding: 1px 6px;
-      border-radius: 999px;
-      display: none;
-    }
-    .badge.show {
-      display: inline-block;
-    }
-    .search-box {
-      position: relative;
-      padding: 4px;
-      background: var(--card-bg);
-      border-radius: 60px;
-      box-shadow: var(--shadow-inset);
-    }
-    .search-box input {
+    .hero-video video {
       width: 100%;
-      padding: 14px 18px 14px 50px;
-      border: none;
-      border-radius: 60px;
-      background: var(--card-bg);
-      font-size: 14px;
-      font-weight: 600;
-      font-family: inherit;
-      color: var(--ink);
-      outline: none;
-      box-shadow: var(--shadow-soft);
-      transition: 0.2s;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
-    .search-box input:focus {
-      box-shadow: var(--shadow-inset);
-    }
-    .search-box i {
+    .hero-video .overlay {
       position: absolute;
-      left: 18px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--p);
-      font-size: 18px;
+      inset: 0;
+      background: rgba(0,0,0,0.1);
+      backdrop-filter: blur(1px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       pointer-events: none;
+      transition: opacity 0.3s ease;
     }
-    .search-clear {
+    .hero-video .overlay .play-icon {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.3);
+      transition: transform 0.2s ease;
+    }
+    .hero-video:hover .overlay .play-icon { transform: scale(1.08); }
+    .hero-video .overlay.hide { opacity: 0; pointer-events: none; }
+    .dark .hero-video .overlay { background: rgba(0,0,0,0.25); }
+    .hero-video .caption {
       position: absolute;
-      right: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      color: var(--muted);
-      font-size: 16px;
-      display: none;
-      font-weight: 700;
-    }
-    .source-tabs {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding: 4px 2px 8px;
-      scrollbar-width: none;
-    }
-    .source-tabs::-webkit-scrollbar {
-      display: none;
-    }
-    .stab {
-      padding: 10px 18px;
+      bottom: 14px;
+      left: 14px;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(6px);
+      padding: 6px 14px;
       border-radius: 40px;
+      color: #fff;
       font-size: 12px;
-      font-weight: 800;
-      cursor: pointer;
-      white-space: nowrap;
-      background: var(--card-bg);
-      transition: all 0.15s;
-      flex-shrink: 0;
-      color: var(--ink2);
-      border: none;
-    }
-    .stab.sel {
-      box-shadow: var(--shadow-inset);
-      color: var(--p);
-    }
-    .stab:active {
-      transform: scale(0.94);
-    }
-    .cat-row {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding: 2px 0 6px;
-      scrollbar-width: none;
-    }
-    .cat-row::-webkit-scrollbar {
-      display: none;
-    }
-    .cat-chip {
-      padding: 8px 16px;
-      border-radius: 40px;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      white-space: nowrap;
-      background: var(--card-bg);
-      transition: 0.15s;
-      flex-shrink: 0;
-      color: var(--ink2);
-      border: none;
-    }
-    .cat-chip.sel {
-      box-shadow: var(--shadow-inset);
-      color: var(--p);
-    }
-    .cat-chip:active {
-      transform: scale(0.94);
-    }
-    
-    /* Filter Button & Panel */
-    .filter-toggle {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 18px;
-      border-radius: 40px;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-      background: var(--card-bg);
-      box-shadow: var(--shadow-soft);
-      color: var(--ink2);
-      border: none;
-      transition: 0.2s;
-      width: fit-content;
-    }
-    .filter-toggle:hover {
-      box-shadow: var(--shadow-inset);
-    }
-    .filter-toggle.active {
-      box-shadow: var(--shadow-inset);
-      color: var(--p);
-    }
-    .filter-toggle i {
-      font-size: 14px;
-    }
-    
-    .filter-panel {
-      background: var(--card-bg);
-      border-radius: var(--r);
-      box-shadow: var(--shadow);
-      padding: 20px;
-      display: none;
-      flex-direction: column;
-      gap: 16px;
-      animation: slideDown 0.3s ease;
-    }
-    .filter-panel.open {
-      display: flex;
-    }
-    @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .filter-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-    }
-    .filter-label {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--muted);
-      min-width: 60px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .filter-select, .filter-input {
-      padding: 8px 14px;
-      border: none;
-      border-radius: 40px;
-      background: var(--card-bg);
-      box-shadow: var(--shadow-inset);
-      font-size: 13px;
       font-weight: 600;
-      font-family: inherit;
-      color: var(--ink);
-      outline: none;
-      min-width: 100px;
-      transition: 0.2s;
-    }
-    .filter-select:focus, .filter-input:focus {
-      box-shadow: var(--shadow);
-    }
-    .filter-select option {
-      background: var(--card-bg);
-      color: var(--ink);
-    }
-    .filter-apply {
-      padding: 8px 24px;
-      border: none;
-      border-radius: 40px;
-      background: var(--p);
-      color: white;
-      font-weight: 700;
-      font-size: 13px;
-      cursor: pointer;
-      box-shadow: var(--shadow-soft);
-      transition: 0.15s;
-      font-family: inherit;
-    }
-    .filter-apply:active {
-      transform: scale(0.96);
-      box-shadow: var(--shadow-inset);
-    }
-    .filter-reset {
-      padding: 8px 18px;
-      border: none;
-      border-radius: 40px;
-      background: var(--card-bg);
-      box-shadow: var(--shadow-soft);
-      color: var(--ink2);
-      font-weight: 700;
-      font-size: 12px;
-      cursor: pointer;
-      transition: 0.15s;
-      font-family: inherit;
-    }
-    .filter-reset:active {
-      transform: scale(0.96);
-      box-shadow: var(--shadow-inset);
-    }
-    .filter-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-    .filter-tag {
-      padding: 4px 12px;
-      border-radius: 40px;
-      font-size: 10px;
-      font-weight: 700;
-      background: rgba(139, 107, 255, 0.15);
-      color: var(--p);
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .filter-tag .remove {
-      cursor: pointer;
-      font-size: 12px;
-      opacity: 0.6;
-    }
-    .filter-tag .remove:hover {
-      opacity: 1;
+      pointer-events: none;
     }
 
-    .sec-hdr {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      padding: 0 4px;
-      margin-top: 4px;
-    }
-    .sec-label {
-      font-size: 11px;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 1.8px;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .sec-label .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      display: inline-block;
-      background: var(--p);
-    }
-    .bento {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 4px;
-    }
-    .feat-card {
-      border-radius: var(--r);
-      background: var(--card-bg);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      cursor: pointer;
-      transition: 0.18s;
-      margin-bottom: 6px;
-    }
-    .feat-card:active {
-      transform: scale(0.97);
-      box-shadow: var(--shadow-inset);
-    }
-    .feat-img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      display: block;
-      background: #d9d3e8;
-    }
-    .feat-overlay {
+    .search-wrap {
       position: relative;
-      padding: 14px 16px 18px;
-      background: linear-gradient(135deg, rgba(240, 238, 247, 0.7), rgba(240, 238, 247, 0.95));
-      backdrop-filter: blur(2px);
-    }
-    .feat-src-badge {
-      display: inline-block;
-      padding: 4px 12px;
-      border-radius: 40px;
-      font-size: 9px;
-      font-weight: 800;
-      background: var(--p);
-      color: white;
-      margin-bottom: 6px;
-    }
-    .feat-score {
-      display: inline-flex;
+      background: var(--card);
+      border-radius: 60px;
+      box-shadow: var(--shi);
+      padding: 4px 4px 4px 18px;
+      display: flex;
       align-items: center;
-      gap: 4px;
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--ink);
-      background: rgba(255, 255, 255, 0.5);
-      padding: 3px 12px;
-      border-radius: 40px;
-      float: right;
+      gap: 6px;
+      transition: box-shadow 0.25s ease, background 0.25s ease;
     }
-    .feat-title {
+    .search-wrap:focus-within {
+      box-shadow: var(--sh);
+      background: var(--card);
+    }
+    .search-wrap .si {
+      color: var(--p);
       font-size: 18px;
-      font-weight: 900;
-      line-height: 1.2;
-      margin: 6px 0 4px;
-    }
-    .feat-meta {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--ink2);
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .feat-tags {
-      display: flex;
-      gap: 6px;
-      margin-top: 8px;
-      flex-wrap: wrap;
-    }
-    .feat-tag {
-      padding: 4px 12px;
-      border-radius: 40px;
-      font-size: 9px;
-      font-weight: 800;
-      background: rgba(139, 107, 255, 0.15);
-      color: var(--p);
-    }
-    .a-card {
-      border-radius: var(--r2);
-      background: var(--card-bg);
-      box-shadow: var(--shadow-soft);
-      overflow: hidden;
-      cursor: pointer;
-      transition: 0.15s;
-      margin-bottom: 4px;
-    }
-    .a-card:active {
-      transform: scale(0.96);
-      box-shadow: var(--shadow-inset);
-    }
-    .a-img-wrap {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 2 / 3;
-      background: #d9d3e8;
-    }
-    .a-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .a-score-pill {
-      position: absolute;
-      bottom: 8px;
-      left: 8px;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(2px);
-      border-radius: 40px;
-      padding: 3px 10px;
-      font-size: 10px;
-      font-weight: 800;
-      color: var(--ink);
-      display: flex;
-      align-items: center;
-      gap: 3px;
-    }
-    .a-fav {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      width: 32px;
-      height: 32px;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(2px);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      cursor: pointer;
-      box-shadow: var(--shadow-soft);
-      transition: 0.15s;
-      color: var(--muted);
-      border: none;
-    }
-    .a-fav.active {
-      color: #ff2d55;
-    }
-    .a-fav:active {
-      transform: scale(1.25);
-    }
-    .a-body {
-      padding: 10px 12px 12px;
-    }
-    .a-title {
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 1.3;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .a-sub {
-      font-size: 10px;
-      color: var(--muted);
-      font-weight: 600;
-      margin-top: 3px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .sdot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      display: inline-block;
-    }
-    .row-card {
-      border-radius: var(--r2);
-      background: var(--card-bg);
-      box-shadow: var(--shadow-soft);
-      display: flex;
-      overflow: hidden;
-      cursor: pointer;
-      transition: 0.15s;
-      margin-bottom: 6px;
-    }
-    .row-card:active {
-      transform: scale(0.97);
-      box-shadow: var(--shadow-inset);
-    }
-    .row-img {
-      width: 70px;
-      flex-shrink: 0;
-      object-fit: cover;
-      background: #d9d3e8;
-    }
-    .row-body {
-      padding: 12px 14px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .row-title {
-      font-size: 14px;
-      font-weight: 700;
-    }
-    .row-meta {
-      font-size: 11px;
-      color: var(--muted);
-      font-weight: 600;
-    }
-    .row-score {
-      font-size: 12px;
-      font-weight: 800;
-      color: var(--p);
-      margin-top: 4px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .row-src {
-      font-size: 9px;
-      font-weight: 800;
-      padding: 2px 10px;
-      border-radius: 40px;
-      background: var(--p3);
-      color: var(--p);
-    }
-    .detail {
-      display: none;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .detail.open {
-      display: flex;
-    }
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      padding: 10px 16px;
-      border-radius: 60px;
-      background: var(--card-bg);
-      box-shadow: var(--shadow-soft);
-      width: fit-content;
-      transition: 0.15s;
-      border: none;
-    }
-    .back-btn:active {
-      box-shadow: var(--shadow-inset);
-      transform: scale(0.96);
-    }
-    .det-hero {
-      border-radius: var(--r);
-      background: var(--card-bg);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-    .det-cover {
-      width: 100%;
-      height: 210px;
-      object-fit: cover;
-      background: #d9d3e8;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-    .det-cover:hover {
-      opacity: 0.92;
-      transform: scale(1.01);
-    }
-    .det-cover-wrapper {
-      position: relative;
-      overflow: hidden;
-      border-radius: var(--r) var(--r) 0 0;
-    }
-    .det-cover-wrapper .enlarge-badge {
-      position: absolute;
-      bottom: 16px;
-      right: 16px;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(8px);
-      color: white;
-      padding: 8px 14px;
-      border-radius: 40px;
-      font-size: 11px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: all 0.3s ease;
-      z-index: 5;
-      border: 1px solid rgba(255, 255, 255, 0.1);
       pointer-events: none;
-      letter-spacing: 0.5px;
+      flex-shrink: 0;
     }
-    .det-cover-wrapper:hover .enlarge-badge {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .det-body {
-      padding: 18px 18px 20px;
-    }
-    .det-title {
-      font-size: 22px;
-      font-weight: 900;
-      line-height: 1.2;
-    }
-    .det-eng {
-      font-size: 13px;
-      color: var(--muted);
-      font-weight: 500;
-      margin-top: 2px;
-    }
-    .det-meta-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin: 12px 0;
-    }
-    .dmc {
-      padding: 5px 14px;
-      border-radius: 40px;
-      font-size: 10px;
-      font-weight: 800;
-      background: rgba(139, 107, 255, 0.12);
-      color: var(--p);
-    }
-    .det-syn {
-      font-size: 14px;
-      line-height: 1.7;
-      color: var(--ink2);
-      font-weight: 500;
-      max-height: 270px;
-      overflow-y: auto;
-    }
-    .det-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin: 10px;
-    }
-    .ds {
-      padding: 14px 16px;
-      border-radius: var(--r2);
-      background: var(--card-bg);
-      box-shadow: var(--shadow-soft);
-    }
-    .ds-v {
-      font-size: 24px;
-      font-weight: 900;
-      letter-spacing: -0.5px;
-    }
-    .ds-l {
-      font-size: 9px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      color: var(--muted);
-      margin-top: 3px;
-    }
-    .loading {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 14px;
-      padding: 40px 16px;
-    }
-    .spinner {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--card-bg);
-      box-shadow: var(--shadow-inset);
-      animation: spin 0.9s linear infinite;
-      border: 4px solid transparent;
-      border-top-color: var(--p);
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-    .ld-txt {
-      font-weight: 700;
-      color: var(--muted);
-    }
-    .err-box {
-      padding: 16px;
-      border-radius: var(--r2);
-      background: #fce9f0;
-      box-shadow: var(--shadow-inset);
-      color: #b0004a;
-      font-weight: 600;
-      text-align: center;
-    }
-    .quiz-card {
-      background: var(--card-bg);
-      border-radius: var(--r);
-      box-shadow: var(--shadow);
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .quiz-q {
-      font-size: 17px;
-      font-weight: 800;
-      line-height: 1.4;
-    }
-    .quiz-input {
-      padding: 12px 16px;
+    .search-wrap input {
+      flex: 1;
+      padding: 13px 8px 13px 4px;
       border: none;
-      border-radius: 60px;
-      background: var(--card-bg);
-      box-shadow: var(--shadow-inset);
+      background: transparent;
       font-size: 14px;
       font-weight: 600;
       font-family: inherit;
       color: var(--ink);
       outline: none;
-      width: 100%;
+      min-width: 0;
     }
-    .quiz-input:focus {
-      box-shadow: var(--shadow);
-    }
-    .quiz-btn {
-      padding: 12px;
-      border: none;
-      border-radius: 60px;
-      background: var(--p);
-      color: white;
-      font-weight: 800;
-      font-size: 14px;
-      cursor: pointer;
-      box-shadow: var(--shadow-soft);
-      transition: 0.15s;
-      font-family: inherit;
-    }
-    .quiz-btn:active {
-      transform: scale(0.96);
-      box-shadow: var(--shadow-inset);
-    }
-    .quiz-feedback {
-      font-weight: 700;
-      font-size: 14px;
-      min-height: 28px;
-    }
-    .quiz-feedback.correct {
-      color: #10b981;
-    }
-    .quiz-feedback.wrong {
-      color: #ff2d55;
-    }
-    .favs-panel {
-      background: var(--card-bg);
-      border-radius: var(--r);
-      box-shadow: var(--shadow);
-      padding: 16px;
-      display: none;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .favs-panel.open {
-      display: flex;
-    }
-    .fav-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    }
-    .fav-item:last-child {
-      border-bottom: none;
-    }
-    .fav-item img {
-      width: 40px;
-      height: 56px;
-      object-fit: cover;
-      border-radius: 8px;
-      background: #d9d3e8;
-    }
-    .fav-item .info {
-      flex: 1;
-    }
-    .fav-item .title {
-      font-weight: 700;
-      font-size: 13px;
-    }
-    .fav-item .meta {
-      font-size: 11px;
-      color: var(--muted);
-    }
-    .fav-item .remove {
-      color: #ff2d55;
-      cursor: pointer;
-      font-size: 18px;
+    .search-wrap input::placeholder { color: var(--muted); font-weight: 500; }
+    .search-clear {
       background: none;
       border: none;
-    }
-    .anim {
-      animation: floatUp 0.4s cubic-bezier(0.2, 0.9, 0.3, 1) both;
-    }
-    @keyframes floatUp {
-      0% { opacity: 0; transform: translateY(20px) scale(0.96); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    .infinite-trigger {
-      height: 20px;
-      text-align: center;
       color: var(--muted);
-      font-size: 12px;
-      padding: 8px;
-    }
-    ::-webkit-scrollbar {
-      width: 3px;
-      height: 3px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--p2);
-      border-radius: 3px;
-    }
-    .poster-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.88);
-      backdrop-filter: blur(12px);
-      z-index: 9999;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      animation: fadeIn 0.3s ease;
-    }
-    .poster-modal.open {
-      display: flex;
-    }
-    .poster-modal img {
-      max-width: 92%;
-      max-height: 90%;
-      object-fit: contain;
-      border-radius: 16px;
-      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
-      animation: zoomIn 0.35s cubic-bezier(0.2, 0.9, 0.3, 1);
-      user-select: none;
-      -webkit-user-drag: none;
-    }
-    .poster-modal .close-modal {
-      position: fixed;
-      top: 24px;
-      right: 32px;
-      font-size: 38px;
-      color: white;
+      font-size: 18px;
       cursor: pointer;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 50%;
-      width: 56px;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: 0.3s ease;
-      z-index: 10000;
-      backdrop-filter: blur(8px);
+      padding: 0 10px 0 4px;
+      display: none;
+      flex-shrink: 0;
+      transition: color 0.2s;
     }
-    .poster-modal .close-modal:hover {
-      transform: rotate(90deg) scale(1.1);
-      background: rgba(255, 94, 122, 0.3);
-      border-color: #ff5e7a;
-      color: #ff5e7a;
+    .search-clear:hover { color: var(--ink); }
+
+    .src-label { font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; padding: 0 4px; }
+    .scroll-row { display: flex; gap: 8px; overflow-x: auto; padding: 2px 0 6px; scrollbar-width: none; }
+    .scroll-row::-webkit-scrollbar { display: none; }
+
+    .stab, .cat-chip {
+      padding: 9px 18px; border-radius: 40px;
+      font-size: 12px; font-weight: 800;
+      cursor: pointer; white-space: nowrap;
+      background: var(--card);
+      color: var(--ink2);
+      border: none; flex-shrink: 0;
+      transition: var(--trans);
     }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .stab.sel, .cat-chip.sel {
+      box-shadow: var(--shi);
+      color: var(--p);
     }
-    @keyframes zoomIn {
-      from { transform: scale(0.85); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
+    .stab:active, .cat-chip:active { transform: scale(0.93); }
+
+    .row-between { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+    .filter-btn {
+      display: flex; align-items: center; gap: 6px;
+      padding: 9px 16px; border-radius: 40px;
+      font-size: 12px; font-weight: 800;
+      background: var(--card); box-shadow: var(--shs);
+      color: var(--ink2); border: none; cursor: pointer;
+      transition: var(--trans); flex-shrink: 0;
     }
+    .filter-btn:hover { box-shadow: var(--shi); }
+    .filter-btn.on { box-shadow: var(--shi); color: var(--p); }
+    .filter-btn .dot-ct {
+      background: var(--pink); color: #fff;
+      font-size: 9px; font-weight: 800;
+      padding: 1px 6px; border-radius: 99px;
+      display: none;
+    }
+    .filter-btn .dot-ct.show { display: inline-block; }
+
+    .filter-panel {
+      background: var(--card); border-radius: var(--r);
+      box-shadow: var(--sh); padding: 20px;
+      display: none; flex-direction: column; gap: 14px;
+    }
+    .filter-panel.open { display: flex; animation: slideDown 0.28s ease; }
+    @keyframes slideDown { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+
+    .frow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .flabel { font-size: 10px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; min-width: 52px; }
+
+    .fsel {
+      padding: 8px 14px; border: none; border-radius: 40px;
+      background: var(--card); box-shadow: var(--shi);
+      font-size: 12px; font-weight: 700; font-family: inherit;
+      color: var(--ink); outline: none; cursor: pointer;
+      transition: var(--trans);
+    }
+    .fsel:focus { box-shadow: var(--sh); }
+
+    .year-range-wrap { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+    .year-range-display {
+      font-size: 13px; font-weight: 800; color: var(--p);
+      background: var(--card); border-radius: 40px;
+      box-shadow: var(--shi); padding: 6px 14px;
+      min-width: 120px; text-align: center;
+    }
+    .dual-slider { position: relative; height: 32px; flex: 1; min-width: 160px; }
+    .dual-slider input[type=range] {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 100%; pointer-events: none;
+      background: transparent; height: 4px;
+    }
+    .dual-slider input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none;
+      width: 20px; height: 20px; border-radius: 50%;
+      background: var(--p); box-shadow: 0 2px 8px rgba(139,107,255,.5);
+      pointer-events: all; cursor: pointer;
+      transition: transform .15s;
+    }
+    .dual-slider input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.25); }
+    .dual-slider input[type=range]::-webkit-slider-runnable-track { height: 4px; border-radius: 4px; background: var(--shi); }
+    .slider-track {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      height: 4px; border-radius: 4px; background: var(--p); pointer-events: none;
+    }
+    .slider-bg { position: absolute; top: 50%; transform: translateY(-50%); height: 4px; width: 100%; border-radius: 4px; background: var(--card); box-shadow: var(--shi); }
+
+    .fbtns { display: flex; gap: 8px; justify-content: flex-end; }
+    .f-apply {
+      padding: 8px 20px; border: none; border-radius: 40px;
+      background: linear-gradient(135deg,var(--p),var(--pink));
+      color: #fff; font-weight: 800; font-size: 12px;
+      cursor: pointer; transition: var(--trans); font-family: inherit;
+      box-shadow: 0 4px 16px rgba(139,107,255,.35);
+    }
+    .f-apply:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(139,107,255,.45); }
+    .f-apply:active { transform: scale(0.96); }
+    .f-reset {
+      padding: 8px 16px; border: none; border-radius: 40px;
+      background: var(--card); box-shadow: var(--shs);
+      color: var(--ink2); font-weight: 700; font-size: 12px;
+      cursor: pointer; transition: var(--trans); font-family: inherit;
+    }
+    .f-reset:hover { box-shadow: var(--shi); }
+
+    .filter-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ftag {
+      display: flex; align-items: center; gap: 4px;
+      padding: 4px 10px; border-radius: 99px;
+      font-size: 10px; font-weight: 700;
+      background: rgba(139,107,255,.15); color: var(--p);
+    }
+    .ftag .x { cursor: pointer; font-size: 13px; opacity: .7; }
+    .ftag .x:hover { opacity: 1; }
+
+    .favs-panel {
+      background: var(--card); border-radius: var(--r);
+      box-shadow: var(--sh); padding: 16px;
+      display: none; flex-direction: column; gap: 10px;
+    }
+    .favs-panel.open { display: flex; }
+    .panel-hdr { display: flex; justify-content: space-between; align-items: center; }
+    .panel-hdr h3 { font-size: 15px; font-weight: 800; }
+    .close-btn { background: none; border: none; font-size: 22px; color: var(--ink2); cursor: pointer; line-height: 1; }
+
+    .fav-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 0; border-bottom: 1px solid rgba(128,128,128,.08);
+    }
+    .fav-item:last-child { border-bottom: none; }
+    .fav-item img { width: 40px; height: 56px; object-fit: cover; border-radius: 8px; background: #d9d3e8; flex-shrink: 0; }
+    .fav-info { flex: 1; min-width: 0; }
+    .fav-info .tt { font-weight: 700; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .fav-info .mm { font-size: 10px; color: var(--muted); }
+    .fav-rm { background: none; border: none; color: var(--pink); font-size: 18px; cursor: pointer; flex-shrink: 0; }
+
+    .quiz-card {
+      background: var(--card); border-radius: var(--r);
+      box-shadow: var(--sh); padding: 18px;
+      display: flex; flex-direction: column; gap: 12px;
+      position: relative; overflow: hidden;
+    }
+    .quiz-card::before {
+      content: '⛩️';
+      position: absolute; right: -10px; bottom: -10px;
+      font-size: 70px; opacity: .3; pointer-events: none;
+    }
+    .quiz-q { font-size: 15px; font-weight: 800; line-height: 1.45; }
+    .quiz-progress { display: flex; gap: 3px; }
+    .qp-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--card); box-shadow: var(--shi); transition: .3s; }
+    .qp-dot.done { background: var(--p); box-shadow: none; }
+    .quiz-input {
+      padding: 11px 16px; border: none; border-radius: 60px;
+      background: var(--card); box-shadow: var(--shi);
+      font-size: 13px; font-weight: 600;
+      font-family: inherit; color: var(--ink); outline: none; width: 100%;
+    }
+    .quiz-input:focus { box-shadow: var(--sh); }
+    .quiz-row { display: flex; gap: 8px; }
+    .quiz-btn {
+      padding: 11px 24px; border: none; border-radius: 60px;
+      background: linear-gradient(135deg,var(--p),var(--pink));
+      color: #fff; font-weight: 800; font-size: 13px;
+      cursor: pointer; transition: var(--trans); font-family: inherit;
+      box-shadow: 0 4px 14px rgba(139,107,255,.3);
+      flex-shrink: 0;
+    }
+    .quiz-btn:hover { transform: translateY(-1px); }
+    .quiz-btn:active { transform: scale(0.95); }
+    .quiz-skip {
+      padding: 11px 16px; border: none; border-radius: 60px;
+      background: var(--card); box-shadow: var(--shs);
+      color: var(--muted); font-weight: 700; font-size: 12px;
+      cursor: pointer; font-family: inherit; transition: var(--trans);
+    }
+    .quiz-skip:hover { box-shadow: var(--shi); }
+    .quiz-fb { font-weight: 700; font-size: 13px; min-height: 20px; }
+    .quiz-fb.ok { color: #10b981; }
+    .quiz-fb.ng { color: var(--pink); }
+
+    .sec-hdr { display: flex; align-items: center; justify-content: space-between; padding: 0 2px; }
+    .sec-lbl { font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 1.8px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+    .sec-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+
+    .feat-card {
+      background: var(--card); border-radius: var(--r);
+      box-shadow: var(--sh); overflow: hidden;
+      cursor: pointer; transition: var(--trans);
+    }
+    .feat-card:hover { transform: translateY(-3px); box-shadow: var(--sh), 0 12px 32px rgba(139,107,255,.15); }
+    .feat-card:active { transform: scale(0.98); box-shadow: var(--shi); }
+    .feat-img { width: 100%; height: 200px; object-fit: cover; background: #d9d3e8; display: block; }
+    .feat-overlay { padding: 14px 16px 18px; background: var(--card); }
+    .feat-src { display: inline-block; padding: 3px 10px; border-radius: 40px; font-size: 9px; font-weight: 800; margin-bottom: 6px; }
+    .feat-score { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 800; background: rgba(139,107,255,.12); color: var(--p); padding: 3px 10px; border-radius: 40px; float: right; }
+    .feat-title { font-size: 17px; font-weight: 900; line-height: 1.25; margin: 4px 0 4px; clear: both; }
+    .feat-meta { font-size: 11px; font-weight: 600; color: var(--ink2); }
+    .feat-tags { display: flex; gap: 5px; margin-top: 8px; flex-wrap: wrap; }
+    .feat-tag { padding: 3px 10px; border-radius: 99px; font-size: 9px; font-weight: 800; background: rgba(139,107,255,.12); color: var(--p); }
+
+    .bento { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .a-card {
+      background: var(--card); border-radius: var(--r2);
+      box-shadow: var(--shs); overflow: hidden;
+      cursor: pointer; transition: var(--trans);
+    }
+    .a-card:hover { transform: translateY(-2px); box-shadow: var(--sh); }
+    .a-card:active { transform: scale(0.96); box-shadow: var(--shi); }
+    .a-img-wrap { position: relative; width: 100%; aspect-ratio: 2/3; background: #d9d3e8; overflow: hidden; }
+    .a-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s ease; }
+    .a-card:hover .a-img { transform: scale(1.06); }
+    .a-score { position: absolute; bottom: 7px; left: 7px; background: rgba(255,255,255,.88); backdrop-filter: blur(4px); border-radius: 99px; padding: 2px 8px; font-size: 10px; font-weight: 800; color: #1e1a2e; display: flex; align-items: center; gap: 3px; }
+    .dark .a-score { background: rgba(30,26,50,.88); color: #f0eeff; }
+    .a-fav {
+      position: absolute; top: 7px; right: 7px;
+      width: 30px; height: 30px; border-radius: 50%;
+      background: rgba(255,255,255,.85); backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; cursor: pointer; border: none;
+      transition: var(--trans); color: var(--muted);
+    }
+    .dark .a-fav { background: rgba(30,26,50,.85); }
+    .a-fav.on { color: var(--pink); }
+    .a-fav:hover { transform: scale(1.2); }
+    .a-body { padding: 9px 11px 11px; }
+    .a-title { font-size: 12px; font-weight: 700; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .a-sub { font-size: 10px; color: var(--muted); font-weight: 600; margin-top: 3px; display: flex; align-items: center; gap: 4px; }
+    .sdot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+    .row-card {
+      background: var(--card); border-radius: var(--r2);
+      box-shadow: var(--shs); display: flex;
+      overflow: hidden; cursor: pointer; transition: var(--trans);
+    }
+    .row-card:hover { box-shadow: var(--sh); transform: translateX(3px); }
+    .row-card:active { transform: scale(0.97); box-shadow: var(--shi); }
+    .row-img { width: 66px; flex-shrink: 0; object-fit: cover; background: #d9d3e8; }
+    .row-body { padding: 11px 13px; flex: 1; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+    .row-title { font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .row-meta { font-size: 10px; color: var(--muted); font-weight: 600; }
+    .row-score { font-size: 11px; font-weight: 800; color: var(--p); margin-top: 4px; display: flex; align-items: center; gap: 6px; }
+    .row-src { font-size: 8px; font-weight: 800; padding: 2px 8px; border-radius: 40px; }
+
+    .detail { display: none; flex-direction: column; gap: 14px; }
+    .detail.open { display: flex; }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 800; cursor: pointer;
+      padding: 10px 18px; border-radius: 60px;
+      background: var(--card); box-shadow: var(--shs);
+      border: none; color: var(--ink); transition: var(--trans);
+      width: fit-content;
+    }
+    .back-btn:hover { box-shadow: var(--sh); }
+    .back-btn:active { box-shadow: var(--shi); transform: scale(0.96); }
+    .det-hero { background: var(--card); border-radius: var(--r); box-shadow: var(--sh); overflow: hidden; }
+    .det-cover-wrap { position: relative; overflow: hidden; }
+    .det-cover {
+      width: 100%; height: 230px; object-fit: cover;
+      background: #d9d3e8; cursor: pointer; display: block;
+      transition: transform .4s ease;
+    }
+    .det-cover-wrap:hover .det-cover { transform: scale(1.04); }
+    .det-cover-wrap:hover .enlarge-hint { opacity: 1; transform: translateY(0); }
+    .enlarge-hint {
+      position: absolute; bottom: 14px; right: 14px;
+      background: rgba(0,0,0,.65); backdrop-filter: blur(8px);
+      color: #fff; padding: 7px 14px; border-radius: 40px;
+      font-size: 11px; font-weight: 600;
+      display: flex; align-items: center; gap: 7px;
+      opacity: 0; transform: translateY(8px); transition: .3s;
+      pointer-events: none; border: 1px solid rgba(255,255,255,.1);
+    }
+    .det-body { padding: 16px 18px 20px; }
+    .det-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+    .det-title { font-size: 20px; font-weight: 900; line-height: 1.2; }
+    .det-eng { font-size: 12px; color: var(--muted); font-weight: 500; margin-top: 2px; }
+    .det-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+    .dchip { padding: 4px 12px; border-radius: 99px; font-size: 10px; font-weight: 800; }
+    .det-syn { font-size: 13px; line-height: 1.7; color: var(--ink2); font-weight: 500; max-height: 280px; overflow-y: auto; padding-right: 4px; }
+    .det-syn::-webkit-scrollbar { width: 2px; } .det-syn::-webkit-scrollbar-thumb { background: var(--p2); border-radius: 2px; }
+    .det-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
+    .dstat { padding: 14px 16px; border-radius: var(--r2); }
+    .dstat-v { font-size: 22px; font-weight: 900; letter-spacing: -.5px; }
+    .dstat-l { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; color: var(--muted); margin-top: 2px; }
+
+    .poster-modal {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.9); backdrop-filter: blur(14px);
+      z-index: 9999; display: none; justify-content: center; align-items: center;
+      padding: 20px; animation: fadeIn .25s ease;
+    }
+    .poster-modal.open { display: flex; }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+    .poster-modal img {
+      max-width: 92%; max-height: 90%; object-fit: contain;
+      border-radius: 16px;
+      box-shadow: 0 20px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.05);
+      animation: zoomIn .3s cubic-bezier(.2,.9,.3,1);
+    }
+    @keyframes zoomIn { from{transform:scale(.8);opacity:0} to{transform:scale(1);opacity:1} }
+    .modal-close {
+      position: fixed; top: 20px; right: 24px;
+      width: 52px; height: 52px; border-radius: 50%;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15);
+      color: #fff; font-size: 24px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: .3s; backdrop-filter: blur(8px); z-index: 10000;
+    }
+    .modal-close:hover { transform: rotate(90deg) scale(1.1); background: rgba(255,94,122,.3); border-color: var(--pink); }
+
+    .loading { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 40px 16px; }
+    .spinner {
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--card); box-shadow: var(--shi);
+      border: 3px solid transparent; border-top-color: var(--p);
+      animation: spin .85s linear infinite;
+    }
+    @keyframes spin { to{transform:rotate(360deg)} }
+    .ld-txt { font-weight: 700; color: var(--muted); font-size: 13px; }
+
+    .inf-trigger { height: 20px; text-align: center; color: var(--muted); font-size: 11px; padding: 8px; }
+
+    .anim { animation: floatUp .38s cubic-bezier(.2,.9,.3,1) both; }
+    @keyframes floatUp { from{opacity:0;transform:translateY(18px) scale(.97)} to{opacity:1;transform:translateY(0) scale(1)} }
+
+    .mascot-wrap {
+      position: fixed; bottom: 20px; right: 16px;
+      z-index: 100; display: flex; flex-direction: column; align-items: flex-end; gap: 6px;
+    }
+    .mascot-bubble {
+      background: var(--card); border-radius: 16px 16px 4px 16px;
+      box-shadow: var(--sh); padding: 10px 14px;
+      font-size: 12px; font-weight: 700; color: var(--ink2);
+      max-width: 200px; line-height: 1.4;
+      display: none;
+    }
+    .mascot-bubble.show { display: block; animation: floatUp .3s ease; }
+    .mascot-btn {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: linear-gradient(135deg,var(--p),var(--pink));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; cursor: pointer;
+      box-shadow: 0 6px 20px rgba(139,107,255,.4);
+      border: none; transition: transform .2s;
+    }
+    .mascot-btn:hover { transform: scale(1.1) rotate(-5deg); }
+
     @media (min-width: 720px) {
-      :root { --max-w: 1300px; }
+      :root { --max-w: 1200px; }
       .bento { grid-template-columns: 1fr 1fr 1fr; }
       .feat-img { height: 260px; }
     }
     @media (max-width: 480px) {
-      .app { padding: 0 4px; }
+      body { padding: 10px; }
       .feat-img { height: 160px; }
-      .topbar-icons .icon-btn { width: 36px; height: 36px; font-size: 15px; }
-      .creator-wrap { padding: 3px 8px 3px 6px; font-size: 10px; }
-      .filter-row { flex-direction: column; align-items: stretch; }
-      .filter-label { min-width: auto; }
-      .filter-select, .filter-input { min-width: auto; }
+      .det-cover { height: 180px; }
+      .icon-btn { width: 38px; height: 38px; font-size: 15px; }
+      .wordmark { font-size: 22px; }
+      .frow { flex-direction: column; align-items: flex-start; }
+      .dual-slider { min-width: 100%; }
+      .fbtns { width: 100%; }
+      .f-apply, .f-reset { flex: 1; text-align: center; }
+      .quiz-row { flex-direction: column; }
     }
-    @media (max-width: 380px) {
-      .creator-wrap { padding: 2px 6px 2px 4px; font-size: 9px; }
-      .creator-wrap i { display: none; }
-      .icon-btn { width: 32px; height: 32px; font-size: 13px; }
-      .wordmark { font-size: 20px; }
+    @media (max-width: 340px) {
+      .creator-chip { display: none; }
     }
+
+    ::-webkit-scrollbar { width: 3px; height: 3px; }
+    ::-webkit-scrollbar-thumb { background: var(--p2); border-radius: 3px; }
+
+    @keyframes confetti {
+      0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+      100% { opacity: 0; transform: translateY(-60px) rotate(360deg); }
+    }
+    .confetti-dot {
+      position: fixed; width: 8px; height: 8px;
+      border-radius: 50%; pointer-events: none; z-index: 99999;
+      animation: confetti .8s ease forwards;
+    }
+
+    .streak-row { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; color: var(--muted); }
+    .streak-bar-wrap { flex: 1; height: 5px; background: var(--card); box-shadow: var(--shi); border-radius: 99px; overflow: hidden; }
+    .streak-bar { height: 100%; border-radius: 99px; background: linear-gradient(90deg,var(--p),var(--pink)); transition: width .5s ease; }
   </style>
 </head>
 <body>
-  <div class="app" id="app">
+<canvas id="sakura-canvas"></canvas>
 
-    <div class="topbar">
-  <div class="wordmark">ani<em>ku</em></div>
-  <div class="creator-wrap">
-  <i class="fas fa-pen-fancy"></i>
-  <span>by <a href="#" class="sam" id="creatorLink">Saqlain Abbas</a></span>
-  <div class="social-popup" id="socialPopup">
-    <a href="https://www.linkedin.com/in/saqlainabbas11/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-  </div>
-</div>
-  <div class="topbar-icons">
-    <button class="icon-btn" id="favToggle" aria-label="Favourites">
-      <i class="fas fa-heart" style="color: red;"></i>
-      <span class="badge" id="favBadge">0</span>
-    </button>
-    <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
-      <i class="fas fa-moon" style="color: #e2c96e;"></i>
-    </button>
-  </div>
-</div>
+<div class="app" id="app">
 
-    <div class="search-box">
-      <i class="fas fa-search"></i>
-      <input id="q" type="text" placeholder="Search anime, manga…" autocomplete="off" />
-      <span class="search-clear" id="qClear">✕</span>
+  <div class="topbar neu">
+    <div class="wordmark">
+      <span class="wm-icon">🌸</span>
+      ani<em>ku</em>
     </div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <a href="https://github.com/saqlainabbas11" target="_blank" class="creator-chip">
+        <i class="fas fa-pen-fancy" style="color:var(--mint);font-size:10px;"></i>
+        by <span class="shimmer-name">Saqlain Abbas</span>
+      </a>
+      <a href="https://www.linkedin.com/in/saqlainabbas11/" target="_blank" title="LinkedIn" class="creator-chip" style="padding: 5px 10px;">
+        <i class="fab fa-linkedin-in" style="color:var(--mint);font-size:12px;"></i>
+      </a>
+    </div>
+    
+    <div class="topbar-icons">
+      <button class="icon-btn" id="favToggle" aria-label="Favourites">
+        <i class="fas fa-heart" style="color:var(--pink);"></i>
+        <span class="badge" id="favBadge">0</span>
+      </button>
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
+        <i class="fas fa-moon" style="color:#e2c96e;"></i>
+      </button>
+    </div>
+  </div>
 
-    <p style="font-size: small; color: gray;">Resources</p>
-    <div class="source-tabs">
-      <button class="stab sel" data-src="all">All</button>
+  <div class="hero-video neu">
+    <video id="heroVideo" muted loop playsinline autoplay>
+      <source src="./mateza.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <div class="overlay" id="videoOverlay">
+      <div class="play-icon"><i class="fas fa-play"></i></div>
+    </div>
+    <div class="caption"><i class="fas fa-film"></i>  · こんにちは、開発者です。このウェブサイトを気に入っていただけましたら、ぜひLinkedInでフォローしてください。</div>
+  </div>
+
+  <div>
+      <div class="src-label" style="margin-bottom:6px; margin-top: 20px;">📡 Search Any ANIME Here.....</div>
+  <div class="search-wrap">
+    <i class="fas fa-search si"></i>
+    <input id="q" type="text" placeholder="Search anime, manga…" autocomplete="off" />
+    <button class="search-clear" id="qClear">✕</button>
+  </div>
+  </div>
+
+  <div>
+    <div class="src-label" style="margin-bottom:6px;">📡 Sources</div>
+    <div class="scroll-row">
+      <button class="stab sel" data-src="all">✦ All</button>
       <button class="stab" data-src="jikan">MAL</button>
       <button class="stab" data-src="anilist">AniList</button>
       <button class="stab" data-src="kitsu">Kitsu</button>
     </div>
+  </div>
 
-    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-      <div class="cat-row" id="catRow">
-        <button class="cat-chip sel" data-cat="trending">✨ Trending</button>
-        <button class="cat-chip" data-cat="airing">📺 Airing</button>
-        <button class="cat-chip" data-cat="top">🏆 Top</button>
-        <button class="cat-chip" data-cat="popular">🔥 Popular</button>
-        <button class="cat-chip" data-cat="manga">📖 Manga</button>
-        <button class="cat-chip" data-cat="upcoming">⏳ Upcoming</button>
+  <div class="row-between">
+    <div class="scroll-row" id="catRow" style="flex:1;">
+      <button class="cat-chip sel" data-cat="trending">✨ Trending</button>
+      <button class="cat-chip" data-cat="manga">📖 Manga</button>
+      <button class="cat-chip" data-cat="upcoming">⏳ Upcoming</button>
+    </div>
+    <button class="filter-btn" id="filterBtn">
+      <i class="fas fa-sliders-h"></i> Filters
+      <span class="dot-ct" id="filterCount"></span>
+    </button>
+  </div>
+
+  <div class="filter-panel" id="filterPanel">
+
+    <div class="frow">
+      <span class="flabel">Year</span>
+      <div class="year-range-wrap">
+        <div class="year-range-display" id="yearDisplay">Any</div>
+        <div class="dual-slider">
+          <div class="slider-bg"></div>
+          <div class="slider-track" id="sliderTrack"></div>
+          <input type="range" id="yearMin" min="1960" max="2026" value="1960" step="1" />
+          <input type="range" id="yearMax" min="1960" max="2026" value="2026" step="1" />
+        </div>
       </div>
-      <button class="filter-toggle" id="filterToggle">
-        <i class="fas fa-sliders-h"></i> Filters
-      </button>
     </div>
 
-    <!-- Filter Panel -->
-    <div class="filter-panel" id="filterPanel">
-      <div class="filter-row">
-        <span class="filter-label">Year</span>
-        <select class="filter-select" id="filterYear">
-          <option value="">Any</option>
-          <option value="2026">2026</option>
-          <option value="2025">2025</option>
-          <option value="2024">2024</option>
-          <option value="2023">2023</option>
-          <option value="2022">2022</option>
-          <option value="2021">2021</option>
-          <option value="2020">2020</option>
-          <option value="2019">2019</option>
-          <option value="2018">2018</option>
-          <option value="2017">2017</option>
-          <option value="2016">2016</option>
-          <option value="2015">2015</option>
-          <option value="2010">2010-2014</option>
-          <option value="2000">2000-2009</option>
-          <option value="1990">1990-1999</option>
-          <option value="1980">1980-1989</option>
-        </select>
-      </div>
-      <div class="filter-row">
-        <span class="filter-label">Genre</span>
-        <select class="filter-select" id="filterGenre">
-          <option value="">All Genres</option>
-          <option value="action">Action</option>
-          <option value="adventure">Adventure</option>
-          <option value="comedy">Comedy</option>
-          <option value="drama">Drama</option>
-          <option value="fantasy">Fantasy</option>
-          <option value="horror">Horror</option>
-          <option value="mystery">Mystery</option>
-          <option value="romance">Romance</option>
-          <option value="sci-fi">Sci-Fi</option>
-          <option value="slice of life">Slice of Life</option>
-          <option value="sports">Sports</option>
-          <option value="thriller">Thriller</option>
-        </select>
-      </div>
-      <div class="filter-row">
-        <span class="filter-label">Status</span>
-        <select class="filter-select" id="filterStatus">
-          <option value="">Any</option>
-          <option value="airing">Airing</option>
-          <option value="finished">Finished</option>
-          <option value="upcoming">Upcoming</option>
-        </select>
-      </div>
-      <div class="filter-row">
-        <span class="filter-label">Rating</span>
-        <select class="filter-select" id="filterRating">
-          <option value="">Any</option>
-          <option value="8">8+</option>
-          <option value="7">7+</option>
-          <option value="6">6+</option>
-          <option value="5">5+</option>
-        </select>
-      </div>
-      <div class="filter-row" style="justify-content:flex-end; gap:10px;">
-        <button class="filter-reset" id="filterReset">Reset</button>
-        <button class="filter-apply" id="filterApply">Apply Filters</button>
-      </div>
-      <div id="filterTags" class="filter-tags"></div>
+    <div class="frow">
+      <span class="flabel">Genre</span>
+      <select class="fsel" id="fGenre">
+        <option value="">All Genres</option>
+        <option>Action</option><option>Adventure</option><option>Comedy</option>
+        <option>Drama</option><option>Fantasy</option><option>Horror</option>
+        <option>Mystery</option><option>Romance</option><option>Sci-Fi</option>
+        <option>Slice of Life</option><option>Sports</option><option>Thriller</option>
+      </select>
     </div>
 
-    <div class="favs-panel" id="favsPanel">
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <span style="font-weight:800;font-size:16px;">❤️ Favourites</span>
-        <button id="closeFavs" style="cursor:pointer;font-size:20px;background:none;border:none;color:var(--ink);">&times;</button>
-      </div>
-      <div id="favsList"></div>
+    <div class="frow">
+      <span class="flabel">Status</span>
+      <select class="fsel" id="fStatus">
+        <option value="">Any</option>
+        <option value="airing">Airing</option>
+        <option value="finished">Finished</option>
+        <option value="upcoming">Upcoming</option>
+      </select>
     </div>
 
-    <div class="quiz-card" id="quizCard">
-      <div class="quiz-q" id="quizQ">Loading quiz…</div>
-      <input class="quiz-input" id="quizInput" placeholder="Type your answer…" />
-      <button class="quiz-btn" id="quizBtn">Check</button>
-      <div class="quiz-feedback" id="quizFeedback"></div>
+    <div class="frow">
+      <span class="flabel">Score</span>
+      <select class="fsel" id="fScore">
+        <option value="">Any</option>
+        <option value="8">8+ ⭐</option>
+        <option value="7">7+ ⭐</option>
+        <option value="6">6+ ⭐</option>
+      </select>
     </div>
 
-    <div id="main" style="display:flex;flex-direction:column;gap:12px;"></div>
+    <div class="filter-tags" id="filterTags"></div>
 
-    <div class="detail" id="detail">
-      <button class="back-btn" id="backBtn"><i class="fas fa-arrow-left"></i> Back</button>
-      <div id="detContent"></div>
-    </div>
-
-    <div class="poster-modal" id="posterModal">
-      <button class="close-modal" id="closePosterModal">&times;</button>
-      <img id="posterImage" src="" alt="Poster" />
+    <div class="fbtns">
+      <button class="f-reset" id="fReset">Reset</button>
+      <button class="f-apply" id="fApply">Apply Filters</button>
     </div>
   </div>
 
-  <script>
-    // Poster Modal functionality
-    const posterModal = document.getElementById('posterModal');
-    const posterImage = document.getElementById('posterImage');
-    const closePosterModal = document.getElementById('closePosterModal');
+  <div class="favs-panel" id="favsPanel">
+    <div class="panel-hdr">
+      <h3>❤️ Favourites</h3>
+      <button class="close-btn" id="closeFavs">×</button>
+    </div>
+    <div id="favsList"></div>
+  </div>
 
-    function openPosterModal(imgSrc) {
-      if (!imgSrc) return;
-      posterImage.src = imgSrc;
-      posterModal.classList.add('open');
-      document.body.style.overflow = 'hidden';
+  <div class="quiz-card" id="quizCard">
+    <div class="quiz-progress" id="quizProg"></div>
+    <div class="quiz-q" id="quizQ">Loading quiz…</div>
+    <div class="streak-row">
+      <span id="streakTxt">🔥 0</span>
+      <div class="streak-bar-wrap"><div class="streak-bar" id="streakBar" style="width:0%"></div></div>
+    </div>
+    <div class="quiz-row">
+      <input class="quiz-input" id="quizInput" placeholder="Type your answer…" />
+      <button class="quiz-btn" id="quizBtn">Check ✓</button>
+      <button class="quiz-skip" id="quizSkip">Skip</button>
+    </div>
+    <div class="quiz-fb" id="quizFb"></div>
+  </div>
+
+  <div id="main" style="display:flex;flex-direction:column;gap:12px;"></div>
+
+  <div class="detail" id="detail">
+    <button class="back-btn" id="backBtn"><i class="fas fa-arrow-left"></i> Back</button>
+    <div id="detContent"></div>
+  </div>
+
+</div>
+
+<div class="mascot-wrap">
+  <div class="mascot-bubble" id="mascotBubble">ℹ️ Tip: Star ⭐ your favs to save them!</div>
+  <button class="mascot-btn" id="mascotBtn">🐱</button>
+</div>
+
+<div class="poster-modal" id="posterModal">
+  <button class="modal-close" id="modalClose">×</button>
+  <img id="posterImg" src="" alt="Poster" />
+</div>
+
+<script>
+/* ════════════════════════════════════════════
+   SAKURA CANVAS
+════════════════════════════════════════════ */
+(function initSakura() {
+  const canvas = document.getElementById('sakura-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, petals = [];
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function mkPetal() {
+    return {
+      x: Math.random() * W,
+      y: Math.random() * H - H,
+      r: 3 + Math.random() * 7,
+      rot: Math.random() * Math.PI * 2,
+      vx: -0.8 + Math.random() * 1.6,
+      vy: 0.6 + Math.random() * 1.5,
+      vr: (0.6 - Math.random()) * 0.05,
+      alpha: 0.5 + Math.random() * 0.5,
+      hue: 330 + Math.random() * 30
+    };
+  }
+
+  for (let i = 0; i < 50; i++) petals.push(mkPetal());
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    petals.forEach(p => {
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.globalAlpha = p.alpha;
+      ctx.beginPath();
+      ctx.ellipse(0, 0, p.r, p.r * 0.5, 0, 0, Math.PI * 2);
+      ctx.fillStyle = `hsl(${p.hue},80%,82%)`;
+      ctx.fill();
+      ctx.restore();
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rot += p.vr;
+      if (p.y > H + 30) {
+        Object.assign(p, mkPetal(), { y: -30 });
+      }
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ════════════════════════════════════════════
+   APP
+════════════════════════════════════════════ */
+(function() {
+  'use strict';
+
+  const QUIZ = [
+    { q:"Which genre targets girls aged 10–18?", a:["shoujo"] },
+    { q:"When was the first Japanese animation made?", a:["1917"] },
+    { q:"Dressing like anime characters is called?", a:["cosplay"] },
+    { q:"Genre aimed at young boys under 15?", a:["shonen","shounen"] },
+    { q:"Anime aimed at young men aged 15–24?", a:["seinen"] },
+    { q:"Anime aimed at adult women?", a:["josei"] },
+    { q:"Anime focused on pilotable robots?", a:["mecha"] },
+    { q:"Anime about girls transforming into superheroes?", a:["magical girl","mahou shoujo"] },
+    { q:"One male character surrounded by female characters?", a:["harem"] },
+    { q:"Quiet, antisocial character archetype?", a:["dandere"] },
+    { q:"Very loving then destructive character type?", a:["yandere"] },
+    { q:"(AoT) Main character's name?", a:["Eren Yeager","Eren"] },
+    { q:"(Death Note) Who is the first Kira?", a:["Light Yagami","Light"] },
+    { q:"(Death Note) Shinigami that owns the Note?", a:["Ryuk"] },
+    { q:"(FMA) Edward's last name?", a:["Elric"] },
+    { q:"(Naruto) Naruto's son's name?", a:["Boruto Uzumaki","Boruto"] },
+    { q:"(One Piece) Luffy's Devil Fruit?", a:["Gomu Gomu","Gum Gum"] },
+    { q:"(One Piece) Who is the Pirate King?", a:["Gol D. Roger","Roger"] },
+    { q:"(SAO) Name of the first virtual world?", a:["Aincrad"] },
+    { q:"(HxH) What is Gon's special ability called?", a:["Nen"] }
+  ];
+
+  const SRC_COLORS = {
+    jikan:   { bg:'#f0e2d4', tx:'#7c2d12', dot:'#ff6b35' },
+    anilist: { bg:'#d9e6f5', tx:'#1a4a6b', dot:'#2e86de' },
+    kitsu:   { bg:'#c8f0e6', tx:'#065f46', dot:'#10b981' },
+  };
+  const DARK_SRC = {
+    jikan:   { bg:'#3a2218', tx:'#ffb899', dot:'#ff6b35' },
+    anilist: { bg:'#18283a', tx:'#99c4ff', dot:'#2e86de' },
+    kitsu:   { bg:'#0e2a1f', tx:'#80ffcc', dot:'#10b981' },
+  };
+  const PALETTES = [
+    { bg:'#ede5ff', tx:'#4a1d96' }, { bg:'#c8f7ec', tx:'#065f46' },
+    { bg:'#ffd6e8', tx:'#7c2d46' }, { bg:'#d6eeff', tx:'#1a4a6b' },
+    { bg:'#ffe8d6', tx:'#7c2d12' }, { bg:'#fffbd6', tx:'#78350f' }
+  ];
+  const DARK_PAL = [
+    { bg:'#2a1f4a', tx:'#c9b8ff' }, { bg:'#0e2a1f', tx:'#80ffcc' },
+    { bg:'#3a1525', tx:'#ffb3c6' }, { bg:'#0e1e3a', tx:'#99c4ff' },
+    { bg:'#3a2010', tx:'#ffc499' }, { bg:'#30280a', tx:'#ffe899' }
+  ];
+
+  const MASCOT_TIPS = [
+    "💡 Try filtering by genre + year range for precision!",
+    "⭐ Click the heart to save favourites",
+    "🎯 Score 5 in a row for a bonus streak!",
+    "🔍 Search works across all sources at once",
+    "🌸 Dark mode looks beautiful too — try it!",
+    "📖 Switch to Manga tab for manga-only results",
+    "🏆 AniList has the freshest season scores"
+  ];
+
+  let favs = new Set();
+  let allItems = {};
+  let src = 'all', cat = 'trending', query = '', page = 1;
+  let loading = false, hasMore = true;
+  let quizIdx = 0, streak = 0;
+  let dark = false;
+  let sbTimer;
+
+  let filters = { yearMin: 1960, yearMax: 2026, genre: '', status: '', score: '' };
+  let activeFilters = 0;
+
+  const $ = id => document.getElementById(id);
+  const scoreStr = v => v != null ? parseFloat(v).toFixed(1) : '—';
+  const trunc = (s, n=140) => s && s.length>n ? s.slice(0,n)+'…' : s || 'No synopsis.';
+  const pal = i => dark ? DARK_PAL[i % DARK_PAL.length] : PALETTES[i % PALETTES.length];
+  const sc  = s => dark ? (DARK_SRC[s]||DARK_SRC.jikan) : (SRC_COLORS[s]||SRC_COLORS.jikan);
+  const statusDot = st => {
+    const s = (st||'').toLowerCase();
+    if (s.includes('finish') || s.includes('complete')) return '#6b7280';
+    if (s.includes('upcom') || s.includes('not_yet') || s.includes('not yet')) return '#f59e0b';
+    return '#10b981';
+  };
+  const statusLabel = st => {
+    const s = (st||'').toLowerCase();
+    if (s.includes('finish')||s.includes('complete')) return 'Finished';
+    if (s.includes('upcom')||s.includes('not_yet')||s.includes('not yet')) return 'Upcoming';
+    if (s.includes('air')||s.includes('current')||s.includes('releas')) return 'Airing';
+    return st ? (st.charAt(0).toUpperCase()+st.slice(1).replace(/_/g,' ').toLowerCase()) : '—';
+  };
+
+  /* ─── YEAR SLIDER ─── */
+  const slMin = $('yearMin'), slMax = $('yearMax');
+  const slTrack = $('sliderTrack'), yearDisp = $('yearDisplay');
+
+  function updateSlider() {
+    let lo = parseInt(slMin.value), hi = parseInt(slMax.value);
+    if (lo > hi) { [lo, hi] = [hi, lo]; }
+    const pct = (v) => ((v - 1960) / (2026 - 1960)) * 100;
+    slTrack.style.left  = pct(lo) + '%';
+    slTrack.style.width = (pct(hi) - pct(lo)) + '%';
+    yearDisp.textContent = (lo === 1960 && hi === 2026) ? 'Any' :
+      (lo === hi ? lo : lo + ' – ' + hi);
+  }
+
+  slMin.addEventListener('input', updateSlider);
+  slMax.addEventListener('input', updateSlider);
+  updateSlider();
+
+  /* ─── FILTER UI ─── */
+  $('filterBtn').addEventListener('click', () => {
+    $('filterPanel').classList.toggle('open');
+    $('filterBtn').classList.toggle('on');
+  });
+
+  function countFilters() {
+    let n = 0;
+    if (filters.yearMin > 1960 || filters.yearMax < 2026) n++;
+    if (filters.genre) n++;
+    if (filters.status) n++;
+    if (filters.score) n++;
+    activeFilters = n;
+    const ct = $('filterCount');
+    ct.textContent = n;
+    ct.classList.toggle('show', n > 0);
+  }
+
+  function renderFilterTags() {
+    const tags = [];
+    if (filters.yearMin > 1960 || filters.yearMax < 2026)
+      tags.push({ k:'year', label: filters.yearMin === filters.yearMax ? filters.yearMin : `${filters.yearMin}–${filters.yearMax}` });
+    if (filters.genre)  tags.push({ k:'genre',  label: filters.genre });
+    if (filters.status) tags.push({ k:'status', label: filters.status });
+    if (filters.score)  tags.push({ k:'score',  label: `≥${filters.score}⭐` });
+    $('filterTags').innerHTML = tags.map(t =>
+      `<span class="ftag">${t.label}<span class="x" data-k="${t.k}">×</span></span>`
+    ).join('');
+    $('filterTags').querySelectorAll('.x').forEach(el => {
+      el.addEventListener('click', () => {
+        const k = el.dataset.k;
+        if (k === 'year') { filters.yearMin=1960; filters.yearMax=2026; slMin.value=1960; slMax.value=2026; updateSlider(); }
+        else filters[k] = '';
+        if (k === 'genre')  $('fGenre').value = '';
+        if (k === 'status') $('fStatus').value = '';
+        if (k === 'score')  $('fScore').value = '';
+        renderFilterTags(); countFilters(); reload();
+      });
+    });
+  }
+
+  $('fApply').addEventListener('click', () => {
+    let lo = parseInt(slMin.value), hi = parseInt(slMax.value);
+    if (lo > hi) [lo,hi] = [hi,lo];
+    filters.yearMin  = lo;
+    filters.yearMax  = hi;
+    filters.genre  = $('fGenre').value;
+    filters.status = $('fStatus').value;
+    filters.score  = $('fScore').value;
+    renderFilterTags(); countFilters();
+    if (window.innerWidth < 720) { $('filterPanel').classList.remove('open'); $('filterBtn').classList.remove('on'); }
+    reload();
+  });
+
+  $('fReset').addEventListener('click', () => {
+    filters = { yearMin:1960, yearMax:2026, genre:'', status:'', score:'' };
+    slMin.value=1960; slMax.value=2026; updateSlider();
+    $('fGenre').value=''; $('fStatus').value=''; $('fScore').value='';
+    renderFilterTags(); countFilters(); reload();
+  });
+
+  /* ─── CLIENT FILTER ─── */
+  function clientFilter(items) {
+    return items.filter(a => {
+      if (filters.yearMin > 1960 || filters.yearMax < 2026) {
+        const y = a.year;
+        if (!y || y < filters.yearMin || y > filters.yearMax) return false;
+      }
+      if (filters.genre) {
+        const genres = (a.genres||[]).map(g=>g.toLowerCase());
+        if (!genres.some(g=>g.includes(filters.genre.toLowerCase()))) return false;
+      }
+      if (filters.status) {
+        const st = (a.status||'').toLowerCase();
+        if (filters.status === 'airing'   && !st.match(/air|current|releas/)) return false;
+        if (filters.status === 'finished' && !st.match(/finish|complete/)) return false;
+        if (filters.status === 'upcoming' && !st.match(/upcom|not_yet|not yet/)) return false;
+      }
+      if (filters.score) {
+        if (a.score == null || a.score < parseInt(filters.score)) return false;
+      }
+      return true;
+    });
+  }
+
+  /* ─── API: JIKAN ─── */
+  async function fetchJikan(mode, q, pg) {
+    try {
+      let url;
+      const params = new URLSearchParams({ limit:'12', page: pg });
+      if (q) { url = `https://api.jikan.moe/v4/anime?q=${encodeURIComponent(q)}&${params}`; }
+      else if (mode==='airing')   url = `https://api.jikan.moe/v4/top/anime?filter=airing&${params}`;
+      else if (mode==='top')      url = `https://api.jikan.moe/v4/top/anime?${params}`;
+      else if (mode==='upcoming') url = `https://api.jikan.moe/v4/top/anime?filter=upcoming&${params}`;
+      else if (mode==='manga')    url = `https://api.jikan.moe/v4/top/manga?${params}`;
+      else                        url = `https://api.jikan.moe/v4/top/anime?${params}`;
+
+      if (filters.genre && !q) {
+        const gmap = {action:1,adventure:2,comedy:4,drama:8,fantasy:10,horror:14,mystery:7,romance:22,'sci-fi':24,'slice of life':36,sports:30,thriller:41};
+        const gid = gmap[filters.genre.toLowerCase()];
+        if (gid) url += `&genres=${gid}`;
+      }
+
+      const r = await fetch(url);
+      const j = await r.json();
+      return (j.data||[]).map(a => ({
+        id: 'jik_'+a.mal_id, src:'jikan', rawId:a.mal_id,
+        title: a.title, titleEn: a.title_english||'',
+        img: a.images?.jpg?.image_url||'',
+        imgLg: a.images?.jpg?.large_image_url||'',
+        score: a.score ? a.score*10 : null,
+        eps: a.episodes, status: a.status,
+        type: a.type,
+        year: a.year||a.aired?.prop?.from?.year||null,
+        genres: (a.genres||[]).map(g=>g.name).slice(0,5),
+        synopsis: a.synopsis, rank: a.rank, members: a.members,
+        isManga: mode==='manga'
+      }));
+    } catch(e) { console.warn('Jikan error',e); return []; }
+  }
+
+  /* ─── API: ANILIST ─── */
+  async function fetchAniList(mode, q, pg) {
+    try {
+      const isManga = mode==='manga';
+      const type = isManga ? 'MANGA' : 'ANIME';
+      let sort='TRENDING_DESC', statusQ='', genreQ='';
+      if (mode==='top')      sort='SCORE_DESC';
+      if (mode==='popular')  sort='POPULARITY_DESC';
+      if (mode==='upcoming') statusQ='status: NOT_YET_RELEASED,';
+      if (mode==='airing')   statusQ='status: RELEASING,';
+      if (filters.genre) genreQ = `genre: "${filters.genre}",`;
+
+      const gql = q
+        ? `query($s:String,$p:Int){Page(page:$p,perPage:12){media(search:$s,type:${type},sort:POPULARITY_DESC){id title{romaji english}coverImage{large}averageScore episodes chapters status startDate{year}genres description}}}`
+        : `query($p:Int){Page(page:$p,perPage:12){media(type:${type},sort:${sort},${genreQ}${statusQ}){id title{romaji english}coverImage{large}averageScore episodes chapters status startDate{year}genres description}}}`;
+
+      const r = await fetch('https://graphql.anilist.co', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ query:gql, variables: q?{s:q,p:pg}:{p:pg} })
+      });
+      const j = await r.json();
+      return (j.data?.Page?.media||[]).map(a => ({
+        id:'al_'+a.id, src:'anilist', rawId:a.id,
+        title: a.title.romaji, titleEn: a.title.english||'',
+        img: a.coverImage?.large||'', imgLg: a.coverImage?.large||'',
+        score: a.averageScore,
+        eps: a.episodes||a.chapters,
+        status: a.status, year: a.startDate?.year||null,
+        genres: (a.genres||[]).slice(0,5),
+        synopsis: a.description?.replace(/<[^>]+>/g,''),
+        isManga: isManga
+      }));
+    } catch(e) { console.warn('AniList error',e); return []; }
+  }
+
+  /* ─── API: KITSU ─── */
+  async function fetchKitsu(mode, q, pg) {
+    try {
+      const isManga = mode === 'manga';
+      const endpoint = isManga ? 'manga' : 'anime';
+      const limit = 12;
+      const offset = (pg - 1) * limit;
+      const fields = isManga
+        ? 'canonicalTitle,titles,posterImage,averageRating,chapterCount,volumeCount,status,startDate,synopsis,userCount,favoritesCount'
+        : 'canonicalTitle,titles,posterImage,averageRating,showType,episodeCount,status,startDate,synopsis,userCount,favoritesCount';
+
+      let sort = '-userCount';
+      let statusFilter = '';
+      if (mode === 'top') sort = '-averageRating';
+      if (filters.status) {
+        const sm = { airing:'current', finished:'finished', upcoming:'upcoming' };
+        if (sm[filters.status]) statusFilter = `filter[status]=${sm[filters.status]}&`;
+      }
+
+      let url;
+      if (q) {
+        url = `https://kitsu.io/api/edge/${endpoint}?filter[text]=${encodeURIComponent(q)}&page[limit]=${limit}&page[offset]=${offset}&fields[${endpoint}]=${fields}`;
+      } else {
+        url = `https://kitsu.io/api/edge/${endpoint}?sort=${sort}&${statusFilter}page[limit]=${limit}&page[offset]=${offset}&fields[${endpoint}]=${fields}`;
+      }
+
+      const r = await fetch(url, { headers: { 'Accept':'application/vnd.api+json' } });
+      const j = await r.json();
+      if (!j.data?.length) return [];
+
+      return j.data.map(a => {
+        const at = a.attributes || {};
+        const rawScore = at.averageRating ? parseFloat(at.averageRating) : null;
+        const year = at.startDate ? parseInt(at.startDate.slice(0,4)) : null;
+        const poster = at.posterImage || {};
+        const img   = poster.small || poster.medium || poster.tiny || '';
+        const imgLg = poster.original || poster.large || poster.medium || img;
+        const title = at.canonicalTitle || at.titles?.en || at.titles?.en_jp || at.titles?.ja_jp || 'Unknown';
+
+        return {
+          id: 'kit_'+a.id, src:'kitsu', rawId:a.id,
+          title, titleEn: at.titles?.en||at.titles?.en_us||'',
+          img, imgLg,
+          score: rawScore,
+          eps: at.episodeCount || at.chapterCount || null,
+          status: statusLabel(at.status),
+          type: at.showType || (isManga ? 'Manga' : 'TV'),
+          year,
+          genres: [],
+          synopsis: at.synopsis || 'No synopsis available.',
+          isManga,
+          members: at.userCount || null
+        };
+      });
+    } catch(e) { console.warn('Kitsu error',e); return []; }
+  }
+
+  /* ─── LOAD MORE ─── */
+  async function loadMore(append = true) {
+    if (loading) return;
+    loading = true;
+    const main = $('main');
+
+    if (!append) { main.innerHTML=''; page=1; hasMore=true; }
+
+    const loader = Object.assign(document.createElement('div'), { className:'loading', innerHTML:`<div class="spinner"></div><div class="ld-txt">Fetching anime…</div>` });
+    main.appendChild(loader);
+
+    let items = [];
+    const [j, al, ki] = await Promise.all([
+      (src==='all'||src==='jikan')   ? fetchJikan(cat, query, page)   : [],
+      (src==='all'||src==='anilist') ? fetchAniList(cat, query, page) : [],
+      (src==='all'||src==='kitsu')   ? fetchKitsu(cat, query, page)   : [],
+    ]);
+    items = [...j, ...al, ...ki];
+
+    const seen = new Set();
+    items = items.filter(a => { if(seen.has(a.id)) return false; seen.add(a.id); return true; });
+
+    items = clientFilter(items);
+
+    items.forEach(a => { if(!allItems[a.id]) allItems[a.id] = a; });
+
+    loader.remove();
+    if (!append) main.innerHTML = '';
+
+    if (!items.length) {
+      hasMore = false;
+      main.insertAdjacentHTML('beforeend','<div class="inf-trigger">✨ No results — try different filters</div>');
+      loading = false; return;
     }
 
-    function closePosterModalFn() {
-      posterModal.classList.remove('open');
-      document.body.style.overflow = '';
-      posterImage.src = '';
+    renderItems(items, main);
+    loading = false;
+    if (items.length < 10) hasMore = false;
+    setupScroll();
+  }
+
+  function reload() { loadMore(false); }
+
+  /* ─── RENDER ─── */
+  function renderItems(items, container) {
+    const groups = {};
+    items.forEach(a => { (groups[a.src]||(groups[a.src]=[])).push(a); });
+
+    let idx = 0;
+    for (const [s, arr] of Object.entries(groups)) {
+      const C = sc(s);
+      const sec = document.createElement('div');
+      sec.className = 'anim'; sec.style.display='flex'; sec.style.flexDirection='column'; sec.style.gap='8px';
+      sec.style.animationDelay = (idx*0.06)+'s';
+
+      sec.innerHTML = `<div class="sec-hdr"><span class="sec-lbl"><span class="sec-dot" style="background:${C.dot}"></span>${s.toUpperCase()}</span></div>`;
+
+      if (arr[0]) {
+        const a = arr[0];
+        const fc = document.createElement('div'); fc.className='feat-card anim'; fc.style.animationDelay='.04s';
+        const gHtml = (a.genres||[]).map(g=>`<span class="feat-tag">${g}</span>`).join('');
+        fc.innerHTML = `
+          <img class="feat-img" src="${a.imgLg||a.img}" alt="${a.title}" loading="lazy" onerror="this.src='';this.style.minHeight='160px';this.style.background='#d9d3e8'">
+          <div class="feat-overlay">
+            <span class="feat-src" style="background:${C.bg};color:${C.tx};">${s.toUpperCase()}</span>
+            <span class="feat-score"><i class="fas fa-star" style="color:var(--gold)"></i> ${scoreStr(a.score)}</span>
+            <div class="feat-title">${a.title}</div>
+            <div class="feat-meta">${a.type||(a.isManga?'Manga':'Anime')}${a.year?' · '+a.year:''}${a.eps?' · '+a.eps+(a.isManga?' ch':' ep'):''}</div>
+            ${gHtml?`<div class="feat-tags">${gHtml}</div>`:''}
+          </div>`;
+        fc.addEventListener('click', ()=>openDetail(a));
+        sec.appendChild(fc);
+      }
+
+      const gridArr = arr.slice(1,7);
+      if (gridArr.length) {
+        const grid = document.createElement('div'); grid.className='bento';
+        gridArr.forEach((a,i) => {
+          const p = pal(i);
+          const isFav = favs.has(a.id);
+          const card = document.createElement('div'); card.className='a-card anim'; card.style.animationDelay=(i*.05)+'s';
+          card.innerHTML = `
+            <div class="a-img-wrap" style="background:${p.bg}">
+              <img class="a-img" src="${a.img}" alt="${a.title}" loading="lazy" onerror="this.src='';this.parentNode.style.background='${p.bg}'">
+              <div class="a-score"><i class="fas fa-star" style="color:var(--gold);font-size:8px"></i> ${scoreStr(a.score)}</div>
+              <button class="a-fav ${isFav?'on':''}" data-id="${a.id}">${isFav?'♥':'♡'}</button>
+            </div>
+            <div class="a-body">
+              <div class="a-title">${a.title}</div>
+              <div class="a-sub"><span class="sdot" style="background:${statusDot(a.status)}"></span>${statusLabel(a.status)}</div>
+            </div>`;
+          card.querySelector('.a-fav').addEventListener('click', e => { e.stopPropagation(); toggleFav(a, e.currentTarget); });
+          card.addEventListener('click', ()=>openDetail(a));
+          grid.appendChild(card);
+        });
+        sec.appendChild(grid);
+      }
+
+      arr.slice(7,10).forEach((a,i) => {
+        const C2 = sc(a.src);
+        const rc = document.createElement('div'); rc.className='row-card anim'; rc.style.animationDelay=(i*.04+.2)+'s';
+        rc.innerHTML = `
+          <img class="row-img" src="${a.img}" alt="${a.title}" loading="lazy" onerror="this.src='';this.style.background='#d9d3e8'">
+          <div class="row-body">
+            <div class="row-title">${a.title}</div>
+            <div class="row-meta">${a.year||'—'}${a.eps?' · '+a.eps+(a.isManga?' ch':' ep'):''}</div>
+            <div class="row-score"><i class="fas fa-star" style="color:var(--gold)"></i> ${scoreStr(a.score)} <span class="row-src" style="background:${C2.bg};color:${C2.tx}">${a.src}</span></div>
+          </div>`;
+        rc.addEventListener('click',()=>openDetail(a));
+        sec.appendChild(rc);
+      });
+
+      container.appendChild(sec);
+      idx++;
     }
 
-    closePosterModal.addEventListener('click', closePosterModalFn);
-    posterModal.addEventListener('click', (e) => {
-      if (e.target === posterModal) closePosterModalFn();
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closePosterModalFn();
-    });
+    if (hasMore) {
+      const trig = Object.assign(document.createElement('div'),{className:'inf-trigger', id:'infTrig', textContent:'Loading more…'});
+      container.appendChild(trig);
+    }
+  }
 
-    (function() {
-      'use strict';
+  let obs;
+  function setupScroll() {
+    if (obs) obs.disconnect();
+    const trig = $('infTrig');
+    if (!trig) return;
+    obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && hasMore && !loading) { page++; loadMore(true); }
+    }, { rootMargin:'120px' });
+    obs.observe(trig);
+  }
 
-      const QUIZ_DATA = [
-        { "question": "Which genre is aimed at girls between 10-18?", "answers": ["shoujo"] },
-        { "question": "When was the first known Japanese animation produced?", "answers": ["1917"] },
-        { "question": "The practice of dressing up like anime characters in Japan is called?", "answers": ["cosplay"] },
-        { "question": "Type of anime aimed at young boys under the age of fifteen?", "answers": ["shonen"] },
-        { "question": "Type of anime aimed at young men between the ages of 15-24?", "answers": ["seinen"] },
-        { "question": "Type of anime aimed at adult women?", "answers": ["josei"] },
-        { "question": "Type of anime largely focused on pilotable robots?", "answers": ["mecha"] },
-        { "question": "Type of anime about innocent young girls transforming into superheroes?", "answers": ["magical girl", "mahou shoujo"] },
-        { "question": "Type of anime where one male character is surrounded by female characters?", "answers": ["harem"] },
-        { "question": "What anime character type is known as a quiet and often antisocial character?", "answers": ["dandere"] },
-        { "question": "What character type is very loving before becoming destructive?", "answers": ["yandere"] },
-        { "question": "Which Hayao Miyazaki movie was based on a book by Dianna Wynne Jones?", "answers": ["Castle in the sky"] },
-        { "question": "(Attack on Titan) Who is the main character?", "answers": ["Eren Yeager", "Eren"] },
-        { "question": "(Attack on Titan) Which character loves to eat?", "answers": ["Sasha Blouse", "Sasha"] },
-        { "question": "(Attack on Titan) What is the outer wall named?", "answers": ["Wall Maria", "Maria"] },
-        { "question": "(Death Note) Who is the first Kira?", "answers": ["Light Yagami", "Light"] },
-        { "question": "(Death Note) What is the name of the Shinigami that owns the Death Note?", "answers": ["Ryuk"] },
-        { "question": "(Death Note) What is L's real name?", "answers": ["L Lawliets"] },
-        { "question": "(Fullmetal Alchemist) What is Edward's last name?", "answers": ["Elric"] },
-        { "question": "(Fullmetal Alchemist) Who kills Hughes?", "answers": ["Envy"] },
-        { "question": "(Fullmetal Alchemist) What did Ed sacrifice to seal his brother's soul?", "answers": ["right arm", "arm"] },
-        { "question": "(Naruto) What is the name of Naruto's son?", "answers": ["Boruto Uzumaki", "Boruto"] },
-        { "question": "(Naruto) What is the special Kekkei Genkai of the Hyuga clan?", "answers": ["Byakugan"] },
-        { "question": "(One Piece) Luffy ate what Devil Fruit?", "answers": ["Gomu Gomu", "gum gum"] },
-        { "question": "(One Piece) Who is the Pirate King?", "answers": ["Gol D. Roger", "Gol D Roger"] }
-      ];
+  /* ─── FAV ─── */
+  function toggleFav(a, btn) {
+    if (favs.has(a.id)) { favs.delete(a.id); btn.classList.remove('on'); btn.textContent='♡'; }
+    else { favs.add(a.id); btn.classList.add('on'); btn.textContent='♥'; spawnConfetti(btn); }
+    updateFavBadge(); renderFavs();
+  }
 
-      let favs = new Set();
-      let currentSrc = 'all';
-      let currentCat = 'trending';
-      let searchDebounce;
-      let allData = { jikan: [], anilist: [], kitsu: [], mangadex: [] };
-      let page = 1;
-      let isLoading = false;
-      let hasMore = true;
-      let currentQuery = '';
-      let quizIndex = 0;
-      
-      // Filter state
-      let filters = {
-        year: '',
-        genre: '',
-        status: '',
-        rating: ''
-      };
+  function updateFavBadge() {
+    const b = $('favBadge'); b.textContent = favs.size;
+    b.classList.toggle('show', favs.size > 0);
+  }
 
-      const KITSU_H = { 'Accept': 'application/vnd.api+json', 'Content-Type': 'application/vnd.api+json' };
-      const SRC_COLORS = {
-        jikan: { bg: '#f0e2d4', color: '#7c2d12', dot: '#ff6b35' },
-        anilist: { bg: '#d9e6f5', color: '#1a4a6b', dot: '#2e86de' },
-        kitsu: { bg: '#c8f0e6', color: '#065f46', dot: '#10b981' },
-        mangadex: { bg: '#f0d9e0', color: '#7c2d46', dot: '#e74c8b' }
-      };
-      const PALETTES = [
-        { bg: '#ede5ff', txt: '#4a1d96' },
-        { bg: '#c8f7ec', txt: '#065f46' },
-        { bg: '#ffd6e8', txt: '#7c2d46' },
-        { bg: '#d6eeff', txt: '#1a4a6b' },
-        { bg: '#ffe8d6', txt: '#7c2d12' },
-        { bg: '#fffbd6', txt: '#78350f' }
-      ];
+  function renderFavs() {
+    const list = $('favsList');
+    if (!favs.size) { list.innerHTML='<div style="color:var(--muted);padding:8px 0;font-size:13px;">No favourites yet — heart something! ♡</div>'; return; }
+    const items = [...favs].map(id=>allItems[id]).filter(Boolean);
+    list.innerHTML = items.map(a=>`
+      <div class="fav-item">
+        <img src="${a.img}" alt="${a.title}" onerror="this.src='';this.style.background='#d9d3e8'">
+        <div class="fav-info"><div class="tt">${a.title}</div><div class="mm">${a.src} · ${a.year||'—'}</div></div>
+        <button class="fav-rm" data-id="${a.id}">×</button>
+      </div>`).join('');
+    list.querySelectorAll('.fav-rm').forEach(el=>el.addEventListener('click',()=>{
+      favs.delete(el.dataset.id); updateFavBadge(); renderFavs();
+      document.querySelectorAll(`.a-fav[data-id="${el.dataset.id}"]`).forEach(b=>{b.classList.remove('on');b.textContent='♡';});
+    }));
+  }
 
-      function pal(i) { return PALETTES[i % PALETTES.length]; }
-      function scoreStr(v) { return v != null ? parseFloat(v).toFixed(1) : '—'; }
-      function truncate(s, n = 140) { return s && s.length > n ? s.slice(0, n) + '…' : s || 'No synopsis.'; }
+  $('favToggle').addEventListener('click',()=>{ $('favsPanel').classList.toggle('open'); renderFavs(); });
+  $('closeFavs').addEventListener('click',()=>$('favsPanel').classList.remove('open'));
 
-      function updateFavBadge() {
-        const b = document.getElementById('favBadge');
-        const n = favs.size;
-        b.textContent = n;
-        b.classList.toggle('show', n > 0);
-        renderFavsPanel();
+  /* ─── DETAIL ─── */
+  async function openDetail(a) {
+    $('main').style.display='none';
+    const det = $('detail'); det.classList.add('open');
+    const dc = $('detContent');
+    dc.innerHTML='<div class="loading"><div class="spinner"></div><div class="ld-txt">Loading details…</div></div>';
+    window.scrollTo(0,0);
+
+    let ex = {};
+    try {
+      if (a.src==='jikan') {
+        const r = await fetch(`https://api.jikan.moe/v4/${a.isManga?'manga':'anime'}/${a.rawId}`);
+        const j = await r.json();
+        ex = { score: j.data?.score?j.data.score*10:a.score, synopsis:j.data?.synopsis||a.synopsis,
+          members:j.data?.members, rank:j.data?.rank, genres:(j.data?.genres||[]).map(g=>g.name) };
+      } else if (a.src==='anilist') {
+        const gql=`query($id:Int){Media(id:$id){coverImage{extraLarge}genres averageScore popularity description episodes chapters}}`;
+        const r=await fetch('https://graphql.anilist.co',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query:gql,variables:{id:a.rawId}})});
+        const j=await r.json(); const m=j.data?.Media;
+        if(m) ex={imgLg:m.coverImage?.extraLarge||a.imgLg, score:m.averageScore||a.score,
+          synopsis:m.description?.replace(/<[^>]+>/g,'')||a.synopsis, genres:m.genres||[], popularity:m.popularity, eps:m.episodes||m.chapters};
+      } else if (a.src==='kitsu') {
+        const ep = a.isManga?'manga':'anime';
+        const r=await fetch(`https://kitsu.io/api/edge/${ep}/${a.rawId}?include=categories`,{headers:{'Accept':'application/vnd.api+json'}});
+        const j=await r.json();
+        const at=j.data?.attributes;
+        const cats=(j.included||[]).filter(x=>x.type==='categories').map(x=>x.attributes?.title||x.attributes?.name||'');
+        if(at) ex={
+          imgLg: at.posterImage?.original||at.posterImage?.large||a.imgLg,
+          score: at.averageRating?parseFloat(at.averageRating):a.score,
+          synopsis:at.synopsis||a.synopsis,
+          genres: cats.filter(Boolean),
+          userCount:at.userCount
+        };
       }
+    } catch(e) { console.warn('detail fetch',e); }
 
-      // Filter functions
-      function getFilteredItems(items) {
-        let filtered = [...items];
-        
-        if (filters.year) {
-          const yearFilter = filters.year;
-          if (yearFilter.includes('-')) {
-            // Range filter
-            const [start, end] = yearFilter.split('-').map(Number);
-            filtered = filtered.filter(item => {
-              const year = item.year;
-              return year && year >= start && year <= end;
-            });
-          } else {
-            filtered = filtered.filter(item => item.year === parseInt(yearFilter));
-          }
-        }
-        
-        if (filters.genre) {
-          filtered = filtered.filter(item => {
-            const genres = item.genres || [];
-            return genres.some(g => g.toLowerCase().includes(filters.genre.toLowerCase()));
-          });
-        }
-        
-        if (filters.status) {
-          const statusMap = {
-            'airing': ['airing', 'current', 'Airing'],
-            'finished': ['finished', 'Finished', 'complete'],
-            'upcoming': ['upcoming', 'not_yet_released', 'Upcoming']
-          };
-          const validStatuses = statusMap[filters.status] || [];
-          filtered = filtered.filter(item => {
-            const status = (item.status || '').toLowerCase();
-            return validStatuses.some(s => status === s.toLowerCase());
-          });
-        }
-        
-        if (filters.rating) {
-          const minRating = parseInt(filters.rating);
-          filtered = filtered.filter(item => {
-            const score = item.score;
-            return score != null && score >= minRating;
-          });
-        }
-        
-        return filtered;
-      }
+    const m = {...a,...ex};
+    const C = sc(a.src);
+    const gChips = (m.genres||[]).map((g,i)=>`<span class="dchip" style="background:${pal(i).bg};color:${pal(i).tx}">${g}</span>`).join('');
 
-      function getFilterParams() {
-        const params = {};
-        if (filters.year) {
-          if (filters.year.includes('-')) {
-            const [start, end] = filters.year.split('-').map(Number);
-            params.yearStart = start;
-            params.yearEnd = end;
-          } else {
-            params.year = parseInt(filters.year);
-          }
-        }
-        if (filters.genre) params.genre = filters.genre;
-        if (filters.status) params.status = filters.status;
-        if (filters.rating) params.minScore = parseInt(filters.rating);
-        return params;
-      }
-
-      function updateFilterTags() {
-        const container = document.getElementById('filterTags');
-        const tags = [];
-        
-        if (filters.year) tags.push({ key: 'year', label: `Year: ${filters.year}` });
-        if (filters.genre) tags.push({ key: 'genre', label: `Genre: ${filters.genre}` });
-        if (filters.status) tags.push({ key: 'status', label: `Status: ${filters.status}` });
-        if (filters.rating) tags.push({ key: 'rating', label: `Rating: ${filters.rating}+` });
-        
-        if (tags.length === 0) {
-          container.innerHTML = '';
-          return;
-        }
-        
-        container.innerHTML = tags.map(tag => `
-          <span class="filter-tag">
-            ${tag.label}
-            <span class="remove" data-key="${tag.key}">&times;</span>
-          </span>
-        `).join('');
-        
-        container.querySelectorAll('.remove').forEach(el => {
-          el.addEventListener('click', () => {
-            const key = el.dataset.key;
-            filters[key] = '';
-            document.getElementById(`filter${key.charAt(0).toUpperCase() + key.slice(1)}`).value = '';
-            updateFilterTags();
-            applyFiltersAndReload();
-          });
-        });
-      }
-
-      function applyFiltersAndReload() {
-        page = 1;
-        hasMore = true;
-        loadMore(currentSrc, currentCat, currentQuery, page, false);
-      }
-
-      // API fetch functions
-      async function fetchJikan(mode, q, page) {
-        try {
-          const filterParams = getFilterParams();
-          let url;
-          if (q) {
-            url = `https://api.jikan.moe/v4/anime?q=${encodeURIComponent(q)}&limit=12&page=${page}`;
-          } else if (mode === 'airing') {
-            url = `https://api.jikan.moe/v4/top/anime?filter=airing&limit=12&page=${page}`;
-          } else if (mode === 'top') {
-            url = `https://api.jikan.moe/v4/top/anime?limit=12&page=${page}`;
-          } else if (mode === 'upcoming') {
-            url = `https://api.jikan.moe/v4/top/anime?filter=upcoming&limit=12&page=${page}`;
-          } else if (mode === 'manga') {
-            url = `https://api.jikan.moe/v4/top/manga?limit=12&page=${page}`;
-          } else {
-            url = `https://api.jikan.moe/v4/top/anime?limit=12&page=${page}`;
-          }
-          
-          // Add genre filter if specified
-          if (filters.genre && !q) {
-            const genreMap = {
-              'action': 1, 'adventure': 2, 'comedy': 4, 'drama': 8, 'fantasy': 10,
-              'horror': 14, 'mystery': 7, 'romance': 22, 'sci-fi': 24,
-              'slice of life': 36, 'sports': 30, 'thriller': 41
-            };
-            const genreId = genreMap[filters.genre.toLowerCase()];
-            if (genreId) {
-              url += `&genres=${genreId}`;
-            }
-          }
-          
-          const res = await fetch(url);
-          const j = await res.json();
-          let items = (j.data || []).map(a => ({
-            id: 'jikan_' + a.mal_id,
-            src: 'jikan',
-            rawId: a.mal_id,
-            title: a.title,
-            titleEn: a.title_english || '',
-            img: a.images?.jpg?.image_url || '',
-            imgLg: a.images?.jpg?.large_image_url || '',
-            score: a.score ? a.score * 10 : null,
-            eps: a.episodes,
-            status: a.status,
-            type: a.type,
-            year: a.year || a.aired?.prop?.from?.year,
-            genres: (a.genres || []).map(g => g.name).slice(0, 5),
-            synopsis: a.synopsis,
-            rank: a.rank,
-            members: a.members,
-            isManga: mode === 'manga' || a.type === 'Manga'
-          }));
-          
-          // Client-side filtering for year range that Jikan doesn't support directly
-          if (filterParams.yearStart && filterParams.yearEnd) {
-            items = items.filter(item => {
-              const year = item.year;
-              return year && year >= filterParams.yearStart && year <= filterParams.yearEnd;
-            });
-          }
-          
-          if (filterParams.year && !filterParams.yearStart) {
-            items = items.filter(item => item.year === filterParams.year);
-          }
-          
-          if (filterParams.minScore) {
-            items = items.filter(item => item.score != null && item.score >= filterParams.minScore);
-          }
-          
-          if (filterParams.status) {
-            const statusMap = {
-              'airing': ['airing', 'currently airing'],
-              'finished': ['finished', 'complete'],
-              'upcoming': ['upcoming', 'not yet aired']
-            };
-            const validStatuses = statusMap[filterParams.status] || [];
-            items = items.filter(item => {
-              const status = (item.status || '').toLowerCase();
-              return validStatuses.some(s => status.includes(s));
-            });
-          }
-          
-          return items;
-        } catch { return []; }
-      }
-
-      async function fetchAniList(mode, q, page) {
-        try {
-          const isSearch = !!q;
-          const perPage = 12;
-          const filterParams = getFilterParams();
-          
-          let sort = 'TRENDING_DESC';
-          let type = 'ANIME';
-          let statusFilter = '';
-          
-          if (mode === 'manga') {
-            type = 'MANGA';
-            sort = 'POPULARITY_DESC';
-          } else if (mode === 'top') {
-            sort = 'SCORE_DESC';
-          } else if (mode === 'upcoming') {
-            statusFilter = 'status: NOT_YET_RELEASED,';
-          } else if (mode === 'airing') {
-            statusFilter = 'status: RELEASING,';
-          }
-          
-          let genreFilter = '';
-          if (filters.genre) {
-            genreFilter = `genre: "${filters.genre}",`;
-          }
-          
-          let yearFilter = '';
-          if (filters.year) {
-            if (filters.year.includes('-')) {
-              const [start, end] = filters.year.split('-').map(Number);
-              yearFilter = `startDate_greater: ${start}, startDate_lesser: ${end},`;
-            } else {
-              yearFilter = `startDate: ${filters.year},`;
-            }
-          }
-          
-          const gql = isSearch ?
-            `query($s:String,$page:Int){Page(page:$page,perPage:${perPage}){media(search:$s,type:${type},sort:POPULARITY_DESC){id title{romaji english}coverImage{large}averageScore episodes status startDate{year}genres description}}}` :
-            `query($page:Int){Page(page:$page,perPage:${perPage}){media(type:${type},sort:${sort},${genreFilter}${yearFilter}${statusFilter}){id title{romaji english}coverImage{large}averageScore episodes status startDate{year}genres description}}}`;
-          
-          const res = await fetch('https://graphql.anilist.co', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ query: gql, variables: isSearch ? { s: q, page } : { page } })
-          });
-          const j = await res.json();
-          const items = j.data?.Page?.media || [];
-          
-          let results = items.map(a => ({
-            id: 'anilist_' + a.id,
-            src: 'anilist',
-            rawId: a.id,
-            title: a.title.romaji,
-            titleEn: a.title.english || '',
-            img: a.coverImage?.large || '',
-            imgLg: a.coverImage?.large || '',
-            score: a.averageScore,
-            eps: a.episodes || a.chapters,
-            status: a.status,
-            year: a.startDate?.year,
-            genres: (a.genres || []).slice(0, 5),
-            synopsis: a.description?.replace(/<[^>]+>/g, ''),
-            isManga: mode === 'manga'
-          }));
-          
-          // Client-side rating filter
-          if (filterParams.minScore) {
-            results = results.filter(item => item.score != null && item.score >= filterParams.minScore);
-          }
-          
-          if (filterParams.status && !isSearch) {
-            const statusMap = {
-              'airing': ['RELEASING'],
-              'finished': ['FINISHED'],
-              'upcoming': ['NOT_YET_RELEASED']
-            };
-            const validStatuses = statusMap[filterParams.status] || [];
-            results = results.filter(item => {
-              const status = (item.status || '').toUpperCase();
-              return validStatuses.includes(status);
-            });
-          }
-          
-          return results;
-        } catch { return []; }
-      }
-
-      async function fetchKitsu(mode, q, page) {
-        try {
-          const limit = 12;
-          const offset = (page - 1) * limit;
-          const filterParams = getFilterParams();
-          
-          let url;
-          let statusFilter = '';
-          let sort = '-userCount';
-          
-          if (filters.status) {
-            const statusMap = {
-              'airing': 'current',
-              'finished': 'finished',
-              'upcoming': 'upcoming'
-            };
-            const kitsuStatus = statusMap[filters.status];
-            if (kitsuStatus) statusFilter = `filter[status]=${kitsuStatus}&`;
-          }
-          
-          if (filters.year) {
-            if (filters.year.includes('-')) {
-              const [start, end] = filters.year.split('-').map(Number);
-              // Kitsu doesn't support year range filtering directly
-            } else {
-              // Kitsu doesn't support year filtering directly
-            }
-          }
-          
-          if (q) {
-            url = `https://kitsu.io/api/edge/anime?filter[text]=${encodeURIComponent(q)}&page[limit]=${limit}&page[offset]=${offset}&fields[anime]=canonicalTitle,titles,posterImage,averageRating,showType,episodeCount,status,startDate,synopsis,userCount,favoritesCount`;
-          } else if (mode === 'manga') {
-            url = `https://kitsu.io/api/edge/manga?sort=-userCount&page[limit]=${limit}&page[offset]=${offset}&fields[manga]=canonicalTitle,titles,posterImage,averageRating,chapterCount,status,startDate,synopsis,userCount,favoritesCount`;
-          } else if (mode === 'top') {
-            url = `https://kitsu.io/api/edge/anime?sort=-averageRating&page[limit]=${limit}&page[offset]=${offset}&${statusFilter}fields[anime]=canonicalTitle,titles,posterImage,averageRating,showType,episodeCount,status,startDate,synopsis,userCount,favoritesCount`;
-          } else {
-            url = `https://kitsu.io/api/edge/anime?sort=-userCount&page[limit]=${limit}&page[offset]=${offset}&${statusFilter}fields[anime]=canonicalTitle,titles,posterImage,averageRating,showType,episodeCount,status,startDate,synopsis,userCount,favoritesCount`;
-          }
-
-          const res = await fetch(url, { headers: KITSU_H });
-          const j = await res.json();
-
-          if (!j.data || !j.data.length) return [];
-
-          let results = j.data.map(a => {
-            const attr = a.attributes || {};
-            let statusDisplay = attr.status || 'unknown';
-            if (statusDisplay === 'current') statusDisplay = 'Airing';
-            else if (statusDisplay === 'finished') statusDisplay = 'Finished';
-            else if (statusDisplay === 'upcoming') statusDisplay = 'Upcoming';
-
-            return {
-              id: `kitsu_${a.id}`,
-              src: 'kitsu',
-              rawId: a.id,
-              title: attr.canonicalTitle || attr.titles?.en || attr.titles?.en_jp || 'Unknown Title',
-              titleEn: attr.titles?.en || attr.titles?.en_us || '',
-              img: attr.posterImage?.small || attr.posterImage?.medium || attr.posterImage?.tiny || '',
-              imgLg: attr.posterImage?.large || attr.posterImage?.original || attr.posterImage?.medium || '',
-              score: attr.averageRating ? parseFloat(attr.averageRating) : null,
-              eps: attr.episodeCount || attr.chapterCount || null,
-              status: statusDisplay,
-              type: attr.showType || 'TV',
-              year: attr.startDate ? new Date(attr.startDate).getFullYear() : null,
-              genres: [],
-              synopsis: attr.synopsis || 'No synopsis available.',
-              isManga: mode === 'manga',
-              members: attr.userCount || null,
-              popularity: attr.favoritesCount || null
-            };
-          });
-          
-          // Client-side filtering for Kitsu
-          if (filterParams.year && !filterParams.yearStart) {
-            results = results.filter(item => item.year === filterParams.year);
-          }
-          if (filterParams.yearStart && filterParams.yearEnd) {
-            results = results.filter(item => {
-              const year = item.year;
-              return year && year >= filterParams.yearStart && year <= filterParams.yearEnd;
-            });
-          }
-          if (filterParams.minScore) {
-            results = results.filter(item => item.score != null && item.score >= filterParams.minScore);
-          }
-          
-          return results;
-        } catch (error) {
-          console.error('Kitsu fetch error:', error);
-          return [];
-        }
-      }
-
-      async function fetchMangaDex(q, page) {
-        try {
-          const limit = 12;
-          const offset = (page - 1) * limit;
-          let url = q ?
-            `https://api.mangadex.org/manga?title=${encodeURIComponent(q)}&limit=${limit}&offset=${offset}&includes[]=cover_art&order[relevance]=desc` :
-            `https://api.mangadex.org/manga?limit=${limit}&offset=${offset}&includes[]=cover_art&order[followedCount]=desc&status[]=ongoing`;
-          const res = await fetch(url);
-          const j = await res.json();
-          return (j.data || []).map(m => {
-            const cover = m.relationships?.find(r => r.type === 'cover_art');
-            const fn = cover?.attributes?.fileName;
-            const img = fn ? `https://uploads.mangadex.org/covers/${m.id}/${fn}.256.jpg` : '';
-            const title = m.attributes.title?.en || m.attributes.title?.ja || Object.values(m.attributes.title || {})[0] || '';
-            return {
-              id: 'mdex_' + m.id,
-              src: 'mangadex',
-              rawId: m.id,
-              title,
-              titleEn: '',
-              img,
-              imgLg: img,
-              score: null,
-              eps: m.attributes.lastChapter,
-              status: m.attributes.status,
-              year: m.attributes.year,
-              genres: (m.attributes.tags || []).filter(t => t.attributes.group === 'genre').map(t => t.attributes.name.en).slice(0, 5),
-              synopsis: m.attributes.description?.en || '',
-              isManga: true
-            };
-          });
-        } catch { return []; }
-      }
-
-      async function loadMore(src, cat, q, pageNum, append = true) {
-        if (isLoading) return;
-        isLoading = true;
-        const main = document.getElementById('main');
-        if (!append) {
-          main.innerHTML = '';
-          page = 1;
-          hasMore = true;
-        }
-        const loader = document.createElement('div');
-        loader.className = 'infinite-trigger';
-        loader.id = 'infiniteLoader';
-        loader.textContent = 'Loading more…';
-        main.appendChild(loader);
-
-        const isManga = cat === 'manga';
-        let items = [];
-        
-        if (src === 'all' || src === 'jikan') {
-          const d = await fetchJikan(cat, q, pageNum);
-          items = items.concat(d);
-        }
-        if (src === 'all' || src === 'anilist') {
-          const d = await fetchAniList(cat, q, pageNum);
-          items = items.concat(d);
-        }
-        if (src === 'all' || src === 'kitsu') {
-          const d = await fetchKitsu(cat, q, pageNum);
-          items = items.concat(d);
-        }
-        if (isManga || src === 'mangadex') {
-          const d = await fetchMangaDex(q, pageNum);
-          items = items.concat(d);
-        }
-
-        // Apply client-side filtering
-        if (items.length > 0) {
-          items = getFilteredItems(items);
-        }
-
-        const l = document.getElementById('infiniteLoader');
-        if (l) l.remove();
-
-        if (!items.length) {
-          hasMore = false;
-          const endMsg = document.createElement('div');
-          endMsg.className = 'infinite-trigger';
-          endMsg.textContent = '✨ No results found with current filters';
-          main.appendChild(endMsg);
-          isLoading = false;
-          return;
-        }
-
-        const seen = new Set();
-        const unique = items.filter(a => {
-          if (seen.has(a.id)) return false;
-          seen.add(a.id);
-          return true;
-        });
-
-        if (!append) main.innerHTML = '';
-
-        renderItems(unique, main, append);
-        unique.forEach(a => { allData[a.src] = allData[a.src] || [];
-          allData[a.src].push(a); });
-
-        isLoading = false;
-        if (unique.length < 12) hasMore = false;
-        setupInfiniteScroll();
-      }
-
-      function renderItems(items, container, append) {
-        const groups = {};
-        items.forEach(a => {
-          if (!groups[a.src]) groups[a.src] = [];
-          groups[a.src].push(a);
-        });
-
-        let idx = 0;
-        for (const [src, arr] of Object.entries(groups)) {
-          const sc = SRC_COLORS[src] || SRC_COLORS.jikan;
-          const secEl = document.createElement('div');
-          secEl.className = 'flex-col gap-8 anim';
-          secEl.style.animationDelay = (idx * 0.05) + 's';
-          secEl.style.display = 'flex';
-          secEl.style.flexDirection = 'column';
-          secEl.style.gap = '8px';
-
-          const hdr = document.createElement('div');
-          hdr.className = 'sec-hdr';
-          hdr.innerHTML = `<span class="sec-label"><span class="dot" style="background:${sc.dot};"></span>${src.toUpperCase()}</span>`;
-          secEl.appendChild(hdr);
-
-          if (arr[0]) {
-            const a = arr[0];
-            const fc = document.createElement('div');
-            fc.className = 'feat-card anim';
-            fc.style.animationDelay = '0.05s';
-            const img = a.imgLg || a.img;
-            const genreHtml = (a.genres || []).map(g => `<span class="feat-tag">${g}</span>`).join('');
-            fc.innerHTML = `
-              <img class="feat-img" src="${img}" alt="${a.title}" loading="lazy" onerror="this.style.background='#d9d3e8';this.removeAttribute('src')"/>
-              <div class="feat-overlay">
-                <span class="feat-src-badge" style="background:${sc.bg};color:${sc.color};">${src.toUpperCase()}</span>
-                <span class="feat-score"><i class="fas fa-star" style="color:#f59e0b;"></i> ${scoreStr(a.score)}</span>
-                <div class="feat-title">${a.title}</div>
-                <div class="feat-meta">${a.type||(a.isManga?'Manga':'Anime')} ${a.year?'· '+a.year:''} ${a.eps?'· '+a.eps+(a.isManga?' ch':' ep'):''}</div>
-                ${genreHtml?`<div class="feat-tags">${genreHtml}</div>`:''}
-              </div>
-            `;
-            fc.addEventListener('click', () => openDetail(a));
-            secEl.appendChild(fc);
-          }
-
-          const gridItems = arr.slice(1, 7);
-          if (gridItems.length) {
-            const grid = document.createElement('div');
-            grid.className = 'bento';
-            gridItems.forEach((a, i) => {
-              const p = pal(i);
-              const isFav = favs.has(a.id);
-              const statusTxt = a.status ? (a.status.charAt(0).toUpperCase() + a.status.slice(1).toLowerCase()).replace(/_/g, ' ') : '—';
-              const card = document.createElement('div');
-              card.className = 'a-card anim';
-              card.style.animationDelay = (i * 0.04) + 's';
-              card.innerHTML = `
-                <div class="a-img-wrap" style="background:${p.bg};">
-                  <img class="a-img" src="${a.img}" alt="${a.title}" loading="lazy" onerror="this.style.background='${p.bg}';this.removeAttribute('src')"/>
-                  <div class="a-score-pill"><i class="fas fa-star" style="color:#f59e0b;font-size:8px;"></i> ${scoreStr(a.score)}</div>
-                  <button class="a-fav ${isFav?'active':''}" data-id="${a.id}">${isFav?'♥':'♡'}</button>
-                </div>
-                <div class="a-body">
-                  <div class="a-title">${a.title}</div>
-                  <div class="a-sub"><span class="sdot" style="background:${a.status==='finished'||a.status==='FINISHED'?'#6b7280':a.status==='upcoming'||a.status==='NOT_YET_RELEASED'?'#f59e0b':'#10b981'};"></span>${statusTxt}</div>
-                </div>
-              `;
-              const favBtn = card.querySelector('.a-fav');
-              favBtn.addEventListener('click', e => {
-                e.stopPropagation();
-                const el = e.currentTarget;
-                if (favs.has(a.id)) { favs.delete(a.id); el.classList.remove('active'); el.textContent = '♡'; } 
-                else { favs.add(a.id); el.classList.add('active'); el.textContent = '♥'; }
-                updateFavBadge();
-              });
-              card.addEventListener('click', () => openDetail(a));
-              grid.appendChild(card);
-            });
-            secEl.appendChild(grid);
-          }
-
-          const rowItems = arr.slice(7, 10);
-          rowItems.forEach((a, i) => {
-            const rc = document.createElement('div');
-            rc.className = 'row-card anim';
-            rc.style.animationDelay = (i * 0.04 + 0.2) + 's';
-            const sc2 = SRC_COLORS[a.src] || SRC_COLORS.jikan;
-            rc.innerHTML = `
-              <img class="row-img" src="${a.img}" alt="${a.title}" loading="lazy" onerror="this.style.background='#d9d3e8';this.removeAttribute('src')"/>
-              <div class="row-body">
-                <div class="row-title">${a.title}</div>
-                <div class="row-meta">${a.year||'—'} ${a.eps?'· '+a.eps+(a.isManga?' ch':' ep'):''}</div>
-                <div class="row-score"><i class="fas fa-star" style="color:#f59e0b;"></i> ${scoreStr(a.score)} <span class="row-src" style="background:${sc2.bg};color:${sc2.color};">${a.src}</span></div>
-              </div>
-            `;
-            rc.addEventListener('click', () => openDetail(a));
-            secEl.appendChild(rc);
-          });
-
-          container.appendChild(secEl);
-          idx++;
-        }
-
-        if (hasMore) {
-          const trigger = document.createElement('div');
-          trigger.className = 'infinite-trigger';
-          trigger.id = 'infiniteTrigger';
-          container.appendChild(trigger);
-        }
-      }
-
-      let observer = null;
-
-      function setupInfiniteScroll() {
-        if (observer) observer.disconnect();
-        const trigger = document.getElementById('infiniteTrigger');
-        if (!trigger) return;
-        observer = new IntersectionObserver((entries) => {
-          if (entries[0].isIntersecting && hasMore && !isLoading) {
-            page++;
-            loadMore(currentSrc, currentCat, currentQuery, page);
-          }
-        }, { rootMargin: '100px' });
-        observer.observe(trigger);
-      }
-
-      async function openDetail(a) {
-        document.getElementById('main').style.display = 'none';
-        const det = document.getElementById('detail');
-        det.classList.add('open');
-        const dc = document.getElementById('detContent');
-        dc.innerHTML = `<div class="loading"><div class="spinner"></div><div class="ld-txt">Loading details…</div></div>`;
-
-        let extra = {};
-        try {
-          if (a.src === 'jikan') {
-            const r = await fetch(`https://api.jikan.moe/v4/${a.isManga?'manga':'anime'}/${a.rawId}`);
-            const j = await r.json();
-            extra = { score: j.data?.score ? j.data.score * 10 : a.score, synopsis: j.data?.synopsis || a.synopsis,
-              members: j.data?.members, rank: j.data?.rank, genres: (j.data?.genres || []).map(g => g.name) };
-          } else if (a.src === 'anilist') {
-            const gql = `query($id:Int){Media(id:$id){coverImage{extraLarge}genres averageScore popularity description episodes chapters}}`;
-            const r = await fetch('https://graphql.anilist.co', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ query: gql, variables: { id: a.rawId } })
-            });
-            const j = await r.json();
-            const m = j.data?.Media;
-            if (m) extra = { imgLg: m.coverImage?.extraLarge || a.imgLg, score: m.averageScore || a.score,
-              synopsis: m.description?.replace(/<[^>]+>/g, '') || a.synopsis, genres: m.genres || [],
-              popularity: m.popularity, eps: m.episodes || m.chapters };
-          } else if (a.src === 'kitsu') {
-            const r = await fetch(`https://kitsu.io/api/edge/${a.isManga?'manga':'anime'}/${a.rawId}?include=categories`, {
-              headers: KITSU_H
-            });
-            const j = await r.json();
-            const attr = j.data?.attributes;
-            const cats = (j.included || []).filter(x => x.type === 'categories').map(x => x.attributes.name);
-            if (attr) extra = {
-              imgLg: attr.coverImage?.original || attr.posterImage?.large || a.imgLg,
-              score: attr.averageRating ? parseFloat(attr.averageRating) : a.score,
-              synopsis: attr.synopsis || a.synopsis,
-              genres: cats.length ? cats : [],
-              userCount: attr.userCount != null ? attr.userCount : undefined
-            };
-          }
-        } catch {}
-
-        const merged = { ...a, ...extra };
-        const sc = SRC_COLORS[a.src] || SRC_COLORS.jikan;
-        const genreChips = (merged.genres || []).map((g, i) =>
-          `<span class="dmc" style="background:${pal(i).bg};color:${pal(i).txt};">${g}</span>`).join('');
-
-        dc.innerHTML = `
-          <div class="det-hero anim">
-            <div class="det-cover-wrapper">
-              <img class="det-cover" src="${merged.imgLg||merged.img}" alt="${merged.title}" onclick="openPosterModal('${merged.imgLg||merged.img}')" onerror="this.style.background='#d9d3e8';this.removeAttribute('src')"/>
-              <div class="enlarge-badge"><i class="fas fa-expand"></i> Click to enlarge</div>
+    dc.innerHTML=`
+      <div class="det-hero anim">
+        <div class="det-cover-wrap">
+          <img class="det-cover" src="${m.imgLg||m.img}" alt="${m.title}" onclick="openPoster('${(m.imgLg||m.img).replace(/'/g,"\\'")}')">
+          <div class="enlarge-hint"><i class="fas fa-expand"></i> Click to enlarge</div>
+        </div>
+        <div class="det-body">
+          <div class="det-top">
+            <div>
+              <div class="det-title">${m.title}</div>
+              ${m.titleEn?`<div class="det-eng">${m.titleEn}</div>`:''}
             </div>
-            <div class="det-body">
-              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
-                <div class="det-title">${merged.title}</div>
-                <span style="padding:4px 12px;border-radius:40px;font-size:10px;font-weight:800;background:${sc.bg};color:${sc.color};flex-shrink:0;">${a.src.toUpperCase()}</span>
-              </div>
-              ${merged.titleEn?`<div class="det-eng">${merged.titleEn}</div>`:''}
-              <div class="det-meta-chips">
-                <span class="dmc" style="background:#ede5ff;color:#4a1d96;">${merged.isManga?'Manga':'Anime'}</span>
-                ${merged.year?`<span class="dmc" style="background:#fffbd6;color:#78350f;">${merged.year}</span>`:''}
-                ${merged.eps?`<span class="dmc" style="background:#c8f7ec;color:#065f46;">${merged.eps} ${merged.isManga?'ch':'ep'}</span>`:''}
-                ${merged.status?`<span class="dmc" style="background:#ffd6e8;color:#7c2d46;">${merged.status}</span>`:''}
-                ${genreChips}
-              </div>
-              <p class="det-syn">${truncate(merged.synopsis, 1200)}</p>
-            </div>
+            <span class="dchip" style="background:${C.bg};color:${C.tx};flex-shrink:0;margin-top:4px">${a.src.toUpperCase()}</span>
           </div>
-          <div class="det-stats anim anim-d1">
-            <div class="ds" style="background:#ede5ff;"><div class="ds-v" style="color:#4a1d96;">${scoreStr(merged.score)}</div><div class="ds-l">Score</div></div>
-            <div class="ds" style="background:#c8f7ec;"><div class="ds-v" style="color:#065f46;">${merged.eps||'—'}</div><div class="ds-l">${merged.isManga?'Chapters':'Episodes'}</div></div>
-            ${merged.members != null ? `<div class="ds" style="background:#d6eeff;"><div class="ds-v" style="color:#1a4a6b;font-size:16px;">${parseInt(merged.members).toLocaleString()}</div><div class="ds-l">MAL members</div></div>` : ''}
-            ${merged.popularity != null ? `<div class="ds" style="background:#ffd6e8;"><div class="ds-v" style="color:#7c2d46;font-size:16px;">${parseInt(merged.popularity).toLocaleString()}</div><div class="ds-l">AniList fans</div></div>` : ''}
-            ${merged.userCount != null ? `<div class="ds" style="background:#ffe8d6;"><div class="ds-v" style="color:#7c2d12;font-size:16px;">${parseInt(merged.userCount).toLocaleString()}</div><div class="ds-l">Kitsu users</div></div>` : ''}
-            ${merged.rank != null ? `<div class="ds" style="background:#fffbd6;"><div class="ds-v" style="color:#78350f;">#${merged.rank}</div><div class="ds-l">Rank</div></div>` : ''}
+          <div class="det-chips">
+            <span class="dchip" style="background:#ede5ff;color:#4a1d96">${m.isManga?'Manga':'Anime'}</span>
+            ${m.year?`<span class="dchip" style="background:#fffbd6;color:#78350f">${m.year}</span>`:''}
+            ${m.eps?`<span class="dchip" style="background:#c8f7ec;color:#065f46">${m.eps} ${m.isManga?'ch':'ep'}</span>`:''}
+            ${m.status?`<span class="dchip" style="background:#ffd6e8;color:#7c2d46">${statusLabel(m.status)}</span>`:''}
+            ${gChips}
           </div>
-        `;
-      }
+          <p class="det-syn">${trunc(m.synopsis,1400)}</p>
+        </div>
+      </div>
+      <div class="det-stats anim">
+        <div class="dstat" style="background:#ede5ff"><div class="dstat-v" style="color:#4a1d96">${scoreStr(m.score)}</div><div class="dstat-l">Score /100</div></div>
+        <div class="dstat" style="background:#c8f7ec"><div class="dstat-v" style="color:#065f46">${m.eps||'—'}</div><div class="dstat-l">${m.isManga?'Chapters':'Episodes'}</div></div>
+        ${m.members!=null?`<div class="dstat" style="background:#d6eeff"><div class="dstat-v" style="color:#1a4a6b;font-size:16px">${parseInt(m.members).toLocaleString()}</div><div class="dstat-l">MAL members</div></div>`:''}
+        ${m.popularity!=null?`<div class="dstat" style="background:#ffd6e8"><div class="dstat-v" style="color:#7c2d46;font-size:16px">${parseInt(m.popularity).toLocaleString()}</div><div class="dstat-l">AniList fans</div></div>`:''}
+        ${m.userCount!=null?`<div class="dstat" style="background:#ffe8d6"><div class="dstat-v" style="color:#7c2d12;font-size:16px">${parseInt(m.userCount).toLocaleString()}</div><div class="dstat-l">Kitsu users</div></div>`:''}
+        ${m.rank!=null?`<div class="dstat" style="background:#fffbd6"><div class="dstat-v" style="color:#78350f">#${m.rank}</div><div class="dstat-l">Rank</div></div>`:''}
+      </div>`;
+  }
 
-      document.getElementById('backBtn').addEventListener('click', () => {
-        document.getElementById('detail').classList.remove('open');
-        document.getElementById('main').style.display = 'flex';
-      });
+  $('backBtn').addEventListener('click',()=>{
+    $('detail').classList.remove('open');
+    $('main').style.display='flex';
+    $('main').style.flexDirection='column';
+  });
 
-      function renderFavsPanel() {
-        const list = document.getElementById('favsList');
-        const items = [...favs];
-        if (!items.length) {
-          list.innerHTML = '<div style="color:var(--muted);padding:8px 0;">No favourites yet.</div>';
-          return;
-        }
-        const all = Object.values(allData).flat();
-        const favItems = items.map(id => all.find(a => a.id === id)).filter(Boolean);
-        if (!favItems.length) {
-          list.innerHTML = '<div style="color:var(--muted);padding:8px 0;">No favourites loaded.</div>';
-          return;
-        }
-        list.innerHTML = favItems.map(a => `
-          <div class="fav-item">
-            <img src="${a.img}" alt="${a.title}" onerror="this.style.background='#d9d3e8';this.removeAttribute('src')"/>
-            <div class="info">
-              <div class="title">${a.title}</div>
-              <div class="meta">${a.src} · ${a.year||'—'}</div>
-            </div>
-            <button class="remove" data-id="${a.id}">&times;</button>
-          </div>
-        `).join('');
-        list.querySelectorAll('.remove').forEach(el => {
-          el.addEventListener('click', () => {
-            const id = el.dataset.id;
-            favs.delete(id);
-            updateFavBadge();
-            document.querySelectorAll(`.a-fav[data-id="${id}"]`).forEach(btn => {
-              btn.classList.remove('active');
-              btn.textContent = '♡';
-            });
-            renderFavsPanel();
-          });
-        });
-      }
+  /* ─── POSTER MODAL ─── */
+  window.openPoster = function(src) {
+    if(!src) return;
+    $('posterImg').src = src;
+    $('posterModal').classList.add('open');
+    document.body.style.overflow='hidden';
+  };
+  function closePoster() { $('posterModal').classList.remove('open'); document.body.style.overflow=''; }
+  $('modalClose').addEventListener('click',closePoster);
+  $('posterModal').addEventListener('click',e=>{ if(e.target===$('posterModal')) closePoster(); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') closePoster(); });
 
-      document.getElementById('favToggle').addEventListener('click', () => {
-        const panel = document.getElementById('favsPanel');
-        panel.classList.toggle('open');
-        renderFavsPanel();
-      });
-      document.getElementById('closeFavs').addEventListener('click', () => {
-        document.getElementById('favsPanel').classList.remove('open');
-      });
+  /* ─── SEARCH ─── */
+  let sDeb;
+  $('q').addEventListener('input', e => {
+    const v = e.target.value;
+    $('qClear').style.display = v?'block':'none';
+    clearTimeout(sDeb);
+    sDeb = setTimeout(()=>{ query=v.trim(); page=1; hasMore=true; loadMore(false); }, 500);
+  });
+  $('qClear').addEventListener('click',()=>{
+    $('q').value=''; $('qClear').style.display='none';
+    query=''; page=1; hasMore=true; loadMore(false);
+  });
 
-      // Filter Panel
-      const filterToggle = document.getElementById('filterToggle');
-      const filterPanel = document.getElementById('filterPanel');
-      
-      filterToggle.addEventListener('click', () => {
-        filterPanel.classList.toggle('open');
-        filterToggle.classList.toggle('active');
-      });
+  /* ─── SOURCE TABS ─── */
+  document.querySelectorAll('.stab').forEach(t=>t.addEventListener('click',()=>{
+    document.querySelectorAll('.stab').forEach(x=>x.classList.remove('sel'));
+    t.classList.add('sel'); src=t.dataset.src; page=1; hasMore=true; loadMore(false);
+  }));
 
-      document.getElementById('filterApply').addEventListener('click', () => {
-        filters.year = document.getElementById('filterYear').value;
-        filters.genre = document.getElementById('filterGenre').value;
-        filters.status = document.getElementById('filterStatus').value;
-        filters.rating = document.getElementById('filterRating').value;
-        updateFilterTags();
-        applyFiltersAndReload();
-        // Close panel on mobile
-        if (window.innerWidth < 720) {
-          filterPanel.classList.remove('open');
-          filterToggle.classList.remove('active');
-        }
-      });
+  /* ─── CAT CHIPS ─── */
+  document.querySelectorAll('.cat-chip').forEach(c=>c.addEventListener('click',()=>{
+    document.querySelectorAll('.cat-chip').forEach(x=>x.classList.remove('sel'));
+    c.classList.add('sel'); cat=c.dataset.cat; page=1; hasMore=true; loadMore(false);
+  }));
 
-      document.getElementById('filterReset').addEventListener('click', () => {
-        document.getElementById('filterYear').value = '';
-        document.getElementById('filterGenre').value = '';
-        document.getElementById('filterStatus').value = '';
-        document.getElementById('filterRating').value = '';
-        filters = { year: '', genre: '', status: '', rating: '' };
-        updateFilterTags();
-        applyFiltersAndReload();
-      });
+  /* ─── QUIZ ─── */
+  let quizQ;
+  function loadQuiz() {
+    quizQ = QUIZ[quizIdx % QUIZ.length];
+    $('quizQ').textContent = quizQ.q;
+    $('quizInput').value=''; $('quizFb').textContent=''; $('quizFb').className='quiz-fb';
+    $('quizProg').innerHTML = Array.from({length:Math.min(8,QUIZ.length)},(_,i)=>`<div class="qp-dot ${i<quizIdx%8?'done':''}"></div>`).join('');
+  }
 
-      function loadQuiz() {
-        const q = QUIZ_DATA[quizIndex % QUIZ_DATA.length];
-        document.getElementById('quizQ').textContent = q.question;
-        document.getElementById('quizInput').value = '';
-        document.getElementById('quizFeedback').textContent = '';
-        document.getElementById('quizFeedback').className = 'quiz-feedback';
-      }
+  $('quizBtn').addEventListener('click',()=>{
+    const ans = $('quizInput').value.trim().toLowerCase();
+    if(!ans) return;
+    const ok = quizQ.a.some(a=>a.toLowerCase()===ans);
+    const fb = $('quizFb');
+    if(ok) {
+      streak++;
+      $('streakTxt').textContent='🔥 '+streak;
+      $('streakBar').style.width = Math.min(100,streak*10)+'%';
+      fb.textContent='✅ Correct! Amazing! 🎉'; fb.className='quiz-fb ok';
+      spawnConfettiAt($('quizCard'));
+    } else {
+      streak=0; $('streakTxt').textContent='🔥 0'; $('streakBar').style.width='0%';
+      fb.textContent=`❌ Nope — it was: ${quizQ.a[0]}`; fb.className='quiz-fb ng';
+    }
+    quizIdx++;
+    setTimeout(loadQuiz,1800);
+  });
+  $('quizInput').addEventListener('keydown',e=>{ if(e.key==='Enter') $('quizBtn').click(); });
+  $('quizSkip').addEventListener('click',()=>{ quizIdx++; loadQuiz(); });
 
-      document.getElementById('quizBtn').addEventListener('click', () => {
-        const input = document.getElementById('quizInput').value.trim().toLowerCase();
-        const q = QUIZ_DATA[quizIndex % QUIZ_DATA.length];
-        const fb = document.getElementById('quizFeedback');
-        if (!input) { fb.textContent = 'Type an answer!'; return; }
-        const correct = q.answers.some(a => a.toLowerCase() === input);
-        if (correct) {
-          fb.textContent = '✅ Correct! 🎉';
-          fb.className = 'quiz-feedback correct';
-        } else {
-          fb.textContent = `❌ Not quite. Answer: ${q.answers[0]}`;
-          fb.className = 'quiz-feedback wrong';
-        }
-        quizIndex = (quizIndex + 1) % QUIZ_DATA.length;
-        setTimeout(loadQuiz, 2000);
-      });
+  /* ─── CONFETTI ─── */
+  function spawnConfetti(anchor) {
+    const rect = anchor.getBoundingClientRect();
+    spawnConfettiAt(null, rect.left+rect.width/2, rect.top+rect.height/2);
+  }
+  function spawnConfettiAt(el, cx, cy) {
+    if(el) { const r=el.getBoundingClientRect(); cx=r.left+r.width/2; cy=r.top; }
+    const colors=['#8b6bff','#ff5e7a','#f59e0b','#10b981','#60a5fa'];
+    for(let i=0;i<10;i++) {
+      const dot = document.createElement('div');
+      dot.className='confetti-dot';
+      dot.style.cssText=`left:${cx+(-20+Math.random()*40)}px;top:${cy}px;background:${colors[i%colors.length]};animation-delay:${Math.random()*.3}s`;
+      document.body.appendChild(dot);
+      setTimeout(()=>dot.remove(),1100);
+    }
+  }
 
-      document.getElementById('quizInput').addEventListener('keydown', e => {
-        if (e.key === 'Enter') document.getElementById('quizBtn').click();
-      });
+  /* ─── THEME TOGGLE ─── */
+  $('themeToggle').addEventListener('click',()=>{
+    dark=!dark;
+    document.body.classList.toggle('dark',dark);
+    $('themeToggle').innerHTML = dark
+      ? '<i class="fas fa-sun" style="color:#fbbf24"></i>'
+      : '<i class="fas fa-moon" style="color:#e2c96e"></i>';
+  });
 
-      // Source tabs
-      document.querySelectorAll('.stab').forEach(t => {
-        t.addEventListener('click', () => {
-          document.querySelectorAll('.stab').forEach(x => x.classList.remove('sel'));
-          t.classList.add('sel');
-          currentSrc = t.dataset.src;
-          page = 1;
-          hasMore = true;
-          currentQuery = document.getElementById('q').value.trim();
-          loadMore(currentSrc, currentCat, currentQuery, page, false);
-        });
-      });
+  /* ─── MASCOT ─── */
+  let mascotTipIdx=0;
+  $('mascotBtn').addEventListener('click',()=>{
+    const bub=$('mascotBubble');
+    bub.textContent=MASCOT_TIPS[mascotTipIdx%MASCOT_TIPS.length];
+    bub.classList.add('show');
+    mascotTipIdx++;
+    clearTimeout(sbTimer);
+    sbTimer=setTimeout(()=>bub.classList.remove('show'),4000);
+  });
+  setTimeout(()=>{ $('mascotBubble').textContent=MASCOT_TIPS[0]; $('mascotBubble').classList.add('show'); sbTimer=setTimeout(()=>$('mascotBubble').classList.remove('show'),5000); },6000);
 
-      // Category chips
-      document.querySelectorAll('.cat-chip').forEach(c => {
-        c.addEventListener('click', () => {
-          document.querySelectorAll('.cat-chip').forEach(x => x.classList.remove('sel'));
-          c.classList.add('sel');
-          currentCat = c.dataset.cat;
-          page = 1;
-          hasMore = true;
-          currentQuery = document.getElementById('q').value.trim();
-          loadMore(currentSrc, currentCat, currentQuery, page, false);
-        });
-      });
+  /* ─── VIDEO PLAY / LOOP / QUALITY ─── */
+  const heroVideo = document.getElementById('heroVideo');
+  const videoOverlay = document.getElementById('videoOverlay');
 
-      const qEl = document.getElementById('q');
-      const qClear = document.getElementById('qClear');
-      qEl.addEventListener('input', e => {
-        const v = e.target.value;
-        qClear.style.display = v ? 'block' : 'none';
-        clearTimeout(searchDebounce);
-        searchDebounce = setTimeout(() => {
-          page = 1;
-          hasMore = true;
-          currentQuery = v.trim();
-          if (v.length >= 2 || !v) {
-            loadMore(currentSrc, currentCat, currentQuery, page, false);
-          }
-        }, 500);
-      });
-      qClear.addEventListener('click', () => {
-        qEl.value = '';
-        qClear.style.display = 'none';
-        page = 1;
-        hasMore = true;
-        currentQuery = '';
-        loadMore(currentSrc, currentCat, '', page, false);
-      });
+  // Loop
+  heroVideo.loop = true;
 
-      let dark = false;
-      document.getElementById('themeToggle').addEventListener('click', () => {
-        dark = !dark;
-        const root = document.documentElement.style;
-        if (dark) {
-          root.setProperty('--bg', '#1e1c2b');
-          root.setProperty('--card-bg', '#2a2740');
-          root.setProperty('--shadow', '12px 12px 24px #131122, -12px -12px 24px #3d385a');
-          root.setProperty('--shadow-inset', 'inset 4px 4px 10px #131122, inset -4px -4px 10px #3d385a');
-          root.setProperty('--shadow-soft', '6px 6px 14px #131122, -6px -6px 14px #3d385a');
-          root.setProperty('--ink', '#eeecff');
-          root.setProperty('--ink2', '#b8b0e0');
-          root.setProperty('--muted', '#8f8bb0');
-          root.setProperty('--white', '#f0eef7');
-          document.getElementById('themeToggle').innerHTML = '<i class="fas fa-sun"></i>';
-        } else {
-          root.setProperty('--bg', '#eae8f0');
-          root.setProperty('--card-bg', '#f0eef7');
-          root.setProperty('--shadow', '12px 12px 24px #b8b4c4, -12px -12px 24px #ffffff');
-          root.setProperty('--shadow-inset', 'inset 4px 4px 10px #b8b4c4, inset -4px -4px 10px #ffffff');
-          root.setProperty('--shadow-soft', '6px 6px 14px #b8b4c4, -6px -6px 14px #ffffff');
-          root.setProperty('--ink', '#201e3a');
-          root.setProperty('--ink2', '#49446b');
-          root.setProperty('--muted', '#7a7799');
-          root.setProperty('--white', '#f6f4fe');
-          document.getElementById('themeToggle').innerHTML = '<i class="fas fa-moon"></i>';
-        }
-      });
+  // Ensure good quality: let browser choose best, but we can hint
+  heroVideo.setAttribute('playsinline', '');
+  // For better quality on some devices, try to load with higher bitrate if available
+  // The source is fixed; we can attempt to set quality by reloading if needed, but not necessary.
 
-      loadMore('all', 'trending', '', 1, false);
-      loadQuiz();
-      updateFavBadge();
+  // Toggle play/pause + overlay
+  function toggleVideoPlay() {
+    if (heroVideo.paused) {
+      heroVideo.play().catch(e => console.warn('Play failed:', e));
+      videoOverlay.classList.add('hide');
+    } else {
+      heroVideo.pause();
+      videoOverlay.classList.remove('hide');
+    }
+  }
 
-      const observerInit = new MutationObserver(() => {
-        setupInfiniteScroll();
-      });
-      observerInit.observe(document.getElementById('main'), { childList: true, subtree: true });
+  // Click on video container toggles
+  document.querySelector('.hero-video').addEventListener('click', toggleVideoPlay);
 
-      document.getElementById('creatorLink').addEventListener('click', (e) => {
-        e.preventDefault();
-        window.open('https://github.com/saqlainabbas11', '_blank');
-      });
+  // If video ends (loop is on, but just in case)
+  heroVideo.addEventListener('ended', () => {
+    // loop will handle it
+  });
 
-    })();
-  </script>
+  // If video is playing, hide overlay, else show
+  heroVideo.addEventListener('play', () => videoOverlay.classList.add('hide'));
+  heroVideo.addEventListener('pause', () => videoOverlay.classList.remove('hide'));
+
+  // If video is loaded and autoplay fails, show overlay
+  heroVideo.addEventListener('loadedmetadata', () => {
+    if (heroVideo.paused) videoOverlay.classList.remove('hide');
+  });
+
+  // Initial: ensure overlay is visible if paused
+  setTimeout(() => {
+    if (heroVideo.paused) videoOverlay.classList.remove('hide');
+  }, 300);
+
+  /* ─── INIT ─── */
+  loadMore(false);
+  loadQuiz();
+  updateFavBadge();
+
+  new MutationObserver(()=>setupScroll()).observe($('main'),{childList:true,subtree:false});
+
+})();
+</script>
 </body>
 </html>
